@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta name="renderer" content="webkit">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{block name="title"}西安一笔一划科技有限公司{/block}</title>
+    <link rel="stylesheet" href="/static/plugs/swiper/swiper-4.2.2.min.css" />
+    <link rel="stylesheet" href="/static/index/css/1.css" />
+    <link rel="stylesheet" href="/static/index/css/common.css" />
+    {block name="style"}{/block}
+    <script src="/static/plugs/jquery/jquery.js"></script>
+    {block name="scriptTop"}{/block}
+    <script src="/static/plugs/swiper/swiper-4.2.2.min.js"></script>
+</head>
+
+{block name="bodyTag"}
+<body>
+{include file="extra@index/header"}
+
+{block name="body"}{/block}
+
+{include file="extra@index/footer"}
+
+{block name="script"}{/block}
+</body>
+{/block}
+</html>

@@ -1,0 +1,125 @@
+{extend name="extra@index/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="/static/index/css/rencai.css" />
+<link rel="stylesheet" href="/static/index/css/pro.css" />
+<style>
+    li{
+        list-style: none;
+    }
+    .list_lh {
+        height: 200px;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    td{
+        text-align: center;
+        width:15%;
+    }
+    .tds:nth-of-type(1) {
+        width: 30%;
+    }
+    .tds:nth-of-type(6){
+        width:10%;
+    }
+    .rczp{
+        background-color: #f5f5f5;
+        color:#333;
+    }
+    .rczp td{
+        border-right:1px solid #fff;
+        vertical-align: center;
+        height:40px;
+    }
+    .list_lh td{
+        height:50px;
+        vertical-align: center;
+    }
+    .list_lh li{
+        border-bottom:1px dashed #ddd;
+    }
+    .main-con {
+        padding: 100px 0;
+    }
+</style>
+{/block}
+
+{block name='section'}
+
+<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 section no section-text-no-shadow section-inner-no-shadow section-normal newsSection main-con">
+    <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
+    <div class="container">
+        <div class="row qfe_row">
+            <div class="qfy-column-8-5ad6ed94831cf738355 qfy-column-inner vc_span12 text-Default small-screen-Default column_middle fullrow" data-dw="1/1" data-fixheight="">
+                <div class="column_inner inner">
+                    <div class=" background-overlay grid-overlay-0 transBc"></div>
+                    <div class="column_containter zIndex">
+                        <div>
+                            <div class="qfe_wrapper">
+                                <div>
+                                    <div class="rczp">
+                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                            <tr>
+                                                <td class="tds">招聘职位</td>
+                                                <td class="tds">招聘人数</td>
+                                                <td class="tds">发布日期</td>
+                                                <td class="tds">截止日期</td>
+                                                <td class="tds">薪资</td>
+                                                <td class="tds">操作</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="list_lh">
+                                        <ul style="margin-top: -2px;">
+                                            {foreach $zw as $v}
+                                            <li class="lieven">
+                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="tds">{$v.name}</td>
+                                                        <td class="tds"><span style="color: red">{$v.num}</span> 人</td>
+                                                        <td class="tds">{$v.addtime|date='Y-m-d',###}</td>
+                                                        <td class="tds">{$v.endtime|date='Y-m-d',###}</td>
+                                                        <td style="text-align: left" class="tds"><span style="color: red;margin-left: 55px;">￥ {$v.salary}</span></td>
+                                                        <td class="tds">
+                                                            <a href="{:url('index/Personnel/show',['id' => $v['id']])}">查看详情</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </li>
+                                            {/foreach}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{/block}
+
+{block name="script"}
+<script>
+    $(document).ready(function(){
+        $('.list_lh li:even').addClass('lieven');
+    });
+
+    $(function(){
+        $("div.list_lh").myScroll({
+            speed:60, //数值越大，速度越慢
+            rowHeight:50 //li的高度
+        });
+    });
+</script>
+{/block}
+
+
+

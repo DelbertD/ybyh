@@ -1,0 +1,102 @@
+{extend name="extra@index/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="/static/index/css/rencai.css" />
+<link rel="stylesheet" href="/static/index/css/pro.css" />
+{/block}
+
+{block name='section'}
+
+<section data-fixheight="" class="qfy-row-3-5ad9ab0db3a7a806736 section     no  section-text-no-shadow section-inner-no-shadow section-normal blackColor" id="bit_ed9gh">
+    <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
+
+    <div class="container">
+        <div class="row qfe_row">
+            <div data-animaleinbegin="bottom-in-view" data-animalename="qfyfadeInUp" data-duration="" data-delay="" class=" qfy-column-3-5ad9ab0db3fa6585119 qfy-column-inner  vc_span12  text-Default small-screen-undefined fullrow" data-dw="1/1" data-fixheight="">
+                <div class="column_inner nomargin borderRadius relative">
+                    <div class=" background-overlay grid-overlay-0 transBc"></div>
+                    <div class="column_containter zIndex">
+                        <div data-loading="" data-loading-w="" data-open="" data-post="products" m-padding="0 0 0 0" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="advanced_list_m5wt28" class="qfy-element advanced-list-5ad9ab0dbe685162 qfe_teaser_grid qfe_content_element qfe_grid columns_count_4 columns_count_4 qfe_teaser_grid_products  advanced_list productContent">
+                            <div class="qfe_wrapper list-style4">
+                                <div data-type="products" class="clear">
+                                    <div id="advanced-carousel-5ad9ab0dbe62f970" data-wrap="true" data-viewnum="4" data-interval="0" data-auto-height="true" data-mode="horizontal" data-partial="false" data-per-view="4" data-hide-on-end="true" class="itempcbody normal-list">
+                                        <section class="vc-carousel-inner">
+                                            <div class="vc-carousel-slideline">
+                                                <div class="vc-carousel-slideline-inner">
+                                                    <div class='item_container list-item vc_span12 num-0 typeContainer' style="padding: 20px;padding-left: 10%;border-bottom:1px dashed #ddd;">
+                                                        <div class="vc_ca_post_id qfy_item_post qfyanimate" data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-delay="0" data-duration="1">
+                                                            <div class="qfy_item_block item_block relative">
+                                                                <div class="item_box">
+                                                                    <div class="clearfix">
+                                                                        <div class="work">
+                                                                            <div class="titleLine">
+                                                                                <div class="titleBlueLine"></div>
+                                                                                <div class="workTitle">基本信息</div>
+                                                                            </div>
+                                                                            <div class="require">
+                                                                                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                                                                <span class="words">职位名称：{$zw.name ?? ''}</span>
+                                                                                &nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;
+
+                                                                                <i class="fa fa-database" aria-hidden="true"></i>
+                                                                                <span class="words">招聘人数：{$zw.num ?? ''} 人</span>
+                                                                                &nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;
+
+                                                                                <i class="fa fa-jpy" aria-hidden="true"></i>
+                                                                                <span class="words">职位薪资：{$zw.salary ?? ''} 人</span>
+                                                                                &nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;
+
+                                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                                <span class="words">截止日期：{$zw.endtime|date='Y-m-d', ###} </span>
+
+                                                                            </div>
+
+                                                                            <div class="titleLine">
+                                                                                <div class="titleBlueLine"></div>
+                                                                                <div class="workTitle">职位描述</div>
+                                                                            </div>
+                                                                            <div class="require">
+                                                                                <span class="words">{$zw.detail ?? ''}</span>
+                                                                            </div>
+
+                                                                            <div class="titleLine">
+                                                                                <div class="titleBlueLine"></div>
+                                                                                <div class="workTitle">联系信息</div>
+                                                                            </div>
+                                                                            <div class="require">
+                                                                                <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
+                                                                                <span class="words">联系人： {:config('company.renshi')}</span>
+                                                                                &nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;
+                                                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                                                <span class="words">联系电话：{:config('company.phone')} </span>
+                                                                                &nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;
+                                                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                                                <span class="words">联系地址：{:config('company.address')} </span>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{/block}
+
+
+
+

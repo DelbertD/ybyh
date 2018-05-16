@@ -1,0 +1,209 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+    ul.site-doc-icon li {
+        width: 120px;
+        height: 85px;
+        text-align: center;
+        float: left;
+        border: 1px solid #eee;
+    }
+    ul.site-doc-icon:hover {
+        cursor: pointer;
+    }
+    .layui-form-item .layui-input-inline.inputW{
+        width:710px;
+    }
+    .layui-form-item .layui-input-inline .inputW {
+        width: 710px;
+    }
+
+    .layui-form-item .warm-color {
+        color: #FF5722!important;
+    }
+</style>
+{/block}
+
+{block name='content'}
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <div class="layui-col-md12">
+            <form class="layui-form" action="{:url('admin/Project/add')}" method="post">
+                {if isset($anli.id)}
+                <input type="hidden" name="id" value="{$anli.id}" />
+                {/if}
+                <input type="hidden" name="thumb" value="{$anli.thumb ?? ''}" id="img">
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">案例名称：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="name" value="{$anli.name ?? ''}" class="layui-input" lay-verify="required">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">链接title：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="title" value="{$anli.title ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">元素的title | 新闻标题</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">链接alt：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="alt" value="{$anli.alt ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">页面标题：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="keys" value="{$anli.keys ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">html页面title</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">关键词：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="keywords" value="{$anli.keywords ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->keywords</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">页面描述：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="desc" value="{$anli.desc ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->description</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md6">
+                    <label class="layui-form-label">案例分类：</label>
+                    <div class="layui-input-block" style="z-index: 9999">
+                        <select name="pid" lay-verify="required">
+                            <option value=""></option>
+                            {if isset($anli)}
+                                {foreach $cate as $v}
+                                    {eq name='v.id' value='$anli.pid'}
+                                        <option value="{$v.id}" selected>{$v.name}</option>
+                                    {else/}
+                                        <option value="{$v.id}">{$v.name}</option>
+                                    {/eq}
+                                {/foreach}
+                            {else /}
+                                {foreach $cate as $v}
+                                    <option value="{$v.id}">{$v.name}</option>
+                                {/foreach}
+                            {/if}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否显示：</label>
+                    <div class="layui-input-inline inputW">
+                        {if isset($anli)}
+                        {eq name='anli.is_show' value='1'}
+                        <input type="radio" name="is_show" value="1" title="显示" checked>
+                        <input type="radio" name="is_show" value="2" title="隐藏">
+                        {else /}
+                        <input type="radio" name="is_show" value="1" title="显示">
+                        <input type="radio" name="is_show" value="2" title="隐藏" checked>
+                        {/eq}
+                        {else /}
+                        <input type="radio" name="is_show" value="1" title="显示" checked>
+                        <input type="radio" name="is_show" value="2" title="隐藏">
+                        {/if}
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">新闻详情：</label>
+                    <div class="layui-input-block">
+                        <textarea id="container" name="detail" lay-verify="required">{$anli.detail ?? ''}</textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">缩略图：</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn layui-btn-sm" id="test1">上传图片</button>
+                            <div class="layui-upload-list">
+                                {if isset($anli)}
+                                <img class="layui-upload-img" src="/static/{$anli.thumb}" width="50" height="50" id="demo1">
+                                {else /}
+                                <img class="layui-upload-img" width="50" height="50" id="demo1">
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="text-align: center">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit >保存</button>
+                        <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use(['form','upload'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var upload = layui.upload;
+
+        //普通图片上传
+        var url = '/admin/upload/upImg/type/anli';
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: url
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                var name = res.data.src;
+                $('#img').val(name);
+                return layer.msg('上传成功', {icon: 1});
+            }
+        });
+
+    });
+
+</script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="/static/plugs/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/plugs/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container');
+</script>
+{/block}
+
+
+

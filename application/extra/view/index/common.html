@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="bit-html" dir="ltr" lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{block name="title"}{if isset($keys)}{$keys ?? '西安一笔一画科技有限公司官网'}{else /}西安一笔一画科技有限公司官网{/if}{/block}</title>
+    <link rel="icon" href="/static/admin/imgs/icon.ico" type="image/x-icon">
+    <meta name="keywords" content="{$keywords ?? ''}" />
+    <meta name="description" content="{$desc ?? ''}" />
+    <link rel="stylesheet" href="/static/plugs/swiper/swiper-4.2.2.min.css" />
+    <link rel="stylesheet" href="/static/index/css/1.css" />
+    <link rel="stylesheet" href="/static/index/css/common.css" />
+    {block name="style"}{/block}
+    <script src="/static/plugs/jquery/jquery.js"></script>
+    <script src="/static/index/js/scroll.js"></script>
+    <script src="/static/plugs/swiper/swiper-4.2.2.min.js"></script>
+    <script src="/static/index/js/1.js"></script>
+    <script src="/static/index/js/common.js"></script>
+    <script src="/static/index/js/index.js"></script>
+    <script src="/static/index/js/2.js"></script>
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+            <!--$(document).bind("contextmenu",function(e){-->
+                <!--return false;-->
+            <!--});-->
+        <!--});-->
+    <!--</script>-->
+</head>
+
+
+{block name='bodyTag'}
+<body class="home page page-id-11965 page-template-default image-blur widefull_header2 widefull_footer2 widefull_topbar2 mobileleftbtnmenu btn-flat content-fullwidth qfe-js-composer js-comp-ver-4.0.1 vc_responsive">
+
+<div id="page" class='wide'>
+    <!---------header------->
+    {include file="extra@index/header"}
+
+    {block name='banner'}{/block}
+
+    <!--=================主体部分=====================-->
+    <div id="main" class="bit_main_content">
+        <div class="main-gradient"></div>
+        <div class="wf-wrap">
+            <div class="wf-container-main">
+                <div id="content" class="content" role="main">
+                    <div class="main-outer-wrapper ">
+                        <div class="bit_row">
+                            <div class="twelve columns no-sidebar-content ">
+                                <div class="bit_row">
+                                    <div class="content-wrapper twelve columns ">
+                                        {if isset($curMenu)}
+                                        {neq name='curMenu' value='首页'}
+                                        <section data-fixheight="" class="qfy-row-2-5ad97adce8d27110724 section no section-text-no-shadow section-inner-no-shadow section-normal mobileHidden mainColor" id="bit_lkay5">
+                                            <div class="section-background-overlay background-overlay grid-overlay-0 f2Bc"></div>
+                                            <div class="container">
+                                                <div class="row qfe_row">
+                                                    <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="" data-delay="" class="qfy-column-2-5ad97adce93d4476192 qfy-column-inner vc_span12 text-default small-screen-default fullrow" data-dw="1/1" data-fixheight="">
+                                                        <div class="column_inner relative">
+                                                            <div class=" background-overlay grid-overlay- transBc"></div>
+                                                            <div class="column_containter zIndex">
+                                                                <div class="qfy-element qfy_breadhtml" m-padding="0px 0px 0px 0px" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="qfy_column_breadcrumbs_vi4mn noPadding noMargintb">
+                                                                    <div class="breadcrumb">
+                                                                        <a href="{:url('/')}" title="首页-西安一笔一画" alt="西安一笔一画官方网站" class="breadcrumb-a">
+                                                                            首页
+                                                                        </a>
+                                                                        <span class="breadcrumb-separator">
+																					>>
+																				</span>
+                                                                        <span class="breadcrumb-text">
+																		    {$curMenu}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        {/neq}
+                                        {/if}
+                                        <!--replace start-->
+                                        {block name='section'}{/block}
+                                        <!--replace end-->
+
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------footer-------->
+    {include file="extra@index/footer"}
+</div>
+
+</body>
+
+{block name="script"}{/block}
+
+{/block}
+
+</html>
+

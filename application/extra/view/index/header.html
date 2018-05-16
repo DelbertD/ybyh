@@ -1,0 +1,133 @@
+<!---------header------->
+<div id="top-bar" role="complementary" class="bit-top-bar topBarCon">
+    <div class="wf-wrap">
+        <div class="wf-table wf-mobile-collapsed">
+            <div class="wf-td">
+                <div class="mini-contacts wf-float-left">
+                    <ul class="iconTimeTleUl">
+                        <li>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                             &nbsp; {$contact.tel ?? ''}
+                        </li>
+                        <li>
+                            <i class="fa fa-clock-o "  aria-hidden="true"></i> &nbsp; 上午9点至下午6点
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="wf-td right-block barShareCon">
+                <div class="topbar_right bit_widget_more align_right barShareContent" bitdatamarker="bitHeader-5" bitdataaction="site_fix_container" bitdatacolor="white">
+                    <div id="bit_postlist-4" class="headerWidget_1 widget_text site_tooler shareDiv">
+                        <div class="bitWidgetFrame">
+                            <div id="" m-padding="0px 0px 0px 0px" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="0" class="qfy-icons_list  qfy-element noPadding">
+                                <!--=============分享=================-->
+
+                                <ul class="gallery_icons_list bdsharebuttonbox">
+
+                                    <li>
+                                        <a href="#" class="bds_qzone bds_qzone1" data-cmd="qzone" title="分享到QQ空间">
+                                            <i></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="bds_tsina bds_tsina1" data-cmd="tsina" title="分享到新浪微博">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="bds_sqq bds_sqq1" data-cmd="sqq" title="分享到腾讯qq">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="bds_weixin bds_weixin1" data-cmd="weixin" title="分享到微信">
+                                        </a>
+                                    </li>
+                                    <li style="clear:both;">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<header id="header" class="logo-left-right wf-mobile-hidden  mobiletopbottom  hl  ht headerPM menuPosition" role="banner">
+    <div class="wf-wrap">
+        <div class="wf-table">
+            <div id="branding" class="wf-td bit-logo-bar headerLogoBar" >
+                <a class="bitem logo small logoA" href="javascript:;">
+								<span class="logospan">
+			                		<img class="preload-me wf-mobile-hidden" alt="西安一笔一画" title="主LOGO_西安一笔一画科技有限公司" src="/static/index/imgs/logo1.png" width="482" height="126"/>
+			                        <img src="/static/index/imgs/logo1.png" alt="西安一笔一画" title="副LOGO_西安一笔一画科技有限公司" class="preload-me wf-mobile-visible-inline">
+			                	</span>
+                </a>
+            </div>
+            <nav style="" id="navigation" class="wf-td" bitDataAction="site_menu_container" bitDataLocation="primary">
+                <ul id="main-nav" data-st="1" data-sp="0" data-fh="0" data-mw="0" data-lh="32" class="mainmenu fancy-rollovers wf-mobile-hidden bit-menu-default underline-hover position-text-right" data-bit-menu=underline-hover data-bit-float-menu=underline-hover>
+                    <!--========导航内容================-->
+                    {foreach $pmenu as $v}
+                    {eq name='v' value='0'}
+                    <li class=" menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-11965 current_page_item bit-menu-post-id-11965 menu-item-11966 act first">
+                        <a href="{:url($v.url)}" title="{$v.title}" alt="{$v.alt}">
+                            <span>{$v.title}</span>
+                        </a>
+                    </li>
+                    {/eq}
+                    <li class=" menu-item menu-item-type-post_type menu-item-object-page">
+                        <a href="{:url($v.url)}" title="{$v.url}" alt="{$v.alt}">
+                            <span>{$v.title}</span>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+                <div class='menu_displaynone_header mobileHeader'>
+                    <div class="inner">
+                        <div class="mobile_login_menu"></div>
+                        <div class="mobile_logo">
+                            <a class="bitem logo" href="JavaScript:;">
+											<span class="logospan">
+					    						<img src="/static/index/imgs/logo1.png" alt="西安一笔一画" class="preload-me wf-mobile-visible-inline" >
+					    					</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_displaynone mobileMenu">
+                    <div class="loginbtncontainer_top">
+                        <div class="menuCon">
+                            <div class="menuAbso">
+
+                            </div>
+                            <div class="bitHeader-8 menuRela" bitdatamarker="bitHeader-8" bitdataaction="site_widget_container" bitdatacolor="white">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_displaynone_footer menuFooter">
+                    <div class="loginbtncontainer_bottom">
+                        <div class="padding">
+                            <div class="ab">
+
+                            </div>
+                            <div class="bitHeader-9 " bitdatamarker="bitHeader-9" bitdataaction="site_widget_container" bitdatacolor="white" style="position:relative;z-index:2;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a data-padding='' data-top='' data-right='' rel="nofollow" id="mobile-menu" style="display:none;" class="glyphicon glyphicon-icon-align-justify leftbtnmenu positionFixed iconbigSize left">
+                    <span class="menu-open  phone-text">首页</span>
+                    <span class="menu-close">关闭</span>
+                    <span class="menu-back">返回上一级</span>
+                    <span class="wf-phone-visible">&nbsp;</span>
+                </a>
+            </nav>
+            <div style="display:none;" id="main-nav-slide">
+                <div class="main-nav-slide-inner" data-class="align_left">
+                    <div class="floatmenu-bar-right bit_widget_more" bitdatamarker="bitHeader-3" bitdataaction="site_fix_container" bitdatacolor="white">
+                    </div>
+                </div>
+            </div>
+        </div>
+</header>

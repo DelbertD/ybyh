@@ -1,0 +1,106 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+    ul.site-doc-icon li {
+        width: 120px;
+        height: 85px;
+        text-align: center;
+        float: left;
+        border: 1px solid #eee;
+    }
+    ul.site-doc-icon:hover {
+        cursor: pointer;
+    }
+    table,table tr th,.layui-table th, .layui-table td{
+        text-align: center;
+    }
+    .pull-right {
+        float: right;
+    }
+</style>
+{/block}
+
+{block name='content'}
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>职位名称</th>
+                <th>招聘人数</th>
+                <th>职位薪资</th>
+                <th>是否显示</th>
+                <th>发布日期</th>
+                <th>截止日期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $list as $v}
+            <tr>
+                <td>{$v.id ?? ''}</td>
+                <td>{$v.name ?? ''}</td>
+                <td>{$v.num ?? ''} 人</td>
+                <td><span style="color: red;font-weight: bold">￥</span> {$v.salary ?? ''} 元</td>
+                {eq name='v.is_show' value='1'}
+                <td>显示</td>
+                {else /}
+                <td>隐藏</td>
+                {/eq}
+                <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+                <td>{$v.endtime|date='Y-m-d', ###}</td>
+                <td>
+                    <a href="{:url('admin/Personnel/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
+                        <i class="layui-icon">&#xe642;</i>
+                        编辑
+                    </a>  |
+                    <a onclick="del('{$v.id}')" style="color: #FF5722;cursor: pointer">
+                        <i class="layui-icon">&#xe640;</i>
+                        删除
+                    </a>
+                </td>
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+        <div class="pull-right">
+            {$page ?? ''}
+        </div>
+    </div>
+</fieldset>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use('table', function(){
+
+    });
+
+    function del(id) {
+        var $ = layui.jquery;
+        layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
+            var url = "{:url('admin/Project/del')}";
+            $.get(url, {"id":id}, function (res) {
+                layer.close(index);
+                if (res.suc == 0){
+                    layer.msg('删除成功', {icon: 1}, function () {
+                        location.reload();
+                    });
+                }else {
+                    layer.msg('删除成功', {icon: 2});
+                }
+            })
+        });
+    }
+
+</script>
+{/block}
+
+
+
