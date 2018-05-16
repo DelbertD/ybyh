@@ -1,0 +1,114 @@
+#rcSection{
+    color:#666;
+}
+#rcSection  .rcUl{
+    display: block;
+    height:100px;
+}
+#rcSection .rcUl .rcLi{
+    border-bottom:1px dashed #d4d4d4;
+    padding:16px !important;
+    color:#333;
+}
+#rcSection .rcUl  .rezp a{
+    font-size:16px;
+    color: #505050;
+}
+#rcSection .rcUl  .rezp a:hover{
+    color:#CF0E24;
+    text-decoration: underline !important;
+}
+#rcSection .rcUl .adress{
+    color: #949292;
+    font-size:14px;
+    padding: 10px 0 0 0;
+}
+#rcSection .rcUl  .time{
+    color: #7f7d7d;
+}
+#rcSection .rcUl  .money{
+    color: #f6850d;
+    padding-top: 12px
+}
+#rcSection .rcUl  .rezp h1{
+    display: inline-block;
+    font-size: 25px;
+    line-height: 36px;
+    font-weight: normal;
+    font-family: 微软雅黑;
+}
+#rcSection .rcUl .detialMoney{
+    color: #ff3030;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+}
+#rcSection .rcUl .detialTime{
+    font-size: 14px;
+    color: #abaeb0;
+}
+.require{
+    line-height:30px;
+    width:100%;
+}
+.require .words{
+    color:#666;
+    font-size:14px;
+}
+.work{
+    padding-top:10px;
+}
+.titleLine{
+    width:100%;
+    height:30px;
+}
+.work .titleBlueLine{
+    float: left;
+    width:7px;
+    height:20px;
+    background-color: #1c99ef;
+    margin-top:4px;
+}
+.work .workTitle{
+    line-height: 30px;
+    height:30px;
+    float: left;
+    padding-left:10px;
+}
+.work  .workRequire{
+    font-size:14px;
+    line-height:30px;
+    color:#666;
+}
+.titleLines{
+    width:100%;
+    height:40px;
+    display: block;
+}
+.worksRequire{
+    border-bottom: 1px dashed #ccc;
+    display: block;
+    width:100%;
+}
+.worksRequire .blueWork{
+    width:100%;
+    display: block;
+    /*height:30px;*/
+}
+.worksRequire .blueWork a{
+    color:#1c99ef;
+    font-size:16px;
+    line-height:30px;
+    height:30px;
+    /*display: block;*/
+}
+.worksRequire .blueWork a:hover{
+    color:#CF0E24;
+    text-decoration: underline !important;
+}
+.worksRequire .workD{
+    font-size:14px;
+}
+.marginBottom{
+    margin-bottom:10px;
+}
