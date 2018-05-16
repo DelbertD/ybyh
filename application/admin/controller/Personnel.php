@@ -80,4 +80,23 @@ class Personnel extends Base
         }
     }
 
+
+    /*
+     *
+     *删除
+     */
+
+    public function del($id = 0){
+        $ret = ['suc' => 1];
+        if (empty($id)){
+            return $ret;
+        }
+        //删除新闻
+        $res = Db::name('zw')->delete($id);
+        if ($res){
+            $ret['suc'] = 0;
+        }
+        return $ret;
+    }
+
 }

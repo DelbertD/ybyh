@@ -85,7 +85,7 @@
     function del(id) {
         var $ = layui.jquery;
         layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
-            var url = "{:url('admin/Project/del')}";
+            var url = "{:url('admin/Personnel/del')}";
             $.get(url, {"id":id}, function (res) {
                 layer.close(index);
                 if (res.suc == 0){
@@ -93,7 +93,7 @@
                         location.reload();
                     });
                 }else {
-                    layer.msg('删除成功', {icon: 2});
+                    layer.msg('删除失败', {icon: 2});
                 }
             })
         });
