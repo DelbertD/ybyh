@@ -1227,7 +1227,7 @@ body .UUID-POSTS-5ad6ed9488f2d478368 .teaser_grid_container,
 	border-right:1px solid rgba(221,221,221,1);
 	background-color:transparent;"
 }
-.newsSection .newsCon ul li .liCon .liTitle{
+.newsSection .newsCon ul li .liCon .liTitle,.newsSection .newsCon ul li .liCon a{
 	padding-bottom:20px;
 	font-weight:normal;
 	color:#555555;

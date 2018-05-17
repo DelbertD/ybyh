@@ -129,4 +129,66 @@ class Project extends Base
         }
         return $ret;
     }
+
+
+    //分类列表
+
+    public function cateList(){
+        $db = Db::name('anli_cate')
+            ->orderRaw('sort = 0,sort');
+        return parent::_list($db, 10);
+    }
+
+    /*
+     * 添加分类
+     */
+    public function addCate(){
+        if (request()->isPost()){
+            $post = request()->post();
+            $res = Db::name('anli_cate')->insert($post);
+            if ($res){
+                $this->success('添加成功');
+            }else{
+                $this->error('添加失败');
+            }
+        }else{
+            return $this->fetch();
+        }
+    }
+
+    public function editCate($id = 0){
+        if (request()->isPost()){
+            $post = request()->post();
+            $res = Db::name('anli_cate')->update($post);
+            if ($res){
+                $this->success('编辑成功');
+            }else{
+                $this->error('编辑失败');
+            }
+        }else{
+            $anli_cate = Db::name('anli_cate')->find($id);
+            $this->assign([
+                'anli_cate' => $anli_cate
+            ]);
+            return $this->fetch();
+        }
+    }
+
+    /*
+     *
+     *删除
+     */
+
+    public function delCate($id = 0){
+        $ret = ['suc' => 1];
+        if (empty($id)){
+            return $ret;
+        }
+        $res = Db::name('anli_cate')->delete($id);
+        //删除新闻内容
+        if ($res){
+            $ret['suc'] = 0;
+        }
+        return $ret;
+    }
 }
