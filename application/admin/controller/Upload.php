@@ -24,7 +24,7 @@ class Upload extends Base
             $path = config('imgs.' . $type);
             $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'static' . DS . $path);
             if($info){
-                $fileName = $path . '/' . $info->getFilename();
+                $fileName = $path . '\\' . $info->getFilename();
                 $data['src'] = $fileName;
                 $retArr['data'] = $data;
             }else{

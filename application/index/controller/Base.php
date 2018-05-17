@@ -30,11 +30,11 @@ class Base extends Controller
         $nav = Db::name('pmenu')
             ->where('url', '=', $keyword)
             ->where('is_show', 1)
-            ->field('title,keys,keywords,desc')
+            ->field('name,title,alt,keys,keywords,desc')
             ->find();
         if (!empty($nav)){
             $this->assign([
-                'curMenu'  => $nav['title'],
+                'curMenu'  => $nav['name'],
                 'keys'     => $nav['keys'],
                 'desc'     => $nav['desc'],
                 'keywords' => $nav['keywords'],
