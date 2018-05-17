@@ -3849,4 +3849,13 @@ body #phantom .ph-wrap .ph-wrap-content {
 .dl-menuwrapper .dl-menu li a {
     color: #eaeaea;
 }
-/*<i class="fa fa-angle-down" aria-hidden="true"></i>*/
+
+.qfe_single_image.vc_align_left {
+    text-align: left;
+}
+.qfe_single_image .qfe_wrapper img, .qfe_images_lib_isotope img, .qfe_images_list img {
+    vertical-align: middle;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
