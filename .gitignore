@@ -1,8 +1,7 @@
+!.gitignore
 .idea
 composer.lock
 *.log
-thinkphp
-
 /application/database.php
 /runtime
 /xaybyh.sql
