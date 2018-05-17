@@ -113,7 +113,7 @@ class Page extends Paginator
                 );
             } else {
                 return sprintf(
-                    '<div class="layui-box layui-laypage layui-laypage-defaul">%s %s %s </div>',
+                    '<div class="layui-box layui-laypage layui-laypage-defaul pullright">%s %s %s </div>',
                     $this->getPreviousButton(),
                     $this->getLinks(),
                     $this->getNextButton()

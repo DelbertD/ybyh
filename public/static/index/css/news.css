@@ -605,15 +605,14 @@
 	text-align: center;
 }
 .newsType ul li{
-	float: left;
+	display: contents;
 }
 .newsType ul li a{
-	font-size:16px;
-	width:100px;
-	height:30px;
+	font-size: 19px;
+	width: 150px;
+	height: 40px;
 	display: inline-block;
-	line-height: 30px;
-	border-radius:5px;
+	line-height: 40px;
 }
 .newsType ul li a:hover,.newsType ul li .active{
 	color:#0093fa;

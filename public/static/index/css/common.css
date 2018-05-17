@@ -36,7 +36,6 @@
 	vertical-align:bottom;
 }
 .qfe_wrapper .titleCenter{
-	text-align: center;
 	width:100%;
 }
 .mainHeaderSubTitle{
@@ -761,4 +760,9 @@ header .headerLogoBar .logoA{
 .qfy_item_block.item_block.relative.item_box {
 	padding: 10px 10px 0 10px;
 	border: 1px solid #ddd;
+}
+
+.pullright {
+	text-align: right;
+	margin-top: 20px;
 }
