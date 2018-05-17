@@ -1,0 +1,925 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+    ul.site-doc-icon li {
+        width: 120px;
+        height: 85px;
+        text-align: center;
+        float: left;
+        border: 1px solid #eee;
+    }
+    ul.site-doc-icon:hover {
+        cursor: pointer;
+    }
+</style>
+{/block}
+
+{block name='content'}
+<a type="button" href="{:url('admin/Node/lists')}"  class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe65c;</i>返回</a>
+<hr class="layui-bg-blue">
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <div class="layui-col-md9">
+            <form class="layui-form" action="{:url('admin/Node/edit')}" method="post">
+                {if isset($node)}
+                <input type="hidden" name="id" value="{$node.id}">
+                {/if}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">节点名称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" value="{$node.name ?? ''}" lay-verify="required" placeholder="请输入节点名称" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">菜单名称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" value="{$node.title ?? ''}" lay-verify="required" placeholder="请输入菜单名称" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">节点图标：</label>
+                    <div class="layui-input-inline">
+                        <input id="icon" type="text" name="icon" value="{$node.icon ?? ''}" placeholder="请选择节点图标" class="layui-input">
+                    </div>
+                    <button type="button" onclick="openWin()" class="layui-btn">选择图标</button>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">节点级别：</label>
+                    <div class="layui-input-block">
+                        <select name="level" lay-verify="required" lay-filter="level">
+                            {if isset($node)}
+                            {eq name='node.level' value='1'}
+                            <option value="1" selected>项目级别</option>
+                            <option value="2">模块级别</option>
+                            <option value="3">操作级别</option>
+                            {/eq}
+                            {eq name='node.level' value='2'}
+                            <option value="1">项目级别</option>
+                            <option value="2" selected>模块级别</option>
+                            <option value="3">操作级别</option>
+                            {/eq}
+                            {eq name='node.level' value='3'}
+                            <option value="1">项目级别</option>
+                            <option value="2">模块级别</option>
+                            <option value="3" selected>操作级别</option>
+                            {/eq}
+                            {else /}
+                            <option value=""></option>
+                            <option value="1">项目级别</option>
+                            <option value="2">模块级别</option>
+                            <option value="3">操作级别</option>
+                            {/if}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级节点：</label>
+                    <div class="layui-input-block">
+                        <select id="pid" name="pid" lay-verify="required">
+                            <option value="0">作为顶级结点</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否禁止：</label>
+                    <div class="layui-input-block">
+                        {if isset($node)}
+                        {eq name='node.status' value='1'}
+                        <input type="radio" name="status" value="1" title="启用" checked>
+                        <input type="radio" name="status" value="2" title="禁用">
+                        {else /}
+                        <input type="radio" name="status" value="1" title="启用">
+                        <input type="radio" name="status" value="2" title="禁用" checked>
+                        {/eq}
+                        {else /}
+                        <input type="radio" name="status" value="1" title="启用" checked>
+                        <input type="radio" name="status" value="2" title="禁用">
+                        {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否显示：</label>
+                    <div class="layui-input-block">
+                        {if isset($node)}
+                        {eq name='node.status' value='1'}
+                        <input type="radio" name="is_show" value="1" title="显示" checked>
+                        <input type="radio" name="is_show" value="2" title="隐藏">
+                        {else /}
+                        <input type="radio" name="is_show" value="1" title="显示">
+                        <input type="radio" name="is_show" value="2" title="隐藏" checked>
+                        {/eq}
+                        {else /}
+                        <input type="radio" name="is_show" value="1" title="显示" checked>
+                        <input type="radio" name="is_show" value="2" title="隐藏">
+                        {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">节点描述：</label>
+                    <div class="layui-input-block">
+                        <textarea name="info" placeholder="请输入节点内容" class="layui-textarea">{$node.info ?? ''}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button style="margin-left: 100px;" class="layui-btn" lay-submit >保存</button>
+                        <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>
+
+<div class="icon-list" style="display: none;">
+    <div>
+        <ul class="site-doc-icon">
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">主页</div>
+            <div class="code">#xe68e;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">赞</div>
+            <div class="code">#xe6c6;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">踩</div>
+            <div class="code">#xe6c5;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">男</div>
+            <div class="code">#xe662;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">女</div>
+            <div class="code">#xe661;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">相机-空心</div>
+            <div class="code">#xe660;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">相机-实心</div>
+            <div class="code">#xe65d;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">菜单-水平</div>
+            <div class="code">#xe65f;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">菜单-竖直</div>
+            <div class="code">#xe671;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">返回</div>
+            <div class="code">#xe65c;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">Hot</div>
+            <div class="code">#xe756;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">等级</div>
+            <div class="code">#xe735;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">金额-人民币</div>
+            <div class="code">#xe65e;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">金额-美元</div>
+            <div class="code">#xe659;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">位置</div>
+            <div class="code">#xe715;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文档</div>
+            <div class="code">#xe705;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">检验</div>
+            <div class="code">#xe6b2;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">笑脸</div>
+            <div class="code">#xe6af;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">哭脸</div>
+            <div class="code">#xe69c;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">购物车1</div>
+            <div class="code">#xe698;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">购物车2</div>
+            <div class="code">#xe657;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">星级</div>
+            <div class="code">#xe658;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">上一页</div>
+            <div class="code">#xe65a;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">下一页</div>
+            <div class="code">#xe65b;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">上传-空心</div>
+            <div class="code">#xe681;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">上传-实心</div>
+            <div class="code">#xe67c;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文件夹</div>
+            <div class="code">#xe7a0;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">应用</div>
+            <div class="code">#xe857;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">播放</div>
+            <div class="code">#xe652;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">播放暂停</div>
+            <div class="code">#xe651;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">音乐</div>
+            <div class="code">#xe6fc;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">视频</div>
+            <div class="code">#xe6ed;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">语音</div>
+            <div class="code">#xe688;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">喇叭</div>
+            <div class="code">#xe645;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">对话</div>
+            <div class="code">#xe611;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">设置</div>
+            <div class="code">#xe614;</div>
+            
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">隐身-im</div>
+            <div class="code">#xe60f;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">搜索</div>
+            <div class="code">#xe615;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">分享</div>
+            <div class="code">#xe641;</div>
+            
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">ဂ</i>
+            <div class="name">刷新</div>
+            <div class="code">#x1002;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>
+            <div class="name">loading</div>
+            <div class="code">#xe63d;</div>
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>
+            <div class="name">loading</div>
+            <div class="code">#xe63e;</div>
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">设置</div>
+            <div class="code">#xe620;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">引擎</div>
+            <div class="code">#xe628;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon">ဆ</i>
+            <div class="name">阅卷错号</div>
+            <div class="code">#x1006;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon">ဇ</i>
+            <div class="name">错-</div>
+            <div class="code">#x1007;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">报表</div>
+            <div class="code">#xe629;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">star</div>
+            <div class="code">#xe600;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">圆点</div>
+            <div class="code">#xe617;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">客服</div>
+            <div class="code">#xe606;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">发布</div>
+            <div class="code">#xe609;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">21cake_list</div>
+            <div class="code">#xe60a;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">图表</div>
+            <div class="code">#xe62c;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon">စ</i>
+            <div class="name">正确</div>
+            <div class="code">#x1005;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">换肤2</div>
+            <div class="code">#xe61b;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">在线</div>
+            <div class="code">#xe610;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">右右</div>
+            <div class="code">#xe602;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">左左</div>
+            <div class="code">#xe603;</div>
+            
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">表格</div>
+            <div class="code">#xe62d;</div>
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">icon_树</div>
+            <div class="code">#xe62e;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">上传</div>
+            <div class="code">#xe62f;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">添加</div>
+            <div class="code">#xe61f;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">下载</div>
+            <div class="code">#xe601;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">选择模版48</div>
+            <div class="code">#xe630;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">工具</div>
+            <div class="code">#xe631;</div>
+            
+        </li>
+
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">添加</div>
+            <div class="code">#xe654;</div>
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">编辑</div>
+            <div class="code">#xe642;</div>
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">删除</div>
+            <div class="code">#xe640;</div>
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">向下</div>
+            <div class="code">#xe61a;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文件</div>
+            <div class="code">#xe621;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">布局</div>
+            <div class="code">#xe632;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">对勾</div>
+            <div class="code">#xe618;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">添加</div>
+            <div class="code">#xe608;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">么么直播－翻页</div>
+            <div class="code">#xe633;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">404</div>
+            <div class="code">#xe61c;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">轮播组图</div>
+            <div class="code">#xe634;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">help</div>
+            <div class="code">#xe607;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">代码1</div>
+            <div class="code">#xe635;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">进水</div>
+            <div class="code">#xe636;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">关于</div>
+            <div class="code">#xe60b;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">向上</div>
+            <div class="code">#xe619;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">日期</div>
+            <div class="code">#xe637;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文件</div>
+            <div class="code">#xe61d;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">top</div>
+            <div class="code">#xe604;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">好友请求</div>
+            <div class="code">#xe612;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">对</div>
+            <div class="code">#xe605;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">窗口</div>
+            <div class="code">#xe638;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">表情</div>
+            <div class="code">#xe60c;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">正确</div>
+            <div class="code">#xe616;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">我的好友</div>
+            <div class="code">#xe613;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文件下载</div>
+            <div class="code">#xe61e;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">图片</div>
+            <div class="code">#xe60d;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">链接</div>
+            <div class="code">#xe64c;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">记录</div>
+            <div class="code">#xe60e;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文件夹</div>
+            <div class="code">#xe622;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">font-strikethrough</div>
+            <div class="code">#xe64f;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">unlink</div>
+            <div class="code">#xe64d;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">编辑_文字</div>
+            <div class="code">#xe639;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">三角</div>
+            <div class="code">#xe623;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">单选框-候选</div>
+            <div class="code">#xe63f;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">单选框-选中</div>
+            <div class="code">#xe643;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">居中对齐</div>
+            <div class="code">#xe647;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">右对齐</div>
+            <div class="code">#xe648;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">左对齐</div>
+            <div class="code">#xe649;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">勾选框（未打勾）</div>
+            <div class="code">#xe626;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">勾选框（已打勾）</div>
+            <div class="code">#xe627;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">加粗</div>
+            <div class="code">#xe62b;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">聊天 对话 IM 沟通</div>
+            <div class="code">#xe63a;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">文件夹_反</div>
+            <div class="code">#xe624;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">手机</div>
+            <div class="code">#xe63b;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">表情</div>
+            <div class="code">#xe650;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">html</div>
+            <div class="code">#xe64b;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">表单</div>
+            <div class="code">#xe63c;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">tab</div>
+            <div class="code">#xe62a;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">emw_代码</div>
+            <div class="code">#xe64e;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">字体-下划线</div>
+            <div class="code">#xe646;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">三角</div>
+            <div class="code">#xe625;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">图片</div>
+            <div class="code">#xe64a;</div>
+            
+        </li>
+        <li onclick="addIcon(this)">
+            <i class="layui-icon"></i>
+            <div class="name">斜体</div>
+            <div class="code">#xe644;</div>
+            
+        </li>
+    </ul>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        form.on('select(level)', function(data){
+            var level = data.value;
+            var url = "{:url('admin/Node/getJsonTree')}";
+            $.get(url, {'level':level}, function (res) {
+                if (res.suc == 0){
+                    $('#pid').html('');
+                    $('#pid').append(res.data);
+                    form.render('select');
+                }
+            })
+        });
+
+
+        $(function () {
+            var level = "{$node.level ?? 0}";
+            var pid = "{$node.pid ?? 0}";
+            var url = "{:url('admin/Node/getJsonTree')}";
+            if (level){
+                $.get(url, {'level':level,"pid":pid}, function (res) {
+                    if (res.suc == 0){
+                        $('#pid').html('');
+                        $('#pid').append(res.data);
+                        form.render('select');
+                    }
+                })
+            }
+        });
+        
+    });
+
+
+    function openWin() {
+        var $ = layui.jquery;
+        var content = $('.icon-list').html();
+        var index = layer.open({
+            title: '图标列表',
+            content: content,
+            area: ['50%', '70%'],
+            btn: false
+        })
+    }
+    
+    function addIcon(obj) {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var icon = $(obj).find('div.code').html();
+        $('#icon').val(icon);
+        layer.closeAll();
+    }
+
+</script>
+{/block}
+
+
+

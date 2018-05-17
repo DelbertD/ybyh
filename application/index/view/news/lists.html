@@ -1,0 +1,133 @@
+{extend name="extra@index/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="/static/index/css/news.css" />
+{/block}
+
+{block name='section'}
+
+<!-----新闻列表-------->
+<section data-fixheight="" class="qfy-row-3-5add3df3d8322598357 section no section-text-no-shadow section-inner-no-shadow section-normal blackColor" id="bit_zm7t1">
+    <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
+    <div class="container">
+        <div class="row qfe_row">
+            <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="" data-delay="" class=" qfy-column-3-5add3df3d8737338833 qfy-column-inner vc_span12 text-default small-screen-undefined fullrow" data-dw="1/1" data-fixheight="">
+                <div class="column_inner relative">
+                    <div class=" background-overlay grid-overlay- whiteBc"></div>
+                    <div class="column_containter zIndex">
+                        <section data-fixheight="" class="qfy-row-4-5add3df3d8adb917103 section  bothfull  section-text-no-shadow section-inner-no-shadow section-normal blackColor">
+                            <div class="section-background-overlay background-overlay grid-overlay-0 Trans"></div>
+                            <div class="container">
+                                <div class="row qfe_row">
+                                    <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="" data-delay="" class=" qfy-column-4-5add3df3d8f03278248 qfy-column-inner  vc_span_class   text-default small-screen-default notfullrow" data-dw="1/1" data-fixheight="" style="margin:0 auto">
+                                        <div class="column_inner relative">
+                                            <div class="background-overlay grid-overlay- transBc"></div>
+                                            <div class="column_containter zIndex">
+                                                <div id="vc_header_5add3df3d967f929" m-padding="0px 0px 7px 0px" p-padding="0 0 31px 0" css_animation_delay="0" qfyuuid="qfy_header_fsx7u-c-gk" data-anitime="0.7" class="qfy-element minheigh1px qfe_text_column qfe_content_element noSectionElement newsElement">
+                                                    <div class="qfe_wrapper">
+                                                        <h2 class="qfy_title titleCenter mobileleft">
+                                                            <div class="qfy_title_image_warpper mainTitleInner">
+                                                                <div class="qfy_title_inner mainTitleInner">
+                                                                    <div class="header_title mainHeaderTitle">
+                                                                        新闻资讯
+                                                                    </div>
+                                                                </div>
+                                                                <span class="clear"></span>
+                                                                <span class="line-abs bottom hleft blueline"></span>
+                                                            </div>
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                                <div m-padding="0px 0px 7px 0px" p-padding="0 0 31px 0" css_animation_delay="0" qfyuuid="qfy_header_fsx7u-c-gk" data-anitime="0.7" class="qfy-element minheigh1px qfe_text_column qfe_content_element noSectionElement newsElement">
+                                                    <div class="qfe_wrapper">
+                                                        <h2 class="qfy_title newsType">
+                                                            <ul>
+                                                                {eq name='id' value='1'}
+                                                                <li>
+                                                                    <a href="{:url('index/news/lists',['id' => 1])}" title="公司新闻" alt="西安一笔一画有限公司" class="active">公司新闻</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{:url('index/news/lists',['id' => 2])}" title="公司新闻" alt="西安一笔一画有限公司">行业新闻</a>
+                                                                </li>
+                                                                {/eq}
+                                                                {eq name='id' value='2'}
+                                                                <li>
+                                                                    <a href="{:url('index/news/lists',['id' => 1])}" title="公司新闻" alt="西安一笔一画有限公司">公司新闻</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{:url('index/news/lists',['id' => 2])}" title="公司新闻" alt="西安一笔一画有限公司" class="active">行业新闻</a>
+                                                                </li>
+                                                                {/eq}
+                                                            </ul>
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                                <div data-loading="" data-loading-w="" data-open="1" data-post="post" data-cate=" " m-padding="0 0 0 0" p-padding="0 49px 0 0" css_animation_delay="0" qfyuuid="qfy_posts_grid_2isg787" class="qfy-element  UUID-POSTS-5add3df3e7e7c644167 qfe_teaser_grid qfe_content_element  qfe_grid columns_count_1 columns_count_1 qfe_teaser_grid_post  ">
+                                                    <div class="qfe_wrapper">
+                                                        <div class="teaser_grid_container noanimale clear" data-type="post" data-cate=" " data-pcate="">
+                                                            <ul style="min-height:60px;" class="qfe_thumbnails qfe_thumbnails-fluid vc_clearfix  post_blog4 " data-layout-mode="fitRows">
+                                                                <!--==========新闻列表循环  一个 li  一个div clear=================-->
+
+                                                                {foreach $list as $v}
+                                                                <li data-animaleinbegin="bottom-in-view" data-animalename="qfyfadeInUp" data-delay="0" data-duration="" class="isotope-item qfy_item_post vc_span12 vc_span_mobile vc_span_mobile12 grid-cat-1 grid-cat-2">
+                                                                    <div class="itembody  itempcbody newsLiCon">
+                                                                        <div class="post-title postTitle">
+                                                                            <a data-title="true" href="{:url('index/news/show',['id' => $v['id']])}" class="bitImageAhover link_title" title="{$v.title}" alt="{$v.alt">
+                                                                                {$v.title}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="blog-content wf-td blogContent">
+                                                                            <div class="post-thumb blog-media wf-td postThumb">
+                                                                                <a href="{:url('index/news/show',['id' => $v['id']])}" title="{$v.title}" alt="{$v.alt}">
+                                                                                    <img data-tag="imageSharePreview" data-t-id="14345" style="" class=" ag_image" src="/static/{$v.thumb}" alt="{$v.alt}" description="" data-attach-id="14345" data-title="home_energy_slider_bgd" title="{$v.title}" src-img="">
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="post-comment postComment">
+                                                                                <span>
+                                                                                    <span class="post_date postDate">
+                                                                                        发布日期：
+                                                                                        <span data-date="2017-06-01 14:29:23" class="post_date_text">
+                                                                                            {$v.addtime|date='Y-m-d', ###}
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="entry-content post_excerpt postExcerpt">
+                                                                                <p>{$v.zy}</p>
+                                                                                <br>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <div class="clear"></div>
+                                                                {/foreach}
+
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                    <!--======页数========-->
+                                                    <div class="wf-mobile-hidden mypages pagenav">
+                                                        {$page}
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wf-mobile-hidden qfy-clumn-clear" style="clear:both;"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{/block}
+
+
+
+
