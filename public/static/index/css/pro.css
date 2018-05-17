@@ -73,7 +73,7 @@
 }
 #list_btncate_controls_u3is5 .tabcontent-header-menu li.item a.active {
 	background-color: #33ADFF !important;
-	color: #ffffff !important;
+	color: #fff !important;
 	border-top: 1px solid #33ADFF !important;
 	border-bottom: 1px solid #33ADFF !important;
 	border-left: 1px solid #33ADFF !important;
@@ -82,8 +82,8 @@
 }
 
 #list_btncate_controls_u3is5 .tabcontent-header-menu li.item a:hover {
-	background-color: #BFBFBF !important;
-	color: #ffffff !important;
+	background-color: #fff !important;
+	color: #000 !important;
 	border-top: 1px solid #BFBFC1 !important;
 	border-bottom: 1px solid #BFBFC1 !important;
 	border-left: 1px solid #BFBFC1 !important;
@@ -475,11 +475,11 @@
 	border-style: solid;
 	font-family:微软雅黑; 
 	font-size:14px;
-	background-color:#9A9DA2; 
-	color:#eaeaea;
-	border-top:1px solid #9A9DA2;
-	border-bottom:1px solid #9A9DA2;  
-	border-left:1px solid #9A9DA2; 
-	border-right:1px solid #9A9DA2; 
+	background-color:#000;
+	color:#fff;
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	border-left:1px solid #000;
+	border-right:1px solid #000;
 	padding:8px;
 }
