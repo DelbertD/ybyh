@@ -757,3 +757,8 @@ header .headerLogoBar .logoA{
 	padding:0;
 	margin:0;
 }
+
+.qfy_item_block.item_block.relative.item_box {
+	padding: 10px 10px 0 10px;
+	border: 1px solid #ddd;
+}
