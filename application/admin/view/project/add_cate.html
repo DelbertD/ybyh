@@ -27,22 +27,21 @@
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
         <div class="layui-col-md12">
-            <form class="layui-form" action="{:url('admin/pro/addCate')}" method="post">
-                {if isset($cate.id)}
-                <input type="hidden" name="id" value="{$cate.id}" />
+            <form class="layui-form" action="{:url('admin/Project/addCate')}" method="post">
+                {if isset($anli_cate.id)}
+                <input type="hidden" name="id" value="{$anli_cate.id}" />
                 {/if}
-                <input type="hidden" name="thumb" value="{$cate.thumb ?? ''}" id="img">
                 <div class="layui-form-item layui-col-md6">
                     <label class="layui-form-label">分类名称：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" value="{$cate.name ?? ''}" class="layui-input" lay-verify="required">
+                        <input type="text" name="name" value="{$anli_cate.name ?? ''}" class="layui-input" lay-verify="required">
                     </div>
                 </div>
 
                 <div class="layui-form-item layui-col-md9">
                     <label class="layui-form-label">图片title：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" name="title" value="{$cate.title ?? ''}" class="layui-input">
+                        <input type="text" name="title" value="{$anli_cate.title ?? ''}" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
@@ -50,15 +49,23 @@
                 <div class="layui-form-item layui-col-md9">
                     <label class="layui-form-label">图片alt：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" name="alt" value="{$cate.alt ?? ''}" class="layui-input">
+                        <input type="text" name="alt" value="{$anli_cate.alt ?? ''}" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">排序：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="sort" value="{$anli_cate.sort ?? 0}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">请输入大于0的整数</div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示：</label>
                     <div class="layui-input-block">
-                        {if isset($cate)}
+                        {if isset($anli_cate)}
                         {eq name='cate.is_show' value='1'}
                         <input type="radio" name="is_show" value="1" title="显示" checked>
                         <input type="radio" name="is_show" value="2" title="隐藏">
@@ -70,29 +77,6 @@
                         <input type="radio" name="is_show" value="1" title="显示" checked>
                         <input type="radio" name="is_show" value="2" title="隐藏">
                         {/if}
-                    </div>
-                </div>
-
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">服务描述：</label>
-                    <div class="layui-input-block">
-                        <textarea name="info" lay-verify="required" rows="2" cols="120">{$cate.info ?? ''}</textarea>
-                    </div>
-                </div>
-
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">缩略图：</label>
-                    <div class="layui-input-block">
-                        <div class="layui-upload">
-                            <button type="button" class="layui-btn layui-btn-sm" id="test1">上传图片</button>
-                            <div class="layui-upload-list">
-                                {if isset($cate)}
-                                <img class="layui-upload-img" src="/static/{$cate.thumb}" width="50" height="50" id="demo1">
-                                {else /}
-                                <img class="layui-upload-img" width="50" height="50" id="demo1">
-                                {/if}
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -111,35 +95,9 @@
 
 {block name="script"}
 <script>
-    layui.use(['form','upload'], function(){
-        var $ = layui.jquery;
-        var upload = layui.upload;
-
-        //普通图片上传
-        var url = '/admin/upload/upImg/type/thumb';
-        var uploadInst = upload.render({
-            elem: '#test1'
-            ,url: url
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-                //如果上传失败
-                if(res.code > 0){
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-                var name = res.data.src;
-                $('#img').val(name);
-                return layer.msg('上传成功', {icon: 1});
-            }
-        });
+    layui.use(['form'], function(){
 
     });
-
 </script>
 {/block}
 

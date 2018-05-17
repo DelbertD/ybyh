@@ -56,7 +56,7 @@ class Base extends Controller
         $sonTitle = '';
         if (!empty($child)){
             foreach ($child as $v){
-                if ($v->name == $action){
+                if (strtolower($v->name) == $action){
                     $sonTitle = $v['title'];
                 }
             }

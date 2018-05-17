@@ -30,12 +30,11 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>职位名称</th>
-                <th>招聘人数</th>
-                <th>职位薪资</th>
+                <th>sort</th>
+                <th>分类名称</th>
+                <th>图片title</th>
+                <th>图片alt</th>
                 <th>是否显示</th>
-                <th>发布日期</th>
-                <th>截止日期</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -43,18 +42,28 @@
             {foreach $list as $v}
             <tr>
                 <td>{$v.id ?? ''}</td>
+                <td>{$v.sort ?? ''}</td>
                 <td>{$v.name ?? ''}</td>
-                <td>{$v.num ?? ''} 人</td>
-                <td><span style="color: red;font-weight: bold">￥</span> {$v.salary ?? ''} 元</td>
+                <td>{if strlen($v.title) > 10}
+                    {$v.title|mb_substr=0,10,'UTF-8'} ...
+                    {else /}
+                    {$v.title}
+                    {/if}
+                </td>
+                <td>
+                    {if strlen($v.alt) > 10}
+                    {$v.title|mb_substr=0,10,'UTF-8'} ...
+                    {else /}
+                    {$v.title}
+                    {/if}
+                </td>
                 {eq name='v.is_show' value='1'}
                 <td>显示</td>
                 {else /}
                 <td>隐藏</td>
                 {/eq}
-                <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
-                <td>{$v.endtime|date='Y-m-d', ###}</td>
                 <td>
-                    <a href="{:url('admin/Personnel/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
+                    <a href="{:url('admin/Project/editCate',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
                         <i class="layui-icon">&#xe642;</i>
                         编辑
                     </a>  |
@@ -85,7 +94,7 @@
     function del(id) {
         var $ = layui.jquery;
         layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
-            var url = "{:url('admin/Personnel/del')}";
+            var url = "{:url('admin/Project/delCate')}";
             $.get(url, {"id":id}, function (res) {
                 layer.close(index);
                 if (res.suc == 0){
@@ -93,12 +102,11 @@
                         location.reload();
                     });
                 }else {
-                    layer.msg('删除失败', {icon: 2});
+                    layer.msg('删除成功', {icon: 2});
                 }
             })
         });
     }
-
 </script>
 {/block}
 
