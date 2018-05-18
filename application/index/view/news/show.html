@@ -19,11 +19,7 @@
                                 <h1 class="qfy_title left mobileleft" style="text-align: center">
                                     <div class="qfy_title_inner mainTitleInner">
                                         <div class="header_title newsDetialTitle">
-                                            {if strlen($news.title) > 20}
-                                            {$news.title|mb_substr=0,20,'UTF-8'} ...
-                                            {else /}
-                                            {$news.title|mb_substr=0,20,'UTF-8'}
-                                            {/if}
+                                            {$news.title ?? ''}
                                         </div>
                                     </div>
                                     <span class="clear"></span>
