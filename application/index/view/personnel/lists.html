@@ -83,7 +83,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="entry-content post_excerpt newsContent" style="">
-                                                    <a href="javascript:;">截止日期 {$v.endtime|date='Y-m-d', ###} <span class="blue">|</span>招聘 {$v.num} 人<span class="blue">|</span>薪资￥ {$v.salary} 元</a>
+                                                    <a href="{:url('index/Personnel/show',['id' => $v['id']])}">截止日期 {$v.endtime|date='Y-m-d', ###} <span class="blue">|</span>招聘 {$v.num} 人<span class="blue">|</span>薪资￥ {$v.salary} 元</a>
                                                 </div>
                                             </div>
                                         </li>
