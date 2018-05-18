@@ -65,17 +65,13 @@
                                 <div class="pre_inner prePadding">
                                     <span class="">上一篇</span>
                                     {empty name='pre'}
-                                    <span class="title">
+                                    <span style="font-size: 14px;color: #606060;">
                                         没有了
                                     </span>
                                     {else /}
                                     <a href="{:url('index/news/show',['id' => $pre['id']])}" title="{$v.title}" alt="{$v.alt}" class="pre_a">
                                         <span class="title">
-                                            {if strlen($pre.title) > 40}
-                                            {$pre.title|mb_substr=0,40,'UTF-8'} ...
-                                            {else /}
-                                            {$pre.title|mb_substr=0,40,'UTF-8'}
-                                            {/if}
+                                            {$pre.title ?? ''}
                                         </span>
                                     </a>
                                     {/empty}
@@ -88,17 +84,13 @@
                                 <div class="pre_inner prePadding">
                                     <span class="">下一篇</span>
                                     {empty name='next'}
-                                    <span class="title ">
+                                    <span style="font-size: 14px;color: #606060;">
                                         没有了
                                     </span>
                                     {else /}
                                     <a href="{:url('index/news/show',['id' => $next['id']])}" title="{$v.title}" alt="{$v.alt}" class="pre_a">
                                     <span class="title ">
-                                        {if strlen($next.title) > 40}
-                                        {$next.title|mb_substr=0,40,'UTF-8'} ...
-                                        {else /}
-                                        {$next.title|mb_substr=0,40,'UTF-8'}
-                                        {/if}
+                                       {$next.title ?? ''}
                                     </span>
                                     </a>
                                     {/empty}

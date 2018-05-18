@@ -712,19 +712,38 @@ header .headerLogoBar .logoA{
 	color:#333333;
 }
 
+/******** page-start ********/
+.page-size {
+	margin-top: 10px;
+}
+.page-total {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+	color: #555;
+}
+.page-disabled {
+	display: inline-block;
+	border: 1px solid #ddd;
+	background-color: #eee;
+	padding: 2px 12px;
+	color: #555;
+	cursor: not-allowed;
+}
 .page-active {
 	display: inline-block;
-
-	border: 1px solid #bababa;
-
-	padding: 4px 14px;
-
-	margin: 0 5px 0 0;
-
+	background-color: #1E9FFF;
+	border-radius: 2px;
+	padding: 4px 13px;
 	color: #fff;
-
-	background-color: #3b8ced;
 }
+.normal {
+	display: inline-block;
+	border: 1px solid #ddd;
+	padding: 3px 12px;
+	color: #555;
+}
+
+/******** page-end ********/
 
 
 /*******分享********/

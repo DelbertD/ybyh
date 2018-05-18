@@ -113,7 +113,8 @@ class Page extends Paginator
                 );
             } else {
                 return sprintf(
-                    '<div class="layui-box layui-laypage layui-laypage-defaul pullright">%s %s %s </div>',
+                    '<div class="page-size">%s %s %s %s</div>',
+                    $this->getTotalText(),
                     $this->getPreviousButton(),
                     $this->getLinks(),
                     $this->getNextButton()
@@ -131,7 +132,7 @@ class Page extends Paginator
      */
     protected function getAvailablePageWrapper($url, $page)
     {
-        return '<a href="' . htmlentities($url) . '">' . $page . '</a>';
+        return '<a class="normal" href="' . htmlentities($url) . '">' . $page . '</a>';
     }
 
     /**
@@ -142,7 +143,7 @@ class Page extends Paginator
      */
     protected function getDisabledTextWrapper($text)
     {
-        return '<a disabled="disabled">' . $text . '</a>';
+        return '<a class="page-disabled" href="javascript:void(0)">' . $text . '</a>';
     }
 
     /**
@@ -153,7 +154,7 @@ class Page extends Paginator
      */
     protected function getActivePageWrapper($text)
     {
-        return '<span class="page-active"><em>' . $text . '</em></span>';
+        return '<a class="page-active" href="javascript:void(0)">' . $text . '</a>';
 
     }
 
@@ -234,6 +235,18 @@ class Page extends Paginator
         $str .= '<button data-open="'.$this->url(1).'" id="go" class="layui-laypage-btn" type="button">确定</button>';
         $str .= '</span>';
         return $str;
+    }
+
+    /**
+     * 生成总页数提示
+     *
+     * @param  string $text
+     * @return string
+     */
+
+    protected function getTotalText($text = '共 %d 条'){
+        $text = sprintf($text, $this->total);
+        return '<span class="page-total">' .$text. '</span>';
     }
 
 }
