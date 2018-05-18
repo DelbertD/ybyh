@@ -11,9 +11,25 @@
 namespace app\admin\controller;
 
 
+use think\Db;
+
 class Conf extends Base
 {
-    public function manage(){
-
+    public function contact($id = 1){
+        if (request()->isPost()){
+            $post = request()->post();
+            $res = Db::name('contact')->update($post);
+            if ($res){
+                $this->success('修改成功');
+            }else{
+                $this->error('修改失败');
+            }
+        }else{
+            $concat = Db::name('contact')->find($id);
+            $this->assign([
+                'contact' => $concat
+            ]);
+            return $this->fetch();
+        }
     }
 }
