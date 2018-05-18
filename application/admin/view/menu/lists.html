@@ -32,7 +32,7 @@
                 <th>排序</th>
                 <th>Id</th>
                 <th>菜单名称</th>
-                <th style="text-align: left">菜单连接</th>
+                <th style="text-align: left;width: 160px">菜单连接</th>
                 <th>图片title</th>
                 <th>图片alt</th>
                 <th>是否显示</th>
@@ -45,7 +45,7 @@
                 <td><input onblur="changSort('{$v.id}',this.value)" id="sort" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id ?? ''}</td>
                 <td>{$v.name ?? ''}</td>
-                <td style="text-align: left">{$v.url ?? ''}</td>
+                <td style="text-align: left;width: 160px">{$v.url ?? ''}</td>
 
                 <td>{if strlen($v.alt) > 20}
                     {$v.alt|mb_substr=0,20,'UTF-8'} ...

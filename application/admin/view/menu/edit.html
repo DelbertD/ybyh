@@ -1,0 +1,132 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+    ul.site-doc-icon li {
+        width: 120px;
+        height: 85px;
+        text-align: center;
+        float: left;
+        border: 1px solid #eee;
+    }
+    ul.site-doc-icon:hover {
+        cursor: pointer;
+    }
+    .layui-form-item .layui-input-inline.inputW{
+        width:710px;
+    }
+    .layui-form-item .layui-input-inline .inputW {
+        width: 710px;
+    }
+
+    .layui-form-item .warm-color {
+        color: #FF5722!important;
+    }
+</style>
+{/block}
+
+{block name='content'}
+<a type="button" href="{:url('admin/Menu/lists')}"  class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe65c;</i>返回</a>
+<hr class="layui-bg-blue">
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <div class="layui-col-md12">
+            <form class="layui-form" action="{:url('admin/Menu/edit')}" method="post">
+                {if isset($menu)}
+                <input type="hidden" name="id" value="{$menu.id}" />
+                {/if}
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">菜单名称：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="name" value="{$menu.name ?? ''}" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">图片title：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="title" value="{$menu.title ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">图片alt：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="alt" value="{$menu.alt ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">页面标题：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="keys" value="{$menu.keys ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">html页面title</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">关键词：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="keywords" value="{$menu.keywords ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->keywords</div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">页面描述：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="desc" value="{$menu.desc ?? ''}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->description</div>
+                </div>
+
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否显示：</label>
+                    <div class="layui-input-inline inputW">
+                        {if isset($menu)}
+                        {eq name='menu.is_show' value='1'}
+                        <input type="radio" name="is_show" value="1" title="显示" checked>
+                        <input type="radio" name="is_show" value="2" title="隐藏">
+                        {else /}
+                        <input type="radio" name="is_show" value="1" title="显示">
+                        <input type="radio" name="is_show" value="2" title="隐藏" checked>
+                        {/eq}
+                        {else /}
+                        <input type="radio" name="is_show" value="1" title="显示" checked>
+                        <input type="radio" name="is_show" value="2" title="隐藏">
+                        {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="text-align: center">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit >保存</button>
+                        <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use(['form'], function(){
+
+    });
+
+</script>
+{/block}
+
+
+
