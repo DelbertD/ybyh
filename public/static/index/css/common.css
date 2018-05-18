@@ -35,9 +35,6 @@
 	padding:0 5px 0px 0;
 	vertical-align:bottom;
 }
-.qfe_wrapper .titleCenter{
-	width:100%;
-}
 .mainHeaderSubTitle{
 	font-family:century gothic;
 	font-size:14px;
@@ -772,4 +769,9 @@ header .headerLogoBar .logoA{
 	padding: 10px;
 	border: 1px solid #ddd;
 	margin: 20px 0;
+}
+
+.qfe_wrapper .titleCenter{
+	text-align: center;
+	margin-top: 15px;
 }
