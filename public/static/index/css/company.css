@@ -109,6 +109,7 @@
 	padding:35px 0 0 0;
 }
 .wordCon .wordStyle{
+	width: 100%;
 	display:inline-block;
 	line-height:2;
 	color:#888888;
