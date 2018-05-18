@@ -3,6 +3,7 @@
 {block name='style'}
 <link rel="stylesheet" href="/static/index/css/rencai.css" />
 <link rel="stylesheet" href="/static/index/css/pro.css" />
+<link rel="stylesheet" href="/static/index/css/index.css" />
 <style>
     li{
         list-style: none;
@@ -41,59 +42,56 @@
     .main-con {
         padding: 100px 0;
     }
+    .UUID-POSTS-5ad6ed9488f2d478368 li .itempcbody{
+        padding:30px 20px 20px 20px;
+    }
+    .UUID-POSTS-5ad6ed9488f2d478368 li:hover .liCon{
+        border-color:#0099ff !important;
+    }
+    .blue{
+        color:#0099ff;
+        padding:0 6px;
+    }
+    .newsSection .newsCon ul li .liCon a{
+        color:#52C5FF;
+    }
 </style>
 {/block}
 
 {block name='section'}
 
-<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 section no section-text-no-shadow section-inner-no-shadow section-normal newsSection main-con">
+
+<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 section no section-text-no-shadow section-inner-no-shadow section-normal newsSection" id="bit_1sygw">
     <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
     <div class="container">
         <div class="row qfe_row">
-            <div class="qfy-column-8-5ad6ed94831cf738355 qfy-column-inner vc_span12 text-Default small-screen-Default column_middle fullrow" data-dw="1/1" data-fixheight="">
+            <div data-animaleinbegin="bottom-in-view" data-animalename="qfyfadeInUp" data-duration="1" data-delay="" class="qfy-column-8-5ad6ed94831cf738355 qfy-column-inner vc_span12 text-Default small-screen-Default column_middle fullrow" data-dw="1/1" data-fixheight="">
                 <div class="column_inner inner">
                     <div class=" background-overlay grid-overlay-0 transBc"></div>
                     <div class="column_containter zIndex">
-                        <div>
+                        <div data-loading="" data-loading-w="" data-open="0" data-post="post" data-cate=" " m-padding="0 0 0 0" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="qfy_posts_grid_46zvx" class="qfy-element  UUID-POSTS-5ad6ed9488f2d478368 qfe_teaser_grid qfe_content_element  qfe_grid columns_count_3 columns_count_3 qfe_teaser_grid_post newsCon">
                             <div class="qfe_wrapper">
-                                <div>
-                                    <div class="rczp">
-                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                            <tr>
-                                                <td class="tds">招聘职位</td>
-                                                <td class="tds">招聘人数</td>
-                                                <td class="tds">发布日期</td>
-                                                <td class="tds">截止日期</td>
-                                                <td class="tds">薪资</td>
-                                                <td class="tds">操作</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="list_lh">
-                                        <ul style="margin-top: -2px;">
-                                            {foreach $zw as $v}
-                                            <li class="lieven">
-                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="tds">{$v.name}</td>
-                                                        <td class="tds"><span style="color: red">{$v.num}</span> 人</td>
-                                                        <td class="tds">{$v.addtime|date='Y-m-d',###}</td>
-                                                        <td class="tds">{$v.endtime|date='Y-m-d',###}</td>
-                                                        <td style="text-align: left" class="tds"><span style="color: red;margin-left: 55px;">￥ {$v.salary}</span></td>
-                                                        <td class="tds">
-                                                            <a href="{:url('index/Personnel/show',['id' => $v['id']])}">查看详情</a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </li>
-                                            {/foreach}
-                                        </ul>
-                                    </div>
+                                <div class="teaser_grid_container noanimale" style=';clear:both;' data-type="post" data-cate=" " data-pcate="">
+                                    <ul style="min-height:60px;" class="qfe_thumbnails qfe_thumbnails-fluid vc_clearfix  post_grid " data-layout-mode="fitRows">
+                                        <!--==========循环开始   ===data-delay从0.1开始每次加0.1==========-->
+                                        {foreach $zw as $v}
+                                        <li data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-delay="0.1" data-duration="" class="  qfyanimate isotope-item qfy_item_post vc_span3 vc_span_mobile vc_span_mobile12 grid-cat-1 grid-cat-2 ">
+                                            <div class='itembody itempcbody liCon'>
+                                                <div class="post-title liTitle">
+                                                    <a href="javascript:;" data-title="true" class="bitImageAhover link_title liTitleA" alt="{$v.alt ?? ''}" title="{$v.title ?? ''}">
+                                                        {$v.name}
+                                                    </a>
+                                                </div>
+                                                <div class="entry-content post_excerpt newsContent" style="">
+                                                    <a href="javascript:;">截止日期 {$v.endtime|date='Y-m-d', ###} <span class="blue">|</span>招聘 {$v.num} 人<span class="blue">|</span>薪资￥ {$v.salary} 元</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {/foreach}
+                                        <div class="wf-mobile-hidden" style="clear:both"></div>
+                                    </ul>
                                 </div>
+
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -103,6 +101,7 @@
         </div>
     </div>
 </section>
+
 
 {/block}
 

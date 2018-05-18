@@ -63,7 +63,7 @@ class Personnel extends Base
         }else{
             $post = request()->post();
             $detail = $post['detail'];
-            $post['endtime'] = strtotime($post['endtime']);
+            $post['endtime'] = is_numeric($post['endtime']) ? $post['endtime'] : strtotime($post['endtime']);
             unset($post['detail']);
             $post['addtime'] = time();
             Db::startTrans();
