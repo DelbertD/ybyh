@@ -232,7 +232,8 @@
 
 	@media (max-width: 767px){
 		img{
-			width:100%
+			width:100%;
+			height: 100%;
 		}
 	}
 	#vc_header_5ad69a80b886f170 .header_image.glyphicon:before, #vc_header_5ad69a80b886f170 .header_image.fa:before{
