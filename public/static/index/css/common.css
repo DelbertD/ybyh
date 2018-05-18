@@ -715,6 +715,7 @@ header .headerLogoBar .logoA{
 /******** page-start ********/
 .page-size {
 	margin-top: 10px;
+	text-align: right;
 }
 .page-total {
 	border: 1px solid #ddd;
@@ -800,8 +801,4 @@ header .headerLogoBar .logoA{
 .qfe_wrapper .titleCenter{
 	text-align: center;
 	margin-top: 15px;
-}
-
-.wf-mobile-hidden.mypages.pagenav {
-	text-align: right;
 }
