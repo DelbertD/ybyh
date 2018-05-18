@@ -211,7 +211,7 @@
 }
 .blogContent .postThumb{
 	overflow:hidden;
-	width:1200px;
+	width: 1270px;
 	vertical-align:middle;
 }
 .blogContent .postComment{
@@ -222,6 +222,12 @@
 	line-height:12px;
 	font-family:arial;
 }
+.ag_image {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #eee;
+}
+
 .blogContent .postExcerpt{
 	color:#999999;
 	font-size:13px;

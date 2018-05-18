@@ -766,3 +766,10 @@ header .headerLogoBar .logoA{
 	text-align: right;
 	margin-top: 20px;
 }
+
+.aboutPic {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	margin: 20px 0;
+}
