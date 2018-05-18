@@ -782,3 +782,7 @@ header .headerLogoBar .logoA{
 	text-align: center;
 	margin-top: 15px;
 }
+
+.wf-mobile-hidden.mypages.pagenav {
+	text-align: right;
+}
