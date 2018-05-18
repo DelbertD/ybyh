@@ -229,6 +229,12 @@
 			font-size:12px !important;
 		}
 	}
+
+	@media (max-width: 767px){
+		img{
+			width:100%
+		}
+	}
 	#vc_header_5ad69a80b886f170 .header_image.glyphicon:before, #vc_header_5ad69a80b886f170 .header_image.fa:before{
         height: 30px;
         width: 30px;
