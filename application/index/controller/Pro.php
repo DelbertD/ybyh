@@ -18,12 +18,12 @@ class Pro extends Base
         $cate = db('pro_cate')
             ->where('is_show',1)
             ->orderRaw('sort = 0,sort')
-            ->limit(6)
+            ->limit(16)
             ->select();
         //服务项目展示
         $db = Db::name('pro')->where('is_show', 1);
         $db = $id ? $db->where('pid', $id) : $db;
-        $pro = parent::_list($db,'8');
+        $pro = parent::_list($db,'16');
         $this->assign($pro);
         $this->assign('cate',$cate);
         return $this->fetch();
