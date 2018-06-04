@@ -9,10 +9,16 @@ class Index extends Base
     public function index()
     {
         //轮播图查询
-        $banner = Db::name('ads')->order('sort asc')->select([1,2,3]);
+        $banner = Db::name('ads')
+            ->where('is_show', 1)
+            ->order('sort asc')
+            ->select([1,2,3,4,5]);
 
         //公司简介图片
-        $about = Db::name('ads')->order('sort asc')->select([6,7,8]);
+        $about = Db::name('ads')
+            ->where('is_show', 1)
+            ->order('sort asc')
+            ->select([6,7,8]);
 
         //服务项目展示
         $pro = Db::name('pro_cate')
@@ -21,18 +27,19 @@ class Index extends Base
             ->limit(6)
             ->select();
 
-        //展厅展示
-
-
         //案例展示
         $case = Db::name('anli')
             ->where('is_show',1)
             ->field('id,name,title,alt,thumb')
-            ->limit(3)
+            ->limit(6)
             ->select();
 
         //新闻查询
-        $news = Db::name('news')->field('id,alt,title,zy')->select([1,7,12]);
+        $news = Db::name('news')
+            ->field('id,alt,title,zy')
+            ->where('is_show', 1)
+            ->limit(6)
+            ->select();
 
         $this->assign([
             'banner' => $banner,
@@ -47,7 +54,9 @@ class Index extends Base
     //关于我们页面显示|公司简介
     public function about(){
         //企业资质图片展示
-        $qyzz = Db::name('ads')->where('is_show', 1)->select([12,13,14,15,16,17,18]);
+        $qyzz = Db::name('ads')
+            ->where('is_show', 1)
+            ->select([12,13,14,15,16,17,18]);
         $this->assign([
             'qyzz' => $qyzz
         ]);
