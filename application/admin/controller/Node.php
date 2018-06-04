@@ -98,6 +98,10 @@ class Node extends Base
             $ret['suc']  = 0;
             $ret['data'] = $str;
             return $ret;
+        }else{
+            $ret['suc']  = 0;
+            $ret['data'] = '<option value="0" selected>作为顶级节点</option>';
+            return $ret;
         }
     }
 
