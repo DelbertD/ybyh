@@ -32,4 +32,6 @@ class Conf extends Base
             return $this->fetch();
         }
     }
+
 }
+

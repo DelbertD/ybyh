@@ -23,12 +23,6 @@ class Index extends Base
 
         //展厅展示
 
-        //职位展示
-        $zw = Db::name('zw')
-            ->where('is_show', 1)
-            ->order('endtime', '>', time())
-            ->limit(5)
-            ->select();
 
         //案例展示
         $case = Db::name('anli')
@@ -45,8 +39,7 @@ class Index extends Base
             'about'  => $about,
             'news'   => $news,
             'pro'    => $pro,
-            'case'   => $case,
-            'zw'     => $zw
+            'case'   => $case
         ]);
         return $this->fetch();
     }

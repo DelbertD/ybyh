@@ -120,4 +120,28 @@ class Node extends Base
         }
         return $ret;
     }
+
+
+    /*
+     *
+     *删除
+     */
+
+    public function del($id = 0){
+        $ret = ['suc' => 1, 'msg' => '删除失败'];
+        if (empty($id)){
+            return $ret;
+        }
+        $child = Db::name('node')->where('pid', $id)->select();
+        if (!empty($child)){
+            $ret['msg'] = '该节点含有子节点无法删除！';
+        }else{
+            $res = Db::name('node')->delete($id);
+            if ($res){
+                $ret['suc'] = 0;
+                $ret['msg'] = '删除成功';
+            }
+        }
+        return $ret;
+    }
 }

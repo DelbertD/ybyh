@@ -78,11 +78,14 @@ class Base extends Controller
         $products1 = Db::name('pro')->where('is_show', 1)->limit(6)->select();
         $products2 = Db::name('pro')->where('is_show', 1)->limit(6,6)->select();
         $contact = Db::name('contact')->find(1);
+        //友情链接展示
+        $link = Db::name('link')->where('is_show', 1)->limit(8)->select();
         $this->assign([
             'pmenu'     => $pmenu,
             'contact'   => $contact,
-            'products1'  => $products1,
-            'products2'  => $products2
+            'products1' => $products1,
+            'products2' => $products2,
+            'link'      => $link
         ]);
     }
 

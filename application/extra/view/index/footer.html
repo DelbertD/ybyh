@@ -24,9 +24,13 @@
                                                             </span>
                                                         </div>
                                                         <div>
-                                                            <span class="footerWord">
-
-                                                            </span>
+                                                            {foreach $link as $v}
+                                                            <div class="footerWord">
+                                                                <a href="{$v.url}" title="{$v.name}" target="_blank">
+                                                                    {$v.name}
+                                                                </a>
+                                                            </div>
+                                                            {/foreach}
                                                         </div>
                                                     </div>
                                                 </div>
