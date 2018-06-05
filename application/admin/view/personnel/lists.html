@@ -1,7 +1,7 @@
 {extend name="extra@admin/common"}
 
 {block name='style'}
-<link rel="stylesheet" href="" />
+<link rel="stylesheet" href=""/>
 <style>
     ul.site-doc-icon li {
         width: 120px;
@@ -10,12 +10,15 @@
         float: left;
         border: 1px solid #eee;
     }
+
     ul.site-doc-icon:hover {
         cursor: pointer;
     }
-    table,table tr th,.layui-table th, .layui-table td{
+
+    table, table tr th, .layui-table th, .layui-table td {
         text-align: center;
     }
+
     .pull-right {
         float: right;
     }
@@ -57,7 +60,7 @@
                     <a href="{:url('admin/Personnel/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
                         <i class="layui-icon">&#xe642;</i>
                         编辑
-                    </a>  |
+                    </a> |
                     <a onclick="del('{$v.id}')" style="color: #FF5722;cursor: pointer">
                         <i class="layui-icon">&#xe640;</i>
                         删除
@@ -78,21 +81,21 @@
 
 {block name="script"}
 <script>
-    layui.use('table', function(){
+    layui.use('table', function () {
 
     });
 
     function del(id) {
         var $ = layui.jquery;
-        layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
+        layer.confirm('确定删除这条数据吗?', {icon: 2, title: '确认操作提示提示', skin: 'layui-layer-lan'}, function (index) {
             var url = "{:url('admin/Personnel/del')}";
-            $.get(url, {"id":id}, function (res) {
+            $.get(url, {"id": id}, function (res) {
                 layer.close(index);
-                if (res.suc == 0){
+                if (res.suc == 0) {
                     layer.msg('删除成功', {icon: 1}, function () {
                         location.reload();
                     });
-                }else {
+                } else {
                     layer.msg('删除失败', {icon: 2});
                 }
             })
