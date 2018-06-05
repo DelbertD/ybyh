@@ -1051,20 +1051,189 @@ body .UUID-POSTS-5ad6ed9488f2d478368 .teaser_grid_container,
 	border-right:1px solid rgba(221,221,221,1);
 	background-color:transparent;"
 }
-.newsSection .newsCon ul li .liCon .liTitle,.newsSection .newsCon ul li .liCon a{
+li{
+	list-style: none;
+}
+.list_lh {
+	height: 150px;
+	overflow: hidden;
+	margin-top: 10px;
+}
+td{
+	text-align: center;
+	width:15%;
+}
+.tds:nth-of-type(1) {
+	width: 30%;
+}
+.tds:nth-of-type(6){
+	width:10%;
+}
+.rczp{
+	background-color: #f5f5f5;
+	color:#333;
+}
+.rczp td{
+	border-right:1px solid #fff;
+	vertical-align: center;
+	height:40px;
+}
+.list_lh td{
+	height:50px;
+	vertical-align: center;
+}
+.list_lh li{
+	border-bottom:1px dashed #ddd;
+	/*cursor: pointer;*/
+}
+.question{
+	background:url(/static/index/imgs/question.png) no-repeat;
+	padding:4px 4px 4px 30px;
+	background-size:20px;
+	background-position: 2px;
+	color:#333;
+}
+.answer{
+	background:url(/static/index/imgs/answer.png) no-repeat;
+	padding:4px 4px 4px 30px;
+	background-size:20px;
+	background-position: 2px;
+	color:#333;
+}
+.linkBg{
+	border:1px solid #ddd;
+	height:100px;
+}
+.linkBg img{
+	width:100%;
+	height:100%;
+}
+.linkInfo{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	line-height: 23px;
+	max-height: 46px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.liCon{
+	position:relative;
+	overflow: hidden;
+	transition: all .5s;
+}
+.liCon:hover .newsInfo{
+	bottom:0;
+}
+.newsInfo{
+	position: absolute;
+	bottom:-60px;
+	font-size:12px;
+	transition: all .5s;
+	background:rgba(0,0,0,0.6);
+	color:#FFF;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	line-height: 23px;
+	max-height: 46px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.newsTilteInfo{
+	width:100%;
+	text-align: center;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	color:rgb(119, 119, 119);
+}
+.headerTitle{
+	color:#191919;
+}
+.headerSubtitle{
+	font-family: Raleway;
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+	color: #999999;
+	display: block;
+	padding: 2px;
+	vertical-align: bottom;
+}
+.knowledgeCon{
+	position: relative;
+	height:350px;
+}
+.knowledgeCon .knowledgeImgBox{
+	background-color:#5FB878;
+	width:100%;
+	height:200px;
+}
+.knowledgeCon .knowledgeImgBox img{
+	width: 100%;
+	height:100%;
+	transition: all .5s;
+}
+.knowledgeCon .knowledgeBox{
+	border-top:1px solid #dddddd;
+	width:100%;
+	height:200px;
+	overflow: hidden;
+	position:absolute;
+	top:200px;
+	left:0;
+	bottom:50px;
+	transition: all .5s;
+	background-color: #fff;
+}
+.knowledgeCon:hover .knowledgeBox{
+	margin-top:-100px;
+}
+.knowledgeCon:hover .knowledgeImgBox img{
+	transform:scale(1.2);
+}
+.knowledgeCon:hover .answersA{
+	color: #666C74 !important;
+}
+.knowledgeCon .knowledgeBox .questions a{
+	font-size:22px;
+	font-weight: 900;
+	color:#333;
+	text-transform: uppercase;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height:40px;
+	line-height: 40px;
+	padding:0 5%;
+}
+.knowledgeCon .knowledgeBox  .answers a{
+	display: inline-block;
+	color: #fff;
+	font-size:14px;
+	line-height: 27px;
+	padding:10px 5%;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow: hidden;
+}
+.knowledgeFooter{
+	position:absolute;
+	bottom:0;
+	padding:0 5%;
+	height:50px;
+	line-height: 50px;
+}
+.newsSection .newsCon ul li .liCon .liTitle{
 	padding-bottom:20px;
 	font-weight:normal;
 	color:#555555;
 	line-height:25px;
 	vertical-align: top; 
 	text-align:left;
-}
-.newsSection .newsCon ul li .liCon .liTitle .liTitleA{
-	color: #000;
-	font-size: 20px;
-	font-family: 微软雅黑;
-	line-height: 22px;
-	letter-spacing: 10px;
 }
 .newsSection .newsCon ul li .liCon .newsContent{
 	color:#bababa;
