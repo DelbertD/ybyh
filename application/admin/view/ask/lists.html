@@ -31,57 +31,52 @@
             <tr>
                 <th>Id</th>
                 <th>缩略图</th>
-                <th>新闻标题</th>
-                <th>新闻分类</th>
-                <th>发布人</th>
-                <th>发布时间</th>
-                <th>是否显示</th>
-
-                <th>图片title</th>
-                <th>图片alt</th>
+                <th>问答题目</th>
+                <th>答案摘要</th>
+                <th>浏览次数</th>
+                <th>添加时间</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             {foreach $list as $v}
             <tr>
-                <td>{$v.id ?? ''}</td>
+                <td>{$v.id}</td>
                 <td><img src="/static/{$v.thumb}" width="100" height="60" /></td>
-                <td>{if strlen($v.name) > 10}
-                    {$v.title|mb_substr=0,10,'UTF-8'} ...
+                <td>
+                    {if strlen($v.ask) > 20}
+                    {$v.ask|mb_substr=0,20,'UTF-8'} ...
                     {else /}
-                    {$v.title}
+                    {$v.ask}
                     {/if}
                 </td>
-                <td>{:getVal('news_cate.name.' . $v.pid)}</td>
-                <td>{$v.fbr ?? ''}</td>
-                <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+                <td>
+                    {if strlen($v.info) > 50}
+                    {$v.info|mb_substr=0,50,'UTF-8'} ...
+                    {else /}
+                    {$v.info}
+                    {/if}
+                </td>
+                <td>{$v.num}</td>
                 {eq name='v.is_show' value='1'}
                 <td>显示</td>
                 {else /}
                 <td>隐藏</td>
                 {/eq}
-                <td>{if strlen($v.title) > 10}
-                    {$v.title|mb_substr=0,10,'UTF-8'} ...
-                    {else /}
-                    {$v.title}
-                    {/if}
-                </td>
                 <td>
-                    {if strlen($v.alt) > 10}
-                    {$v.title|mb_substr=0,10,'UTF-8'} ...
-                    {else /}
-                    {$v.title}
-                    {/if}
-                </td>
-                <td>
-                    <a href="{:url('admin/news/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
+                    <a href="{:url('admin/Ask/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
                         <i class="layui-icon">&#xe642;</i>
                         编辑
-                    </a>  |
+                    </a>
+                    |
                     <a onclick="del('{$v.id}')" style="color: #FF5722;cursor: pointer">
                         <i class="layui-icon">&#xe640;</i>
                         删除
+                    </a>
+                    |
+                    <a href="{:url('admin/Ask/creatThumb',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
+                        <i class="layui-icon">&#xe618;</i>
+                        生成缩略图
                     </a>
                 </td>
             </tr>
@@ -106,7 +101,7 @@
     function del(id) {
         var $ = layui.jquery;
         layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
-            var url = "{:url('admin/news/del')}";
+            var url = "{:url('admin/Ask/del')}";
             $.get(url, {"id":id}, function (res) {
                 layer.close(index);
                 if (res.suc == 0){

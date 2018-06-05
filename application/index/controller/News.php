@@ -48,7 +48,7 @@ class News extends Base
         $hy = Db::name('news')
             ->where('is_show', 1)
             ->where('pid', 1)
-            ->field('id,title,addtime,alt')
+            ->field('id,name,title,addtime,alt')
             ->order('addtime desc')
             ->limit(5)
             ->select();
@@ -56,13 +56,13 @@ class News extends Base
         $gs = Db::name('news')
             ->where('is_show', 1)
             ->where('pid', 2)
-            ->field('id,title,addtime,alt')
+            ->field('id,title,name,addtime,alt')
             ->order('addtime desc')
             ->limit(5)
             ->select();
 
         $pname = Db::name('news_cate')->where('is_show', 1)->where('id', $news['pid'])->value('name');
-        $curMenu = "<a class='breadcrumb-a' href='/index/news/lists/id/'". $news['pid'] . "html>" . $pname . "</a>>>" . '新闻详情';
+        $curMenu = "<a class='breadcrumb-a' href='/index/news/lists/id/'". $news['pid'] . "html>" . $pname . "</a> / " . '新闻详情';
         $this->assign([
             'curMenu' => $curMenu,
             'news'    => $news,
@@ -79,7 +79,7 @@ class News extends Base
         $news = Db::name('news')
             ->where('is_show', 1)
             ->where('id', '<', $id)
-            ->field('id,title,alt')
+            ->field('id,name,title,alt')
             ->find();
         return $news;
     }
@@ -89,7 +89,7 @@ class News extends Base
         $news = Db::name('news')
             ->where('is_show', 1)
             ->where('id', '>', $id)
-            ->field('id,title,alt')
+            ->field('id,name,title,alt')
             ->find();
         return $news;
     }

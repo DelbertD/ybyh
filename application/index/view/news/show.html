@@ -19,7 +19,7 @@
                                 <h1 class="qfy_title left mobileleft" style="text-align: center">
                                     <div class="qfy_title_inner mainTitleInner">
                                         <div class="header_title newsDetialTitle">
-                                            {$news.title ?? ''}
+                                            {$news.name ?? ''}
                                         </div>
                                     </div>
                                     <span class="clear"></span>
@@ -71,7 +71,7 @@
                                     {else /}
                                     <a href="{:url('index/news/show',['id' => $pre['id']])}" title="{$v.title}" alt="{$v.alt}" class="pre_a">
                                         <span class="title">
-                                            {$pre.title ?? ''}
+                                            {$pre.name ?? ''}
                                         </span>
                                     </a>
                                     {/empty}
@@ -90,7 +90,7 @@
                                     {else /}
                                     <a href="{:url('index/news/show',['id' => $next['id']])}" title="{$v.title}" alt="{$v.alt}" class="pre_a">
                                     <span class="title ">
-                                       {$next.title ?? ''}
+                                       {$next.name ?? ''}
                                     </span>
                                     </a>
                                     {/empty}
@@ -117,10 +117,10 @@
                                                 <div class="blog-content wf-td blogContent">
                                                     <div class="post-title postTltle">
                                                         <a href="{:url('index/news/show',['id' => $v['id']])}" title="{$v.title}" alt="{$v.alt}" class="bitImageAhover  linkTitle">
-                                                            {if strlen($v.title) > 15}
-                                                            {$v.title|mb_substr=0,15,'UTF-8'} ...
+                                                            {if strlen($v.name) > 15}
+                                                            {$v.name|mb_substr=0,15,'UTF-8'} ...
                                                             {else /}
-                                                            {$v.title|mb_substr=0,15,'UTF-8'}
+                                                            {$v.name|mb_substr=0,15,'UTF-8'}
                                                             {/if}
                                                         </a>
                                                     </div>
@@ -148,10 +148,10 @@
                                                 <div class="blog-content wf-td blogContent">
                                                     <div class="post-title postTltle">
                                                         <a href="{:url('index/news/show',['id' => $v['id']])}" title="{$v.title}" alt="{$v.alt}" class="bitImageAhover linkTitle">
-                                                            {if strlen($v.title) > 15}
-                                                            {$v.title|mb_substr=0,15,'UTF-8'} ...
+                                                            {if strlen($v.name) > 15}
+                                                            {$v.name|mb_substr=0,15,'UTF-8'} ...
                                                             {else /}
-                                                            {$v.title|mb_substr=0,15,'UTF-8'}
+                                                            {$v.name|mb_substr=0,15,'UTF-8'}
                                                             {/if}
                                                         </a>
                                                     </div>
