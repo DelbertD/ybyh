@@ -1233,7 +1233,7 @@ ul.qfe_thumbnails-fluid>li,
 .qfy_title.left {
     text-align: left
 }
-h2,
+
 h1.entry-title,
 .vc_pie_chart .vc_pie_chart_value,
 .h2-size {
@@ -3007,11 +3007,11 @@ body .dl-menu-fixedheader .bitem.logo img {
     text-decoration: none;
     outline: none
 }
-.dl-menuwrapper.leftbtnmenu li>a>span {
+.dl-menuwrapper.leftbtnmenu li>a>h2 {
     -webkit-transition: padding-left 500ms cubic-bezier(.39, .575, .565, 1);
     transition: padding-left 500ms cubic-bezier(.39, .575, .565, 1);
 }
-.floatmenu.dl-menuwrapper li a>span {
+.floatmenu.dl-menuwrapper li a>h2 {
     display: inline-block;
     max-width: 180px;
     white-space: nowrap;
@@ -3846,7 +3846,7 @@ body #phantom .ph-wrap .ph-wrap-content {
     padding-bottom: 20px;
     margin-left: 0;
 }
-.dl-menuwrapper .dl-menu li a {
+.dl-menuwrapper .dl-menu li a h2{
     color: #eaeaea;
 }
 

@@ -36,84 +36,21 @@
     }
     .list_lh li{
         border-bottom:1px dashed #ddd;
-        /*cursor: pointer;*/
-    }
-    .question{
-        background:url(/static/index/imgs/question.png) no-repeat;
-        padding:4px 4px 4px 30px;
-        background-size:20px;
-        background-position: 2px;
-        color:#333;
-    }
-    .answer{
-        background:url(/static/index/imgs/answer.png) no-repeat;
-        padding:4px 4px 4px 30px;
-        background-size:20px;
-        background-position: 2px;
-        color:#333;
-    }
-    .linkBg{
-        border:1px solid #ddd;
-        height:100px;
-    }
-    .linkBg img{
-        width:100%;
-        height:100%;
-    }
-    .linkInfo{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        line-height: 23px;
-        max-height: 46px;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-    .liCon{
-        position:relative;
-        overflow: hidden;
-        transition: all .5s;
-    }
-    .liCon:hover .newsInfo{
-        bottom:0;
-    }
-    .newsInfo{
-        position: absolute;
-        bottom:-60px;
-        font-size:12px;
-        transition: all .5s;
-        background:rgba(0,0,0,0.6);
-        color:#FFF;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        line-height: 23px;
-        max-height: 46px;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-    .newsTilteInfo{
-        width:100%;
-        text-align: center;
-        height:30px;
-        line-height:30px;
-        font-size:14px;
-        color:rgb(119, 119, 119);
     }
 </style>
 {/block}
 
 {block name='banner'}
 
+
+1111
 <!--================轮播图==========================-->
 <section class="bitBanner" id="banner">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             {foreach $banner as $v}
             <div class="swiper-slide">
-                <a href="javascript:;" title="{$v.title}" alt="{$v.alt}" >
-                    <img src="/static/{$v.path}" alt="{$v.alt}" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                </a>
+                <a href="javascript:;" title="{$v.title}" alt="{$v.alt}" ><img src="/static/{$v.path}" alt="{$v.alt}" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"></a>
             </div>
             {/foreach}
         </div>
@@ -586,7 +523,7 @@
 
 
 <!--========================================新闻=================================-->
-<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 productSection section no section-text-no-shadow section-inner-no-shadow section-normal newsSection" id="bit_1sygw">
+<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 section no section-text-no-shadow section-inner-no-shadow section-normal newsSection" id="bit_1sygw">
     <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
     <div class="container">
         <div class="row qfe_row">
@@ -596,10 +533,10 @@
                     <div class="column_containter zIndex">
                         <div id="vc_header_5ad6ed94835f5774" m-padding="33px 0 19px 4px" p-padding="1px 0 19px 4px" css_animation_delay="0" qfyuuid="qfy_header_fsx7u-c-cu" data-anitime='1' data-anilength='anlength1' class="qfy-element minheigh1px qfe_text_column qfe_content_element  qfe_animate_when_almost_visible qfe_bottom-to-top" style="position: relative;;;background-repeat: no-repeat;;margin-top:0;margin-bottom:0;padding-top:1px;padding-bottom:19px;padding-right:0;padding-left:4px;">
                             <div class="qfe_wrapper">
-                                <h3 class="qfy_title center mobilecenter productTitleCon">
+                                <H2 class="qfy_title center mobilecenter">
                                     <a href="{:url('index/news/lists')}" title="新闻资讯-西安一笔一画有限公司" alt="新闻资讯-西安一笔一画有限公司">
-                                        <div class="qfy_title_image_warpper newsWarpper ">
-                                            <div class="qfy_title_inner titleInner ">
+                                        <div class="qfy_title_image_warpper newsWarpper">
+                                            <div class="qfy_title_inner titleInner">
                                                 <div class="header_title headerTitle">
                                                     新闻资讯
                                                 </div>
@@ -609,16 +546,9 @@
                                             </div>
                                             <span  style="clear:both;"></span>
                                             <span class="line-abs bottom hcenter line"></span>
-
-                                        </div>
-                                        <!--.productSection .productTitleCon .moreWrap .moreBtn-->
-                                        <div class="button_wrapper moreWrap" style="margin-top:-40px;">
-                                            <div class="button moreBtn">
-                                                查看更多
-                                            </div>
                                         </div>
                                     </a>
-                                </h3>
+                                </H2>
                             </div>
                         </div>
                         <div data-loading="" data-loading-w="" data-open="0" data-post="post" data-cate=" " m-padding="0 0 0 0" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="qfy_posts_grid_46zvx" class="qfy-element  UUID-POSTS-5ad6ed9488f2d478368 qfe_teaser_grid qfe_content_element  qfe_grid columns_count_3 columns_count_3 qfe_teaser_grid_post newsCon">
@@ -628,22 +558,33 @@
                                         <!--==========循环开始   ===data-delay从0.1开始每次加0.1==========-->
                                         {foreach $news as $v}
                                         <li data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-delay="0.1" data-duration="" class="  qfyanimate isotope-item qfy_item_post vc_span4 vc_span_mobile vc_span_mobile12 grid-cat-1 grid-cat-2 ">
-                                            <div class='itembody liCon'>
-                                                <img src="/static/index/imgs/logo.png" data-tag="imageSharePreview" alt="" style="width:100%;">
-                                                <p class="newsInfo">
-                                                    {if strlen($v.zy) > 90}
-                                                    {$v.zy|mb_substr=0,90,'UTF-8'} ...
-                                                    {else /}
-                                                    {$v.zy}
-                                                    {/if}
-                                                </p>
-                                            </div>
-                                            <div class="newsTilteInfo">
-                                                {if strlen($v.title) > 20}
-                                                {$v.title|mb_substr=0,20,'UTF-8'} ...
-                                                {else /}
-                                                {$v.title|mb_substr=0,20,'UTF-8'}
-                                                {/if}
+                                            <div class='itembody itempcbody liCon'>
+                                                <div class="post-title liTitle">
+                                                    <a href="{:url('index/news/show', ['id' => $v['id']])}" data-title="true" class="bitImageAhover link_title liTitleA" title="{$v.title}" alt="{$v.alt}">
+                                                        {if strlen($v.title) > 20}
+                                                        {$v.title|mb_substr=0,20,'UTF-8'} ...
+                                                        {else /}
+                                                        {$v.title|mb_substr=0,20,'UTF-8'}
+                                                        {/if}
+                                                    </a>
+                                                </div>
+                                                <div class="entry-content post_excerpt newsContent" style="">
+                                                    <p>
+                                                        {if strlen($v.zy) > 90}
+                                                        {$v.zy|mb_substr=0,90,'UTF-8'} ...
+                                                        {else /}
+                                                        {$v.zy}
+                                                        {/if}
+                                                    </p>
+                                                    <br/>
+                                                </div>
+                                                <span style='clear:both'></span>
+                                                <div class="vc_read_more_wrapper">
+                                                    <a href="{:url('index/news/show', ['id' => $v['id']])}" class="vc_read_more newsMore" title="{$v.title}" alt="{$v.alt}">
+                                                        →
+                                                    </a>
+                                                </div>
+                                                <div style="clear:both"></div>
                                             </div>
                                         </li>
                                         {/foreach}
@@ -826,161 +767,72 @@
     </div>
 </section>
 
-
-
-<!--===============================客户评价======================================-->
-<section data-fixheight="" class="qfy-row-8-5ad6ed948fe91242957 section  no section-text-no-shadow section-inner-no-shadow section-normal productSection" id="">
-    <div class="section-background-overlay background-overlay grid-overlay-0 productBc"></div>
+<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 section no section-text-no-shadow section-inner-no-shadow section-normal newsSection">
+    <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
     <div class="container">
         <div class="row qfe_row">
-            <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="1" data-delay="" class="qfy-column-12-5ad6ed949021c847995 qfy-column-inner  vc_span12  text-Default small-screen-undefined column_bottom fullrow" data-dw="1/1" data-fixheight="">
-                <div class="column_inner inner">
-                    <div class="background-overlay grid-overlay-0 transBc"></div>
-                    <div class="column_containter zIndex">
-                        <div m-padding="23px 0 20px 0" p-padding="0 0 20px 0" css_animation_delay="0" qfyuuid="qfy_header_unugt" data-anitime='0.7' class="qfy-element minheigh1px qfe_text_column qfe_content_element element">
-                            <div class="qfe_wrapper">
-                                <h3 class="qfy_title left mobileleft">
-                                    <a href="{:url('index/project/lists')}" title="工程案例-西安一笔一画有限公司" alt="工程案例-西安一笔一画有限公司">
-                                        <div class="qfy_title_image_warpper productTitleCon">
-                                            <div class="qfy_title_inner proTitleInner">
-                                                <div class="header_title proHeaderTitle">
-                                                    客户评价
-                                                </div>
-                                                <div class="header_subtitle proHeaderSubTitle">
-                                                    CUSTOMER EVALUATION
-                                                </div>
-                                            </div>
-                                            <a  href="{:url('index/project/lists')}" title="工程案例-西安一笔一画有限公司" alt="工程案例-西安一笔一画有限公司">
-                                                <div class="button_wrapper moreWrap">
-                                                    <div class="button moreBtn">
-                                                        查看更多
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <span style="clear:both;"></span>
-                                            <span class="line-abs bottom hcenter line"></span>
-                                        </div>
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--主体部分-->
-<section data-fixheight="" class="qfy-row-9-5ad6ed9490da2185295 section no  section-text-no-shadow section-inner-no-shadow section-normal productMainSection" id="bit_g58tx">
-    <div class="section-background-overlay background-overlay grid-overlay-0 productBc"></div>
-    <div class="container">
-        <div class="row qfe_row">
-            <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="1" data-delay="" class=" qfy-column-13-5ad6ed949115f282512 qfy-column-inner  vc_span12  text-Default small-screen-Default column_middle fullrow" data-dw="1/1" data-fixheight="">
+            <div class="qfy-column-8-5ad6ed94831cf738355 qfy-column-inner vc_span12 text-Default small-screen-Default column_middle fullrow" data-dw="1/1" data-fixheight="">
                 <div class="column_inner inner">
                     <div class=" background-overlay grid-overlay-0 transBc"></div>
                     <div class="column_containter zIndex">
-                        <div data-loading="" data-loading-w="" data-open="" data-post="products" data-cate="41" m-padding="20px 0 20px 0" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="advanced_list_ku2wl" class="qfy-element advanced-list-5ad6ed9493d147 qfe_teaser_grid qfe_content_element  qfe_grid columns_count_3 columns_count_3 qfe_teaser_grid_products  advanced_list proCon">
-                            <div class="qfe_wrapper list-style4">
-                                <div style=';clear:both;' data-type="products" data-cate="1" data-pcate="41">
-                                    <div data-wrap="true" data-viewnum="3" data-interval="0" data-auto-height="true" data-mode="horizontal" data-partial="false" data-per-view="3" data-hide-on-end="true" class=" itempcbody  normal-list">
-                                        <section class="vc-carousel-inner ">
-                                            <div class="vc-carousel-slideline">
-                                                <div class="vc-carousel-slideline-inner">
-                                                    <!--data-delay 从0开始每次增加0.1  且三个后面加一个    <p class="wf-mobile-hidden" style="clear:both;padding:0; 清除浮动专用"></p>-->
-                                                    <!--循环开始 -->
-                                                    {volist name='case' id='v'}
-                                                    {if condition='($i % 3) eq 0'}
-                                                    <div class='item_container list-item vc_span4 num-0 proContent'>
-                                                        <div class="vc_ca_post_id qfy_item_post qfyanimate"
-                                                             data-postid="10860"
-                                                             data-animaleinbegin="90%"
-                                                             data-animalename="qfyfadeInUp"
-                                                             data-delay="{$i * 0.1}"
-                                                             data-duration="1"
-                                                             style=''>
-                                                            <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
-                                                                    <!--图片地址-->
-                                                                    <img class="ag_image"
-                                                                         src="/static/{$v.thumb}"
-                                                                         data-tag="imageSharePreview"
-                                                                         style="width:100%;height:100%"
-                                                                         href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                         title="{$v.title}"
-                                                                         alt="{$v.alt}"
-                                                                         description=""
-                                                                         data-title=""
-                                                                         src-img="" />
-                                                                    <div class="item_mask"></div>
-                                                                </a>
-                                                                <div class="item_wrapper clearfix">
-                                                                    <div class="item_info clearfix">
-                                                                        <div class="text_wrap">
-                                                                            <a class="item_a_link"
-                                                                               href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                               title="{$v.title ?? ''}"
-                                                                               alt="{$v.alt ?? ''}"
-                                                                               target='_self'>
-                                                                                <div class="title ellipsis proTltle"
-                                                                                     data-title="true">
-                                                                                    {$v.name}
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="wf-mobile-hidden" style="clear:both;padding:0;"></p>
-                                                    {else /}
-                                                    <div class='item_container list-item vc_span4 num-0 proContent'>
-                                                        <div class="vc_ca_post_id qfy_item_post qfyanimate"
-                                                             data-postid="10860"
-                                                             data-animaleinbegin="90%"
-                                                             data-animalename="qfyfadeInUp"
-                                                             data-delay="{$i * 0.1}"
-                                                             data-duration="1"
-                                                             style=''>
-                                                            <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
-                                                                    <!--图片地址-->
-                                                                    <img class="ag_image"
-                                                                         src="/static/{$v.thumb}"
-                                                                         data-tag="imageSharePreview"
-                                                                         style="width:100%;height:100%"
-                                                                         href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                         title="{$v.title}"
-                                                                         alt="{$v.alt}"
-                                                                         description=""
-                                                                         data-title=""
-                                                                         src-img="" />
-                                                                    <div class="item_mask"></div>
-                                                                </a>
-                                                                <div class="item_wrapper clearfix">
-                                                                    <div class="item_info clearfix">
-                                                                        <div class="text_wrap">
-                                                                            <a class="item_a_link"
-                                                                               href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                               title="{$v.title ?? ''}"
-                                                                               alt="{$v.alt ?? ''}"
-                                                                               target='_self'>
-                                                                                <div class="title ellipsis proTltle"
-                                                                                     data-title="true">
-                                                                                    {$v.name}
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {/if}
-                                                    {/volist}
+                        <div class="qfy-element minheigh1px qfe_text_column qfe_content_element  qfe_animate_when_almost_visible qfe_bottom-to-top" style="position: relative;;;background-repeat: no-repeat;;margin-top:0;margin-bottom:0;padding-top:1px;padding-bottom:19px;padding-right:0;padding-left:4px;">
+                            <div class="qfe_wrapper">
+                                <H2 class="qfy_title center mobilecenter">
+                                    <a href="javascript:;">
+                                        <div class="qfy_title_image_warpper newsWarpper">
+                                            <div class="qfy_title_inner titleInner">
+                                                <div class="header_title headerTitle">
+                                                    招聘信息
+                                                </div>
+                                                <div class="header_subtitle headerSubtitle">
+                                                    RECRUITMENT
                                                 </div>
                                             </div>
-                                        </section>
+                                            <span  style="clear:both;"></span>
+                                            <span class="line-abs bottom hcenter line"></span>
+                                        </div>
+                                    </a>
+                                </H2>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="qfe_wrapper">
+                                <div>
+                                    <div class="rczp">
+                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                            <tr>
+                                                <td class="tds">招聘职位</td>
+                                                <td class="tds">招聘人数</td>
+                                                <td class="tds">发布日期</td>
+                                                <td class="tds">截止日期</td>
+                                                <td class="tds">薪资</td>
+                                                <td class="tds">操作</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="list_lh">
+                                        <ul style="margin-top: -2px;">
+                                            {foreach $zw as $v}
+                                            <li class="lieven">
+                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="tds">{$v.name}</td>
+                                                        <td class="tds"><span style="color: red">{$v.num}</span> 人</td>
+                                                        <td class="tds">{$v.addtime|date='Y-m-d',###}</td>
+                                                        <td class="tds">{$v.endtime|date='Y-m-d',###}</td>
+                                                        <td style="text-align: left" class="tds"><span style="color: red;margin-left: 55px;">￥ {$v.salary}</span></td>
+                                                        <td class="tds">
+                                                            <a href="{:url('index/Personnel/show',['id' => $v['id']])}" alt="{$v.alt ?? ''}" title="{$v.title ?? ''}">查看详情</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </li>
+                                            {/foreach}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -992,164 +844,6 @@
         </div>
     </div>
 </section>
-
-<section data-fixheight="" class="qfy-row-5-5ad6ed9482c31529336 productSection section no section-text-no-shadow section-inner-no-shadow section-normal newsSection" id="bit_1sygw">
-    <div class="section-background-overlay background-overlay grid-overlay-0 whiteBc"></div>
-    <div class="container">
-        <div class="row qfe_row">
-            <div data-animaleinbegin="bottom-in-view" data-animalename="qfyfadeInUp" data-duration="1" data-delay="" class="qfy-column-8-5ad6ed94831cf738355 qfy-column-inner vc_span12 text-Default small-screen-Default column_middle fullrow" data-dw="1/1" data-fixheight="">
-                <div class="column_inner inner">
-                    <div class=" background-overlay grid-overlay-0 transBc"></div>
-                    <div class="column_containter zIndex">
-                        <div  m-padding="33px 0 19px 4px" p-padding="1px 0 19px 4px" css_animation_delay="0" qfyuuid="qfy_header_fsx7u-c-cu" data-anitime='1' data-anilength='anlength1' class="qfy-element minheigh1px qfe_text_column qfe_content_element  qfe_animate_when_almost_visible qfe_bottom-to-top" style="position: relative;;;background-repeat: no-repeat;;margin-top:0;margin-bottom:0;padding-top:1px;padding-bottom:19px;padding-right:0;padding-left:4px;">
-                            <div class="qfe_wrapper">
-                                <h3 class="qfy_title center mobilecenter productTitleCon">
-                                    <a href="{:url('index/news/lists')}" title="新闻资讯-西安一笔一画有限公司" alt="新闻资讯-西安一笔一画有限公司">
-                                        <div class="qfy_title_image_warpper newsWarpper ">
-                                            <div class="qfy_title_inner titleInner ">
-                                                <div class="header_title headerTitle">
-                                                    知识问答
-                                                </div>
-                                                <div class="header_subtitle headerSubtitle">
-                                                    KNOWLEDGE
-                                                </div>
-                                            </div>
-                                            <span  style="clear:both;"></span>
-                                            <span class="line-abs bottom hcenter line"></span>
-
-                                        </div>
-                                        <div class="button_wrapper moreWrap" style="margin-top:-40px;">
-                                            <div class="button moreBtn">
-                                                查看更多
-                                            </div>
-                                        </div>
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                        <div data-loading="" data-loading-w="" data-open="0" data-post="post" data-cate=" " m-padding="0 0 0 0" p-padding="0 0 0 0" css_animation_delay="0" qfyuuid="qfy_posts_grid_46zvx" class="qfy-element  UUID-POSTS-5ad6ed9488f2d478368 qfe_teaser_grid qfe_content_element  qfe_grid columns_count_3 columns_count_3 qfe_teaser_grid_post newsCon">
-                            <div class="qfe_wrapper">
-                                <div class="teaser_grid_container noanimale" style=';clear:both;' data-type="post" data-cate=" " data-pcate="">
-                                    <ul style="min-height:60px;" class="qfe_thumbnails qfe_thumbnails-fluid vc_clearfix  post_grid " data-layout-mode="fitRows">
-                                        <!--==========循环开始   ===data-delay从0.1开始每次加0.1==========-->
-                                        {foreach $news as $v}
-                                        <li data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-delay="0.1" data-duration="" class="  qfyanimate isotope-item qfy_item_post vc_span3 vc_span_mobile vc_span_mobile12 grid-cat-1 grid-cat-2 ">
-                                            <div class='itembody itempcbody liCon'>
-                                                <div class="post-title liTitle">
-                                                    <a href="{:url('index/news/show', ['id' => $v['id']])}" data-title="true" class="bitImageAhover link_title liTitleA" title="{$v.title}" alt="{$v.alt}">
-                                                        {if strlen($v.title) > 20}
-                                                        {$v.title|mb_substr=0,20,'UTF-8'} ...
-                                                        {else /}
-                                                        {$v.title|mb_substr=0,20,'UTF-8'}
-                                                        {/if}
-                                                    </a>
-                                                </div>
-                                                <div class="entry-content post_excerpt newsContent" style="">
-                                                    <p class="linkInfo">
-                                                        {if strlen($v.zy) > 90}
-                                                        {$v.zy|mb_substr=0,90,'UTF-8'} ...
-                                                        {else /}
-                                                        {$v.zy}
-                                                        {/if}
-                                                    </p>
-                                                    <br/>
-                                                </div>
-                                                <span style='clear:both'></span>
-                                                <div class="vc_read_more_wrapper">
-                                                    <a href="{:url('index/news/show', ['id' => $v['id']])}" class="vc_read_more newsMore" title="{$v.title}" alt="{$v.alt}">
-                                                        →
-                                                    </a>
-                                                </div>
-                                                <div style="clear:both"></div>
-                                            </div>
-                                        </li>
-                                        {/foreach}
-                                        <div class="wf-mobile-hidden" style="clear:both"></div>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!--===============================友情链接======================================-->
-<section data-fixheight="" class="qfy-row-8-5ad6ed948fe91242957 section  no section-text-no-shadow section-inner-no-shadow section-normal productSection" id="">
-    <div class="section-background-overlay background-overlay grid-overlay-0 productBc"></div>
-    <div class="container">
-        <div class="row qfe_row">
-            <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="1" data-delay="" class="qfy-column-12-5ad6ed949021c847995 qfy-column-inner  vc_span12  text-Default small-screen-undefined column_bottom fullrow" data-dw="1/1" data-fixheight="">
-                <div class="column_inner inner">
-                    <div class="background-overlay grid-overlay-0 transBc"></div>
-                    <div class="column_containter zIndex">
-                        <div m-padding="23px 0 20px 0" p-padding="0 0 20px 0" css_animation_delay="0" qfyuuid="qfy_header_unugt" data-anitime='0.7' class="qfy-element minheigh1px qfe_text_column qfe_content_element element">
-                            <div class="qfe_wrapper">
-                                <h3 class="qfy_title left mobileleft">
-                                    <a href="{:url('index/project/lists')}" title="工程案例-西安一笔一画有限公司" alt="工程案例-西安一笔一画有限公司">
-                                        <div class="qfy_title_image_warpper productTitleCon">
-                                            <div class="qfy_title_inner proTitleInner">
-                                                <div class="header_title proHeaderTitle">
-                                                    友情链接
-                                                </div>
-                                                <div class="header_subtitle proHeaderSubTitle">
-                                                    FRIENDLY LINK
-                                                </div>
-                                            </div>
-                                            <a  href="{:url('index/project/lists')}" title="工程案例-西安一笔一画有限公司" alt="工程案例-西安一笔一画有限公司">
-                                                <div class="button_wrapper moreWrap">
-                                                    <div class="button moreBtn">
-                                                        查看更多
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <span style="clear:both;"></span>
-                                            <span class="line-abs bottom hcenter line"></span>
-                                        </div>
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--主体部分-->
-<section data-fixheight="" class="qfy-row-9-5ad6ed9490da2185295 section no  section-text-no-shadow section-inner-no-shadow section-normal productMainSection">
-    <div class="section-background-overlay background-overlay grid-overlay-0 productBc"></div>
-    <div class="container">
-        <div class="row qfe_row">
-            <div data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-duration="1" data-delay="" class=" qfy-column-13-5ad6ed949115f282512 qfy-column-inner  vc_span12  text-Default" data-dw="1/1" data-fixheight="" style="margin:0;padding:60px 0">
-                <div class="column_inner inner">
-                    <div class=" background-overlay grid-overlay-0 transBc"></div>
-                    <div class="column_containter zIndex" id="link">
-                        <div class="swiper-container" >
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide linkBg"><img src="" alt=""></div>
-                                <div class="swiper-slide linkBg" style="background-color: #ff1493">Slide 2</div>
-                                <div class="swiper-slide linkBg" style="background-color: #f43838">Slide 3</div>
-                                <div class="swiper-slide linkBg" style="background-color: #d6e9c6">Slide 4</div>
-                                <div class="swiper-slide linkBg" style="background-color: #4d4d4d">Slide 5</div>
-                                <div class="swiper-slide linkBg" style="background-color: #ff1493">Slide 6</div>
-                            </div>
-                        </div>
-                        <!-- 如果需要导航按钮 -->
-                        <div class="swiper-button-prev" style="left:-30px;z-index:99999"></div>
-                        <div class="swiper-button-next" style="right:-30px;z-index:99999"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 {/block}
 
@@ -1167,51 +861,6 @@
             clickable:true
         },
     });
-    resize();
-    $(window).resize(function() {
-        resize();
-    });
-    function resize(){
-        var W = $(document.body).width();
-        if(W > 992){
-            var mySwiper1 = new Swiper('#link .swiper-container',{
-                slidesPerView : 5,
-                spaceBetween : 20,
-                //spaceBetween : '10%',按container的百分比
-                loop: true,
-                autoplay: {
-                    delay: 3000,//1秒切换一次
-                },
-                autoplayDisableOnInteraction : false,
-                // 如果需要分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable:true
-                },
-            });
-            $("#link .swiper-button-prev").css("left","-30px");
-            $("#link .swiper-button-next").css("right","-30px");
-        }else{
-            var mySwiper2 = new Swiper('#link .swiper-container',{
-                slidesPerView : 2,
-                spaceBetween : 20,
-                loop: true,
-                autoplay: {
-                    delay: 3000,//1秒切换一次
-                },
-                autoplayDisableOnInteraction : false,
-                // 如果需要分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable:true
-                },
-            });
-            $("#link .swiper-button-prev").css("left","-20px");
-            $("#link .swiper-button-next").css("right","-20px");
-        }
-    }
-
-
 
     $(document).ready(function(){
         $('.list_lh li:even').addClass('lieven');

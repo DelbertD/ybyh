@@ -644,8 +644,8 @@ header .headerLogoBar .logoA{
 }
 .footers .footerWord,.footers .footerWord a{
 	color:#FFFFFF;
-	line-height:26px;
-	height:32px;
+	line-height:30px;
+	/*height:32px;*/
 	font-size: 13px;
 	font-family: 微软雅黑;
 	display: block;
@@ -710,6 +710,7 @@ header .headerLogoBar .logoA{
 	font-size:15px;
 	font-family:微软雅黑;
 	color:#333333;
+	display: inline-block;
 }
 
 /******** page-start ********/

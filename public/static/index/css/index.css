@@ -504,7 +504,6 @@ body .UUID-POSTS-5ad6ed9488f2d478368 .teaser_grid_container,
 		padding-top: 0;
 		padding-bottom: 0;
 		margin-top: 0;
-		min-height: 80vh;
 	}
 	section.section.qfy-row-9-5ad6ed9490da2185295> .container {
 		max-width: 1310px;
@@ -1216,9 +1215,8 @@ body .UUID-POSTS-5ad6ed9488f2d478368 .teaser_grid_container,
 .newsSection .newsCon ul li{
 	max-width:33.27%;
 	margin-bottom:0px;
-	padding-bottom:0px;
 	border-bottom:1px solid transparent;
-	padding:15px;
+	padding:15px 15px 30px 15px !important;
 }
 .newsSection .newsCon ul li .liCon{
 	border-top:1px solid rgba(221,221,221,1);
@@ -1231,7 +1229,7 @@ body .UUID-POSTS-5ad6ed9488f2d478368 .teaser_grid_container,
 	padding-bottom:20px;
 	font-weight:normal;
 	color:#555555;
-	line-height:16px;
+	line-height:25px;
 	vertical-align: top; 
 	text-align:left;
 }

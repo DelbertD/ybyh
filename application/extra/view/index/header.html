@@ -1,5 +1,12 @@
 <!---------header------->
 <div id="top-bar" role="complementary" class="bit-top-bar topBarCon">
+   <!-- <div class="wf-wrap" style="height:20px;">
+        <div class="wf-table wf-mobile-collapsed" style="height:20px;">
+            <div class="wf-td" style="height:20px;">
+                <h1 style="font-size:12px;height:20px;">西安一笔一画科技有限公司</h1>
+            </div>
+        </div>
+    </div>-->
     <div class="wf-wrap">
         <div class="wf-table wf-mobile-collapsed">
             <div class="wf-td">
@@ -57,10 +64,10 @@
         <div class="wf-table">
             <div id="branding" class="wf-td bit-logo-bar headerLogoBar" >
                 <a class="bitem logo small logoA" href="javascript:;">
-								<span class="logospan">
+								<h1 class="logospan">
 			                		<img class="preload-me wf-mobile-hidden" alt="西安一笔一画" title="主LOGO_西安一笔一画科技有限公司" src="/static/index/imgs/logo1.png" width="482" height="126"/>
 			                        <img src="/static/index/imgs/logo1.png" alt="西安一笔一画" title="副LOGO_西安一笔一画科技有限公司" class="preload-me wf-mobile-visible-inline">
-			                	</span>
+			                	</h1>
                 </a>
             </div>
             <nav style="" id="navigation" class="wf-td" bitDataAction="site_menu_container" bitDataLocation="primary">
@@ -70,13 +77,15 @@
                     {eq name='v' value='0'}
                     <li class=" menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-11965 current_page_item bit-menu-post-id-11965 menu-item-11966 act first">
                         <a href="{:url($v.url)}" title="{$v.title}" alt="{$v.alt}">
+                            <!--<h2 style="font-size:16px;margin:0;color:#fff">{$v.name}</h2>-->
                             <span>{$v.name}</span>
                         </a>
                     </li>
                     {/eq}
                     <li class=" menu-item menu-item-type-post_type menu-item-object-page">
                         <a href="{:url($v.url)}" title="{$v.url}" alt="{$v.alt}">
-                            <span>{$v.name}</span>
+                            <h2 style="font-size:14px;margin:0;">{$v.name}</h2>
+                            <!--<span>{$v.name}</span>-->
                         </a>
                     </li>
                     {/foreach}
@@ -130,4 +139,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </header>
