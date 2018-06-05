@@ -2,118 +2,6 @@
 
 {block name='style'}
 <link rel="stylesheet" href="/static/index/css/index.css" />
-<style>
-    li{
-        list-style: none;
-    }
-    .list_lh {
-        height: 150px;
-        overflow: hidden;
-        margin-top: 10px;
-    }
-    td{
-        text-align: center;
-        width:15%;
-    }
-    .tds:nth-of-type(1) {
-        width: 30%;
-    }
-    .tds:nth-of-type(6){
-        width:10%;
-    }
-    .rczp{
-        background-color: #f5f5f5;
-        color:#333;
-    }
-    .rczp td{
-        border-right:1px solid #fff;
-        vertical-align: center;
-        height:40px;
-    }
-    .list_lh td{
-        height:50px;
-        vertical-align: center;
-    }
-    .list_lh li{
-        border-bottom:1px dashed #ddd;
-        /*cursor: pointer;*/
-    }
-    .question{
-        background:url(/static/index/imgs/question.png) no-repeat;
-        padding:4px 4px 4px 30px;
-        background-size:20px;
-        background-position: 2px;
-        color:#333;
-    }
-    .answer{
-        background:url(/static/index/imgs/answer.png) no-repeat;
-        padding:4px 4px 4px 30px;
-        background-size:20px;
-        background-position: 2px;
-        color:#333;
-    }
-    .linkBg{
-        border:1px solid #ddd;
-        height:100px;
-    }
-    .linkBg img{
-        width:100%;
-        height:100%;
-    }
-    .linkInfo{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        line-height: 23px;
-        max-height: 46px;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-    .liCon{
-        position:relative;
-        overflow: hidden;
-        transition: all .5s;
-    }
-    .liCon:hover .newsInfo{
-        bottom:0;
-    }
-    .newsInfo{
-        position: absolute;
-        bottom:-60px;
-        font-size:12px;
-        transition: all .5s;
-        background:rgba(0,0,0,0.6);
-        color:#FFF;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        line-height: 23px;
-        max-height: 46px;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-    .newsTilteInfo{
-        width:100%;
-        text-align: center;
-        height:30px;
-        line-height:30px;
-        font-size:14px;
-        color:rgb(119, 119, 119);
-    }
-    .headerTitle{
-        color:#191919;
-    }
-    .headerSubtitle{
-        font-family: Raleway;
-        font-size: 12px;
-        font-weight: normal;
-        font-style: normal;
-        color: #999999;
-        display: block;
-        padding: 2px;
-        vertical-align: bottom;
-    }
-</style>
 {/block}
 
 {block name='banner'}
@@ -818,31 +706,37 @@
                                         <!--==========循环开始   ===data-delay从0.1开始每次加0.1==========-->
                                         {foreach $news as $v}
                                         <li data-animaleinbegin="90%" data-animalename="qfyfadeInUp" data-delay="0.1" data-duration="" class="  qfyanimate isotope-item qfy_item_post vc_span3 vc_span_mobile vc_span_mobile12 grid-cat-1 grid-cat-2 ">
-                                            <div class='itembody itempcbody liCon'>
-                                                <div class="post-title liTitle">
-                                                    <a href="{:url('index/news/show', ['id' => $v['id']])}" data-title="true" class="bitImageAhover link_title liTitleA" title="{$v.title}" alt="{$v.alt}">
-                                                        {if strlen($v.title) > 20}
-                                                        {$v.title|mb_substr=0,20,'UTF-8'} ...
-                                                        {else /}
-                                                        {$v.title|mb_substr=0,20,'UTF-8'}
-                                                        {/if}
-                                                    </a>
+                                            <div class='itembody liCon knowledgeCon'>
+                                                <div class="knowledgeImgBox">
+                                                    <img src="/static/index/imgs/logo.png" alt="">
                                                 </div>
-                                                <div class="entry-content post_excerpt newsContent" style="">
-                                                    <p class="linkInfo">
-                                                        {if strlen($v.zy) > 90}
-                                                        {$v.zy|mb_substr=0,90,'UTF-8'} ...
-                                                        {else /}
-                                                        {$v.zy}
-                                                        {/if}
-                                                    </p>
-                                                    <br/>
+                                                <div class="knowledgeBox">
+                                                    <div class="questions">
+                                                        <a href="{:url('index/news/show', ['id' => $v['id']])}" data-title="true" class="bitImageAhover link_title liTitleA" title="{$v.title}" alt="{$v.alt}">
+                                                            {if strlen($v.title) > 20}
+                                                            {$v.title|mb_substr=0,20,'UTF-8'} ...
+                                                            {else /}
+                                                            {$v.title|mb_substr=0,20,'UTF-8'}
+                                                            {/if}
+                                                        </a>
+                                                    </div>
+                                                    <div class="answers" style="">
+                                                        <a href="" class="answersA">
+                                                            {if strlen($v.zy) > 90}
+                                                            {$v.zy|mb_substr=0,90,'UTF-8'} ...
+                                                            {else /}
+                                                            {$v.zy}
+                                                            {/if}
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <span style='clear:both'></span>
-                                                <div class="vc_read_more_wrapper">
-                                                    <a href="{:url('index/news/show', ['id' => $v['id']])}" class="vc_read_more newsMore" title="{$v.title}" alt="{$v.alt}">
-                                                        →
-                                                    </a>
+                                                <div class="knowledgeFooter">
+                                                    <span style="padding-right:30px">
+                                                        <i class="fa fa-clock-o" aria-hidden="true"></i>5天前
+                                                    </span>
+                                                    <span style="padding-right:30px">
+                                                        <i class="fa fa-file" aria-hidden="true"></i>评论人数
+                                                    </span>
                                                 </div>
                                                 <div style="clear:both"></div>
                                             </div>
