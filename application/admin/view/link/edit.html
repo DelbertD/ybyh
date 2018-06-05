@@ -16,10 +16,6 @@
     .layui-form-item .layui-input-inline.inputW{
         width:710px;
     }
-    .layui-form-item .layui-input-inline .inputW {
-        width: 710px;
-    }
-
     .layui-form-item .warm-color {
         color: #FF5722!important;
     }
@@ -27,76 +23,51 @@
 {/block}
 
 {block name='content'}
+<a type="button" href="{:url('admin/Link/lists')}"  class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe65c;</i>返回</a>
+<hr class="layui-bg-blue">
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
         <div class="layui-col-md12">
             <form class="layui-form" action="{$url}" method="post">
-                {if isset($ads)}
-                <input type="hidden" name="id" value="{$ads.id}" />
+                {if isset($link)}
+                <input type="hidden" name="id" value="{$link.id}" />
                 {/if}
-                <input type="hidden" name="path" value="{$ads.path ?? ''}" id="img">
-
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片链接：</label>
+                    <label class="layui-form-label">连接名称：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" name="url" value="{$ads.url ?? ''}" class="layui-input" lay-verify="required">
+                        <input type="text" name="name" value="{$link.name ?? ''}" class="layui-input" lay-verify="required">
                     </div>
                 </div>
 
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">链接地址：</label>
+                    <div class="layui-input-inline inputW">
+                        <input type="text" name="url" value="{$link.url ?? ''}" class="layui-input" lay-verify="required">
+                    </div>
+                </div>
                 <div class="layui-form-item layui-col-md9">
                     <label class="layui-form-label"></label>
                     <div class="layui-form-mid layui-word-aux warm-color">注意事项：链接格式为  https://www.examble.com 或 http://www.examble.com</div>
                 </div>
 
-
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片title：</label>
+                    <label class="layui-form-label">图片路径：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" name="title" value="{$ads.title ?? ''}" class="layui-input">
+                        <input id="img" type="text" name="thumb" value="{$link.thumb ?? ''}" readonly class="layui-input" lay-verify="required">
                     </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片alt：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="alt" value="{$ads.alt ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
-                </div>
-
-                <div class="layui-form-item layui-col-md6">
-                    <label class="layui-form-label">图片分类：</label>
-                    <div class="layui-input-block" style="z-index: 9999">
-                        <select name="pid" lay-verify="required">
-                            <option value=""></option>
-                            {if isset($ads)}
-                            {foreach $cate as $v}
-                            {eq name='v.id' value='$ads.pid'}
-                            <option value="{$v.id}" selected>{$v.name}</option>
-                            {else/}
-                            <option value="{$v.id}">{$v.name}</option>
-                            {/eq}
-                            {/foreach}
-                            {else /}
-                            {foreach $cate as $v}
-                            <option value="{$v.id}">{$v.name}</option>
-                            {/foreach}
-                            {/if}
-                        </select>
-                    </div>
-                </div>
                 <div class="layui-form-item layui-col-md9">
                     <label class="layui-form-label"></label>
-                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：如果不知道图片所属分类，请选择其他图片</div>
+                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：上传路径自动填写，无需手动添加！</div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示：</label>
-                    <div class="layui-input-inline inputW">
-                        {if isset($ads)}
-                        {eq name='ads.is_show' value='1'}
+                    <div class="layui-input-block">
+                        {if isset($link)}
+                        {eq name='link.is_show' value='1'}
                         <input type="radio" name="is_show" value="1" title="显示" checked>
                         <input type="radio" name="is_show" value="2" title="隐藏">
                         {else /}
@@ -116,8 +87,8 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn layui-btn-sm" id="test1">上传图片</button>
                             <div class="layui-upload-list">
-                                {if isset($ads)}
-                                <img class="layui-upload-img" src="/static/{$ads.path}" width="50" height="50" id="demo1">
+                                {if isset($link)}
+                                <img class="layui-upload-img" src="/static/{$link.thumb}" width="50" height="50" id="demo1">
                                 {else /}
                                 <img class="layui-upload-img" width="50" height="50" id="demo1">
                                 {/if}
@@ -126,16 +97,18 @@
                     </div>
                 </div>
 
+
                 <div class="layui-form-item" style="text-align: left">
                     <div class="layui-input-block">
                         <button class="layui-btn" lay-submit >保存</button>
-                        <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                        <button style="margin-left: 60px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </fieldset>
+
 
 
 {/block}
@@ -146,9 +119,22 @@
         var form = layui.form;
         var $ = layui.jquery;
         var upload = layui.upload;
+        form.on('select(level)', function(data){
+            var level = data.value;
+            var url = "{:url('admin/Node/getJsonTree')}";
+            $.get(url, {'level':level}, function (res) {
+                if (res.suc == 0){
+                    $('#pid').html('');
+                    $('#pid').append(res.data);
+                }
+            })
+        });
+
+        form.render('select');
+
 
         //普通图片上传
-        var url = '/admin/Upload/upImg/type/ads';
+        var url = '/admin/upload/upImg/type/link';
         var uploadInst = upload.render({
             elem: '#test1'
             ,url: url

@@ -37,6 +37,7 @@ class News extends Base
             unset($post['detail']);
             unset($post['file']);
             $post['addtime'] = time();
+
             Db::startTrans();
             try{
                 Db::name('news')->insert($post);
@@ -110,7 +111,7 @@ class News extends Base
         //删除图片
         $info = Db::name('news')->field('thumb')->find($id);
         $file = ROOT_PATH . DS . 'public' . DS . 'static' . DS . $info['thumb'];
-        if (file_exists($file)){
+        if (is_file($file)){
             unlink($file);
         }
         //删除新闻

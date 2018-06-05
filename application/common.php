@@ -12,7 +12,7 @@
 // 应用公共文件
 
 use think\Db;
-
+use think\Image;
 
 if (!function_exists('genSubMenu')){
     function genSubMenu($m_id = 0){
@@ -33,6 +33,40 @@ if (!function_exists('getVal')){
         }else{
             return '';
         }
+    }
+}
+
+if (!function_exists('thumb')){
+    function thumb($fileName, $mark = '_small', $width = '400', $height = '300', $ext = 'jpg'){
+        if (!file_exists($fileName)){
+            return false;
+        }
+        $baseName = explode('.', $fileName)[0];
+        $baseName .= $mark . '.' . $ext;
+        $image = Image::open($fileName);
+        $image->thumb($width, $height)->save($baseName);
+        return true;
+    }
+
+}
+
+if (!function_exists('addWater')){
+    function addWater($fileName, $mark = '_water', $ext = 'jpg', $text = 'ThinkPHP', $font = '', $size = '14', $color = '#ffffff'){
+        if (!file_exists($fileName)){
+            return false;
+        }
+        $baseName = explode('.', $fileName)[0];
+        $baseName .= '.' . $mark . $ext;
+        $image = Image::open($fileName);
+        $image->text($text, $font, $size, $color)->save($baseName);
+        $image->__destruct();
+        return true;
+    }
+}
+
+if (!function_exists('addLogo')){
+    function addLogo($fileName){
+
     }
 }
 

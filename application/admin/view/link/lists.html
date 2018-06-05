@@ -29,13 +29,10 @@
         <table class="layui-table">
             <thead>
             <tr>
-                <th>sort</th>
                 <th>Id</th>
-                <th>节点名称</th>
-                <th>上级节点</th>
-                <th>菜单名称</th>
-                <th>节点级别</th>
-                <th>是否禁止</th>
+                <th>缩略图</th>
+                <th>链接文字</th>
+                <th>链接地址</th>
                 <th>是否显示</th>
                 <th>操作</th>
             </tr>
@@ -43,40 +40,17 @@
             <tbody>
             {foreach $list as $v}
             <tr>
-                <td><input onblur="changSort('{$v.id}',this.value)" id="sort" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
-                <td>{$v.id ?? ''}</td>
-                <td style="width: 200px">
-                    <span style="display: block;width: 150px;text-align: left; margin-left: 40px">
-                        {$v.spl}<i style="color: #000; font-size: 20px;" class="layui-icon">{$v.icon ?? ''}</i> {$v.name ?? ''}
-                    </span>
-                </td>
-                <td>{:getVal('node.name.' . $v.pid)}</td>
-                <td style="width: 200px">
-                     <span style="display: block;width: 150px;text-align: left; margin-left: 40px">
-                        {$v.spl}{$v.title ?? ''}
-                    </span>
-                </td>
-                {eq name='v.level' value='1'}
-                <td>项目级别</td>
-                {/eq}
-                {eq name='v.level' value='2'}
-                <td>模块级别</td>
-                {/eq}
-                {eq name='v.level' value='3'}
-                <td>操作级别</td>
-                {/eq}
-                {eq name='v.status' value='1'}
-                <td>启用</td>
-                {else /}
-                <td>禁用</td>
-                {/eq}
+                <td>{$v.id}</td>
+                <td><img src="/static/{$v.thumb}" width="100" height="60" /></td>
+                <td>{$v.name}</td>
+                <td>{$v.url}</td>
                 {eq name='v.is_show' value='1'}
                 <td>显示</td>
                 {else /}
                 <td>隐藏</td>
                 {/eq}
                 <td>
-                    <a href="{:url('admin/Node/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
+                    <a href="{:url('admin/Link/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
                         <i class="layui-icon">&#xe642;</i>
                         编辑
                     </a>  |
@@ -107,28 +81,18 @@
     function del(id) {
         var $ = layui.jquery;
         layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
-            var url = "{:url('admin/Node/del')}";
+            var url = "{:url('admin/Link/del')}";
             $.get(url, {"id":id}, function (res) {
                 layer.close(index);
                 if (res.suc == 0){
-                    layer.msg(res.msg, {icon: 1}, function () {
+                    layer.msg('删除成功', {icon: 1}, function () {
                         location.reload();
                     });
                 }else {
-                    layer.msg(res.msg, {icon: 2});
+                    layer.msg('删除成功', {icon: 2});
                 }
             })
         });
-    }
-
-    function changSort(id, val) {
-        var $ = layui.jquery;
-        var url = "{:url('admin/Node/sort')}";
-        $.get(url, {"id":id,"val":val}, function (res) {
-            if (res.suc == 0){
-                layer.msg('数据已被修改');
-            }
-        })
     }
 
 </script>

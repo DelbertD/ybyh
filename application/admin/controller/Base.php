@@ -66,7 +66,8 @@ class Base extends Controller
             'title'      => $nav['title'],
             'icon'       => $nav['icon'],
             'sonTitle'   => $sonTitle,
-            'controller' => $controller
+            'controller' => $controller,
+            'url'        => request()->url()
         ]);
     }
 

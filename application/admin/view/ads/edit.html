@@ -27,6 +27,8 @@
 {/block}
 
 {block name='content'}
+<a type="button" href="{:url('admin/Ads/lists')}"  class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe65c;</i>返回</a>
+<hr class="layui-bg-blue">
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
@@ -148,7 +150,7 @@
         var upload = layui.upload;
 
         //普通图片上传
-        var url = '/admin/Upload/upImg/type/ads';
+        var url = '/admin/upload/upImg/type/ads';
         var uploadInst = upload.render({
             elem: '#test1'
             ,url: url

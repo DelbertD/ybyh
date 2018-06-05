@@ -106,7 +106,7 @@ class Pro extends Base
         //删除图片
         $info = Db::name('pro')->field('thumb')->find($id);
         $file = ROOT_PATH . DS . 'public' . DS . 'static' . DS . $info['thumb'];
-        if (file_exists($file)){
+        if (is_file($file)){
             unlink($file);
         }
         //删除新闻
@@ -176,7 +176,7 @@ class Pro extends Base
         //删除图片
         $info = Db::name('pro_cate')->field('thumb')->find($id);
         $file = ROOT_PATH . DS . 'public' . DS . 'static' . DS . $info['thumb'];
-        if (file_exists($file)){
+        if (is_file($file)){
             unlink($file);
         }
         //删除新闻
