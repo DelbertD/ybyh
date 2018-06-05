@@ -91,7 +91,6 @@ class Personnel extends Base
         if (empty($id)){
             return $ret;
         }
-        //删除新闻
         $res = Db::name('zw')->delete($id);
         if ($res){
             $ret['suc'] = 0;
