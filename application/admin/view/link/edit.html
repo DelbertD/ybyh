@@ -49,9 +49,19 @@
                 <div class="layui-form-item layui-col-md9">
                     <label class="layui-form-label"></label>
                     <div class="layui-form-mid layui-word-aux warm-color">注意事项：链接格式为  https://www.examble.com 或 http://www.examble.com</div>
-
                 </div>
 
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label">图片路径：</label>
+                    <div class="layui-input-inline inputW">
+                        <input id="img" type="text" name="thumb" value="{$link.thumb ?? ''}" readonly class="layui-input" lay-verify="required">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-col-md9">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：上传路径自动填写，无需手动添加！</div>
+                </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示：</label>
@@ -68,6 +78,22 @@
                         <input type="radio" name="is_show" value="1" title="显示" checked>
                         <input type="radio" name="is_show" value="2" title="隐藏">
                         {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">缩略图：</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn layui-btn-sm" id="test1">上传图片</button>
+                            <div class="layui-upload-list">
+                                {if isset($link)}
+                                <img class="layui-upload-img" src="/static/{$link.thumb}" width="50" height="50" id="demo1">
+                                {else /}
+                                <img class="layui-upload-img" width="50" height="50" id="demo1">
+                                {/if}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -108,7 +134,7 @@
 
 
         //普通图片上传
-        var url = '/admin/upload/upImg/type/pro';
+        var url = '/admin/upload/upImg/type/link';
         var uploadInst = upload.render({
             elem: '#test1'
             ,url: url

@@ -30,6 +30,7 @@
             <thead>
             <tr>
                 <th>Id</th>
+                <th>缩略图</th>
                 <th>链接文字</th>
                 <th>链接地址</th>
                 <th>是否显示</th>
@@ -40,6 +41,7 @@
             {foreach $list as $v}
             <tr>
                 <td>{$v.id}</td>
+                <td><img src="/static/{$v.thumb}" width="100" height="60" /></td>
                 <td>{$v.name}</td>
                 <td>{$v.url}</td>
                 {eq name='v.is_show' value='1'}

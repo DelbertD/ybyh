@@ -25,6 +25,7 @@ class Link extends Base
     public function add(){
         if (request()->isPost()){
             $post = request()->post();
+            unset($post['file']);
             $res = Db::name('link')->insert($post);
             if ($res){
                 $this->success('添加成功！');
@@ -39,6 +40,7 @@ class Link extends Base
     public function edit($id = 0){
         if (request()->isPost()){
             $post = request()->post();
+            unset($post['file']);
             $res = Db::name('link')->update($post);
             if ($res){
                 $this->success('编辑成功！');
@@ -57,7 +59,12 @@ class Link extends Base
         if (empty($id)){
             return $ret;
         }
-        //删除新闻
+        //删除图片
+        $info = Db::name('link')->field('thumb')->find($id);
+        $file = ROOT_PATH . DS . 'public' . DS . 'static' . DS . $info['thumb'];
+        if (is_file($file)){
+            unlink($file);
+        }
         $res = Db::name('link')->delete($id);
         if ($res){
             $ret['suc'] = 0;

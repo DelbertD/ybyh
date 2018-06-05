@@ -31,84 +31,72 @@
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
         <div class="layui-col-md12">
-            <form class="layui-form" action="{:url('admin/Personnel/add')}" method="post">
-                {if isset($zw.id)}
-                <input type="hidden" name="id" value="{$zw.id}" />
+            <form class="layui-form" action="{$url}" method="post">
+                {if isset($ads)}
+                <input type="hidden" name="id" value="{$ads.id}" />
                 {/if}
+                <input type="hidden" name="path" value="{$ads.path ?? ''}" id="img">
 
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">职位名称：</label>
+                    <label class="layui-form-label">图片链接：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" name="name" value="{$zw.name ?? ''}" class="layui-input" lay-verify="required">
+                        <input type="text" name="url" value="{$ads.url ?? ''}" class="layui-input" lay-verify="required">
                     </div>
                 </div>
 
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">招聘人数：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="num" value="{$zw.num ?? ''}" class="layui-input" lay-verify="required">
-                    </div>
+                    <label class="layui-form-label"></label>
+                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：链接格式为  https://www.examble.com 或 http://www.examble.com</div>
                 </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">职位薪资：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="salary" value="{$zw.salary ?? ''}" class="layui-input" lay-verify="required">
-                    </div>
-                </div>
 
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">截止日期：</label>
+                    <label class="layui-form-label">图片title：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" id="etime" name="endtime" value="{$zw.salary ?? ''}" class="layui-input" lay-verify="required">
-                    </div>
-                </div>
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">链接title：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="title" value="{$zw.title ?? ''}" class="layui-input">
+                        <input type="text" name="title" value="{$ads.title ?? ''}" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
 
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">链接alt：</label>
+                    <label class="layui-form-label">图片alt：</label>
                     <div class="layui-input-inline inputW">
-                        <input type="text" name="alt" value="{$zw.alt ?? ''}" class="layui-input">
+                        <input type="text" name="alt" value="{$ads.alt ?? ''}" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
                 </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">页面标题：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="keys" value="{$zw.keys ?? ''}" class="layui-input">
+                <div class="layui-form-item layui-col-md6">
+                    <label class="layui-form-label">图片分类：</label>
+                    <div class="layui-input-block" style="z-index: 9999">
+                        <select name="pid" lay-verify="required">
+                            <option value=""></option>
+                            {if isset($ads)}
+                            {foreach $cate as $v}
+                            {eq name='v.id' value='$ads.pid'}
+                            <option value="{$v.id}" selected>{$v.name}</option>
+                            {else/}
+                            <option value="{$v.id}">{$v.name}</option>
+                            {/eq}
+                            {/foreach}
+                            {else /}
+                            {foreach $cate as $v}
+                            <option value="{$v.id}">{$v.name}</option>
+                            {/foreach}
+                            {/if}
+                        </select>
                     </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">html页面title</div>
                 </div>
-
                 <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">关键词：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="keywords" value="{$zw.keywords ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->keywords</div>
-                </div>
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">页面描述：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="desc" value="{$zw.desc ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->description</div>
+                    <label class="layui-form-label"></label>
+                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：如果不知道图片所属分类，请选择其他图片</div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示：</label>
                     <div class="layui-input-inline inputW">
-                        {if isset($zw)}
-                        {eq name='zw.is_show' value='1'}
+                        {if isset($ads)}
+                        {eq name='ads.is_show' value='1'}
                         <input type="radio" name="is_show" value="1" title="显示" checked>
                         <input type="radio" name="is_show" value="2" title="隐藏">
                         {else /}
@@ -122,18 +110,26 @@
                     </div>
                 </div>
 
-
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">职位详情：</label>
+                    <label class="layui-form-label">缩略图：</label>
                     <div class="layui-input-block">
-                        <textarea id="container" name="detail" lay-verify="required">{$zw.detail ?? ''}</textarea>
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn layui-btn-sm" id="test1">上传图片</button>
+                            <div class="layui-upload-list">
+                                {if isset($ads)}
+                                <img class="layui-upload-img" src="/static/{$ads.path}" width="50" height="50" id="demo1">
+                                {else /}
+                                <img class="layui-upload-img" width="50" height="50" id="demo1">
+                                {/if}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layui-form-item" style="text-align: center">
+                <div class="layui-form-item" style="text-align: left">
                     <div class="layui-input-block">
                         <button class="layui-btn" lay-submit >保存</button>
-                        <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                        <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
                     </div>
                 </div>
             </form>
@@ -146,26 +142,38 @@
 
 {block name="script"}
 <script>
-    layui.use(['form','laydate'], function(){
-        var laydate = layui.laydate;
-        //日期时间选择器
-        laydate.render({
-            elem: '#etime'
-            ,type: 'datetime'
-            ,theme: 'molv'
-            ,format: 'yyyy-M-d'
+    layui.use(['form','upload'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var upload = layui.upload;
+
+        //普通图片上传
+        var url = '/admin/Upload/upImg/type/ads';
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: url
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                var name = res.data.src;
+                $('#img').val(name);
+                return layer.msg('上传成功', {icon: 1});
+            }
         });
+
     });
 
 </script>
-<!-- 配置文件 -->
-<script type="text/javascript" src="/static/plugs/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/static/plugs/ueditor/ueditor.all.js"></script>
-<!-- 实例化编辑器 -->
-<script type="text/javascript">
-    var ue = UE.getEditor('container');
-</script>
+
 {/block}
 
 

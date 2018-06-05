@@ -116,7 +116,7 @@ class Project extends Base
         //删除图片
         $info = Db::name('anli')->field('thumb')->find($id);
         $file = ROOT_PATH . DS . 'public' . DS . 'static' . DS . $info['thumb'];
-        if (file_exists($file)){
+        if (link($file)){
             unlink($file);
         }
         //删除新闻

@@ -42,10 +42,9 @@ if (!function_exists('thumb')){
             return false;
         }
         $baseName = explode('.', $fileName)[0];
-        $baseName .= '.' . $mark . $ext;
+        $baseName .= $mark . '.' . $ext;
         $image = Image::open($fileName);
         $image->thumb($width, $height)->save($baseName);
-        $image->__destruct();
         return true;
     }
 

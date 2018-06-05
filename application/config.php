@@ -245,6 +245,7 @@ return [
         'news'      => 'upload' . DS . 'news' . DS . 'thumb',   //保存新闻缩略图
         'exhib'     => 'upload' . DS . 'exhib' . DS . 'thumb',  //保存展厅缩略图
         'anli'      => 'upload' . DS . 'anli' . DS . 'thumb',   //保存案例缩略图
+        'link'      => 'upload' . DS . 'link' . DS . 'thumb',   //保存友情链接缩略图
         'thumb'     => 'upload' . DS . 'thumb'                  //保存所有分类缩略图
     ],
 
