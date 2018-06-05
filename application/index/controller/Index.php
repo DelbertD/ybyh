@@ -1,7 +1,7 @@
 <?php
 namespace app\index\controller;
 use think\Db;
-use think\Exception;
+
 
 class Index extends Base
 {
