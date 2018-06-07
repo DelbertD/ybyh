@@ -562,7 +562,7 @@
                                                     <!--循环开始 -->
                                                     {volist name='case' id='v'}
                                                     {if condition='($i % 3) eq 0'}
-                                                    <div class='item_container list-item vc_span4 num-0 proContent'>
+                                                    <div class='item_container list-item vc_span3 num-0 proContent'>
                                                         <div class="vc_ca_post_id qfy_item_post qfyanimate"
                                                              data-postid="10860"
                                                              data-animaleinbegin="90%"
@@ -570,43 +570,89 @@
                                                              data-delay="{$i * 0.1}"
                                                              data-duration="1"
                                                              style=''>
-                                                            <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
-                                                                    <!--图片地址-->
-                                                                    <img class="ag_image"
-                                                                         src="/static/{$v.thumb}"
-                                                                         data-tag="imageSharePreview"
-                                                                         style="width:100%;height:100%"
-                                                                         href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                         title="{$v.title}"
-                                                                         alt="{$v.alt}"
-                                                                         description=""
-                                                                         data-title=""
-                                                                         src-img="" />
-                                                                    <div class="item_mask"></div>
-                                                                </a>
-                                                                <div class="item_wrapper clearfix">
-                                                                    <div class="item_info clearfix">
-                                                                        <div class="text_wrap">
-                                                                            <a class="item_a_link"
-                                                                               href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                               title="{$v.title ?? ''}"
-                                                                               alt="{$v.alt ?? ''}"
-                                                                               target='_self'>
-                                                                                <div class="title ellipsis proTltle"
-                                                                                     data-title="true">
-                                                                                    {$v.name}
-                                                                                </div>
-                                                                            </a>
+                                                            <style>
+                                                                .customer{
+                                                                    height:300px;
+                                                                    width:100%;
+                                                                    overflow: hidden;
+                                                                    border:1px solid #ddd;
+                                                                }
+                                                                .customer:hover .wordBox{
+                                                                    background:rgba(0,0,0,0.6);
+                                                                }
+                                                                .customer:hover .up{
+                                                                    top:46%;
+                                                                    color:#ff1493;
+                                                                    z-index:9999999999999999;
+                                                                }
+                                                                .customer .picBox{
+                                                                    width:100%;
+                                                                    height:100px;
+                                                                    position:relative;
+                                                                    border-bottom:1px solid #ddd;
+                                                                }
+                                                                .customer .person{
+                                                                    width:80px;
+                                                                    height:80px;
+                                                                    border-radius: 50%;
+                                                                    position:absolute;
+                                                                    top:50%;
+                                                                    left:50%;
+                                                                    margin-left:-40px;
+                                                                    margin-top:-40px;
+                                                                }
+                                                                .customer .wordBox{
+                                                                    width:100%;
+                                                                    height:200px;
+                                                                    position:relative;
+                                                                }
+                                                                .customer .wordBox .wordBoxtitle{
+                                                                    width:100%;
+                                                                    height:40px;
+                                                                    line-height:40px;
+                                                                    text-align: center;
+                                                                    font-size:20px;
+                                                                    font-weight: 900;
+                                                                    color:#828282;
+                                                                }
+                                                                .customer .wordBox .wordBoxSubTitle{
+                                                                    font-size:12px;
+                                                                    color:#777777;
+                                                                }
+                                                                .customer .wordBox .up{
+                                                                    position:absolute;
+                                                                    top:46%;
+                                                                    left:46%;
+                                                                }
+                                                                .customer .wordBox .up .fa-thumbs-o-up{
+                                                                    font-size:30px;
+                                                                    color:#F7F7F7;
+                                                                }
+                                                             </style>
+                                                            <div class="qfy_item_block item_block relative">
+                                                                    <div class="customer">
+                                                                        <div class="picBox">
+                                                                            <img src="/static/{$v.thumb}" alt=""  class="person">
+                                                                        </div>
+                                                                        <div class="wordBox">
+                                                                            <div class="up">
+                                                                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="wordBoxtitle">{$v.name}</div>
+                                                                            <div class="wordBoxSubTitle">{$v.name}</div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <p class="wf-mobile-hidden" style="clear:both;padding:0;"></p>
                                                     {else /}
-                                                    <div class='item_container list-item vc_span4 num-0 proContent'>
+                                                   <!-- <div class="customerBox">
+                                                        <div class="picBox">
+
+                                                        </div>
+                                                    </div>-->
+                                                    <!--<div class='item_container list-item vc_span4 num-0 proContent'>
                                                         <div class="vc_ca_post_id qfy_item_post qfyanimate"
                                                              data-postid="10860"
                                                              data-animaleinbegin="90%"
@@ -616,7 +662,7 @@
                                                              style=''>
                                                             <div class="qfy_item_block item_block relative item_box">
                                                                 <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
-                                                                    <!--图片地址-->
+                                                                    &lt;!&ndash;图片地址&ndash;&gt;
                                                                     <img class="ag_image"
                                                                          src="/static/{$v.thumb}"
                                                                          data-tag="imageSharePreview"
@@ -647,7 +693,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div>-->
                                                     {/if}
                                                     {/volist}
                                                 </div>
