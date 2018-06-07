@@ -17,6 +17,10 @@ class Ask extends Base
 {
     public function show($id = 0){
         $this->setNum($id);
+        $this->assign([
+            'curMenu'  => '知识问答',
+        ]);
+        return $this->fetch();
     }
 
     public function setNum($id = 0){
