@@ -512,27 +512,19 @@
                         <div m-padding="23px 0 20px 0" p-padding="0 0 20px 0" css_animation_delay="0" qfyuuid="qfy_header_unugt" data-anitime='0.7' class="qfy-element minheigh1px qfe_text_column qfe_content_element element">
                             <div class="qfe_wrapper">
                                 <h3 class="qfy_title left mobileleft">
-                                    <a href="{:url('index/project/lists')}" title="工程案例-西安一笔一画有限公司" alt="工程案例-西安一笔一画有限公司">
-                                        <div class="qfy_title_image_warpper productTitleCon">
-                                            <div class="qfy_title_inner proTitleInner">
-                                                <div class="header_title proHeaderTitle">
-                                                    客户评价
-                                                </div>
-                                                <div class="header_subtitle proHeaderSubTitle">
-                                                    CUSTOMER EVALUATION
-                                                </div>
+                                    <div class="qfy_title_image_warpper productTitleCon">
+                                        <div class="qfy_title_inner proTitleInner">
+                                            <div class="header_title proHeaderTitle">
+                                                客户评价
                                             </div>
-                                            <a  href="{:url('index/project/lists')}" title="工程案例-西安一笔一画有限公司" alt="工程案例-西安一笔一画有限公司">
-                                                <div class="button_wrapper moreWrap">
-                                                    <div class="button moreBtn">
-                                                        查看更多
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <span style="clear:both;"></span>
-                                            <span class="line-abs bottom hcenter line"></span>
+                                            <div class="header_subtitle proHeaderSubTitle">
+                                                CUSTOMER EVALUATION
+                                            </div>
                                         </div>
-                                    </a>
+
+                                        <span style="clear:both;"></span>
+                                        <span class="line-abs bottom hcenter line"></span>
+                                    </div>
                                 </h3>
                             </div>
                         </div>
@@ -560,8 +552,7 @@
                                                 <div class="vc-carousel-slideline-inner">
                                                     <!--data-delay 从0开始每次增加0.1  且三个后面加一个    <p class="wf-mobile-hidden" style="clear:both;padding:0; 清除浮动专用"></p>-->
                                                     <!--循环开始 -->
-                                                    {volist name='case' id='v'}
-                                                    {if condition='($i % 3) eq 0'}
+                                                    {volist name='comment' id='v'}
                                                     <div class='item_container list-item vc_span3 num-0 proContent'>
                                                         <div class="vc_ca_post_id qfy_item_post qfyanimate"
                                                              data-postid="10860"
@@ -570,131 +561,32 @@
                                                              data-delay="{$i * 0.1}"
                                                              data-duration="1"
                                                              style=''>
-                                                            <style>
-                                                                .customer{
-                                                                    height:300px;
-                                                                    width:100%;
-                                                                    overflow: hidden;
-                                                                    border:1px solid #ddd;
-                                                                }
-                                                                .customer:hover .wordBox{
-                                                                    background:rgba(0,0,0,0.6);
-                                                                }
-                                                                .customer:hover .up{
-                                                                    top:46%;
-                                                                    color:#ff1493;
-                                                                    z-index:9999999999999999;
-                                                                }
-                                                                .customer .picBox{
-                                                                    width:100%;
-                                                                    height:100px;
-                                                                    position:relative;
-                                                                    border-bottom:1px solid #ddd;
-                                                                }
-                                                                .customer .person{
-                                                                    width:80px;
-                                                                    height:80px;
-                                                                    border-radius: 50%;
-                                                                    position:absolute;
-                                                                    top:50%;
-                                                                    left:50%;
-                                                                    margin-left:-40px;
-                                                                    margin-top:-40px;
-                                                                }
-                                                                .customer .wordBox{
-                                                                    width:100%;
-                                                                    height:200px;
-                                                                    position:relative;
-                                                                }
-                                                                .customer .wordBox .wordBoxtitle{
-                                                                    width:100%;
-                                                                    height:40px;
-                                                                    line-height:40px;
-                                                                    text-align: center;
-                                                                    font-size:20px;
-                                                                    font-weight: 900;
-                                                                    color:#828282;
-                                                                }
-                                                                .customer .wordBox .wordBoxSubTitle{
-                                                                    font-size:12px;
-                                                                    color:#777777;
-                                                                }
-                                                                .customer .wordBox .up{
-                                                                    position:absolute;
-                                                                    top:46%;
-                                                                    left:46%;
-                                                                }
-                                                                .customer .wordBox .up .fa-thumbs-o-up{
-                                                                    font-size:30px;
-                                                                    color:#F7F7F7;
-                                                                }
-                                                             </style>
                                                             <div class="qfy_item_block item_block relative">
                                                                     <div class="customer">
                                                                         <div class="picBox">
                                                                             <img src="/static/{$v.thumb}" alt=""  class="person">
                                                                         </div>
                                                                         <div class="wordBox">
-                                                                            <div class="up">
+                                                                            <div onclick="send('{$v.id}')" class="up">
                                                                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                                                             </div>
-                                                                            <div class="wordBoxtitle">{$v.name}</div>
-                                                                            <div class="wordBoxSubTitle">{$v.name}</div>
+                                                                            <div class="wordBoxtitle">来自{$v.address}{$v.name}的评价</div>
+                                                                            <div class="wordBoxSubTitle">
+                                                                                {$v.comment}
+                                                                            </div>
+                                                                            <div class="btn-bottom">
+                                                                                <span>
+                                                                                    {$v.addtime|date='Y-m-d',###}
+                                                                                </span>
+                                                                                <span style="float: right">
+                                                                                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span style="color: #FF0000">{$v.num}</span>
+                                                                                </span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <p class="wf-mobile-hidden" style="clear:both;padding:0;"></p>
-                                                    {else /}
-                                                   <!-- <div class="customerBox">
-                                                        <div class="picBox">
-
-                                                        </div>
-                                                    </div>-->
-                                                    <!--<div class='item_container list-item vc_span4 num-0 proContent'>
-                                                        <div class="vc_ca_post_id qfy_item_post qfyanimate"
-                                                             data-postid="10860"
-                                                             data-animaleinbegin="90%"
-                                                             data-animalename="qfyfadeInUp"
-                                                             data-delay="{$i * 0.1}"
-                                                             data-duration="1"
-                                                             style=''>
-                                                            <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
-                                                                    &lt;!&ndash;图片地址&ndash;&gt;
-                                                                    <img class="ag_image"
-                                                                         src="/static/{$v.thumb}"
-                                                                         data-tag="imageSharePreview"
-                                                                         style="width:100%;height:100%"
-                                                                         href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                         title="{$v.title}"
-                                                                         alt="{$v.alt}"
-                                                                         description=""
-                                                                         data-title=""
-                                                                         src-img="" />
-                                                                    <div class="item_mask"></div>
-                                                                </a>
-                                                                <div class="item_wrapper clearfix">
-                                                                    <div class="item_info clearfix">
-                                                                        <div class="text_wrap">
-                                                                            <a class="item_a_link"
-                                                                               href="{:url('index/project/show',['id' => $v['id']])}"
-                                                                               title="{$v.title ?? ''}"
-                                                                               alt="{$v.alt ?? ''}"
-                                                                               target='_self'>
-                                                                                <div class="title ellipsis proTltle"
-                                                                                     data-title="true">
-                                                                                    {$v.name}
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>-->
-                                                    {/if}
                                                     {/volist}
                                                 </div>
                                             </div>
@@ -890,6 +782,8 @@
     $(window).resize(function() {
         resize();
     });
+
+
     function resize(){
         var W = $(document.body).width();
         if(W > 992){
@@ -942,6 +836,12 @@
             rowHeight:50 //li的高度
         });
     });
+
+    function send(id) {
+        var url = "{:url('admin/Comment/setNum')}";
+        var data = {"id":id};
+        $.get(url,data);
+    }
 </script>
 {/block}
 

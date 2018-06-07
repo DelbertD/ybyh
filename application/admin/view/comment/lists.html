@@ -30,10 +30,10 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>原始图片</th>
-                <th>问答题目</th>
-                <th>答案摘要</th>
-                <th>浏览次数</th>
+                <th>用户昵称</th>
+                <th>用户头像</th>
+                <th>用户评论</th>
+                <th>点赞次数</th>
                 <th>添加时间</th>
                 <th>是否显示</th>
                 <th>操作</th>
@@ -43,30 +43,24 @@
             {foreach $list as $v}
             <tr>
                 <td>{$v.id}</td>
-                <td><img src="/static/{$v.thumb}" width="100" height="60" /></td>
+                <td>{$v.name}</td>
+                <td><img src="/static/{$v.thumb}" width="50" height="50" /></td>
                 <td>
-                    {if strlen($v.ask) > 20}
-                    {$v.ask|mb_substr=0,20,'UTF-8'} ...
+                    {if strlen($v.comment) > 50}
+                    {$v.comment|mb_substr=0,50,'UTF-8'} ...
                     {else /}
-                    {$v.ask}
-                    {/if}
-                </td>
-                <td>
-                    {if strlen($v.info) > 50}
-                    {$v.info|mb_substr=0,50,'UTF-8'} ...
-                    {else /}
-                    {$v.info}
+                    {$v.comment}
                     {/if}
                 </td>
                 <td>{$v.num}</td>
-                <td>{$v.addtime|date='Y-m-d', ###}</td>
+                <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
                 {eq name='v.is_show' value='1'}
                 <td>显示</td>
                 {else /}
                 <td>隐藏</td>
                 {/eq}
                 <td>
-                    <a href="{:url('admin/Ask/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
+                    <a href="{:url('admin/Comment/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
                         <i class="layui-icon">&#xe642;</i>
                         编辑
                     </a>
@@ -98,7 +92,7 @@
     function del(id) {
         var $ = layui.jquery;
         layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
-            var url = "{:url('admin/Ask/del')}";
+            var url = "{:url('admin/Comment/del')}";
             $.get(url, {"id":id}, function (res) {
                 layer.close(index);
                 if (res.suc == 0){

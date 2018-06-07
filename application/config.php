@@ -247,6 +247,7 @@ return [
         'anli'      => 'upload' . DS . 'anli' . DS . 'thumb',   //保存案例缩略图
         'link'      => 'upload' . DS . 'link' . DS . 'thumb',   //保存友情链接缩略图
         'ask'       => 'upload' . DS . 'ask' . DS . 'thumb',    //保存问答缩略图
+        'head'      => 'upload' . DS . 'head' . DS . 'thumb',   //保存用户头像缩略图
         'thumb'     => 'upload' . DS . 'thumb'                  //保存所有分类缩略图
     ],
 

@@ -5860,7 +5860,6 @@ function revslider_showDoubleJqueryError(sliderID) {
                             m, p, r = {};
                         "fit-if-smaller" ===
                         d && (k > h || l > q) && (d = "fit");
-                        console.log($(window).width());
                         if($(window).width()>720){
                             if("fill" === d || "fit" === d) m = h / k, p = q / l, m = "fill" == d ? m > p ? m : p : "fit" == d ? m < p ? m : p : 1, k = Math.ceil(k * m, 10), l = Math.ceil(l * m, 10);
                             "none" !== d && (r.width = k, r.height =l, e && c.find(".rsImg").css({
