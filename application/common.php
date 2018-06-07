@@ -37,8 +37,8 @@ if (!function_exists('getVal')){
 }
 
 if (!function_exists('thumb')){
-    function thumb($fileName, $mark = '_small', $width = '400', $height = '300', $ext = 'jpg'){
-        if (!file_exists($fileName)){
+    function thumb($fileName, $mark, $width = 400, $height = 300, $ext = 'jpg'){
+        if (!is_file($fileName)){
             return false;
         }
         $baseName = explode('.', $fileName)[0];
@@ -52,14 +52,13 @@ if (!function_exists('thumb')){
 
 if (!function_exists('addWater')){
     function addWater($fileName, $mark = '_water', $ext = 'jpg', $text = 'ThinkPHP', $font = '', $size = '14', $color = '#ffffff'){
-        if (!file_exists($fileName)){
+        if (!is_file($fileName)){
             return false;
         }
         $baseName = explode('.', $fileName)[0];
         $baseName .= '.' . $mark . $ext;
         $image = Image::open($fileName);
         $image->text($text, $font, $size, $color)->save($baseName);
-        $image->__destruct();
         return true;
     }
 }

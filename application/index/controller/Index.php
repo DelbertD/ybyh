@@ -29,16 +29,31 @@ class Index extends Base
 
         //案例展示
         $case = Db::name('anli')
-            ->where('is_show',1)
             ->field('id,name,title,alt,thumb')
+            ->where('is_show',1)
+            ->order('addtime desc')
             ->limit(6)
             ->select();
 
         //新闻查询
         $news = Db::name('news')
-            ->field('id,alt,title,zy')
+            ->field('id,alt,title,zy,CONCAT(SUBSTRING_INDEX(thumb, \'.\', 1),\'_small.jpg\')  as t_small')
             ->where('is_show', 1)
-            ->limit(6)
+            ->order('addtime desc')
+            ->limit(9)
+            ->select();
+
+        //问答查询
+        $ask = Db::name('ask')
+            ->where('is_show', 1)
+            ->order('addtime desc')
+            ->limit(12)
+            ->select();
+        //友情链接
+        $link = Db::name('link')
+            ->where('is_show', 1)
+            ->where("thumb != '' ")
+            ->order('addtime desc')
             ->select();
 
         $this->assign([
@@ -46,7 +61,10 @@ class Index extends Base
             'about'  => $about,
             'news'   => $news,
             'pro'    => $pro,
-            'case'   => $case
+            'case'   => $case,
+            'link'   => $link,
+            'ask'    => $ask
+
         ]);
         return $this->fetch();
     }

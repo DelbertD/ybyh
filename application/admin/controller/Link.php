@@ -25,6 +25,7 @@ class Link extends Base
     public function add(){
         if (request()->isPost()){
             $post = request()->post();
+            $post['addtime'] = time();
             unset($post['file']);
             $res = Db::name('link')->insert($post);
             if ($res){
@@ -40,6 +41,7 @@ class Link extends Base
     public function edit($id = 0){
         if (request()->isPost()){
             $post = request()->post();
+            $post['addtime'] = time();
             unset($post['file']);
             $res = Db::name('link')->update($post);
             if ($res){

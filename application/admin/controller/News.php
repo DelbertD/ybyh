@@ -13,7 +13,8 @@ class News extends Base
 {
 
     public function lists(){
-        $db = Db::name('news');
+        $db = Db::name('news')
+            ->field("*,CONCAT(SUBSTRING_INDEX(thumb, '.', 1), '_small.jpg')  as t_small");
         return parent::_list($db, 10);
     }
     /*
@@ -122,6 +123,12 @@ class News extends Base
             $ret['suc'] = 0;
         }
         return $ret;
+    }
+
+    public function creatThumb($id = 0){
+        $path = Db::name('news')->where('id', $id)->value('thumb');
+        $fileName = 'static/' . $path;
+        return thumb($fileName, '_small' , 300, 200);
     }
 
 

@@ -30,7 +30,7 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>缩略图</th>
+                <th>原始图片</th>
                 <th>问答题目</th>
                 <th>答案摘要</th>
                 <th>浏览次数</th>
@@ -72,11 +72,6 @@
                     <a onclick="del('{$v.id}')" style="color: #FF5722;cursor: pointer">
                         <i class="layui-icon">&#xe640;</i>
                         删除
-                    </a>
-                    |
-                    <a href="{:url('admin/Ask/creatThumb',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
-                        <i class="layui-icon">&#xe618;</i>
-                        生成缩略图
                     </a>
                 </td>
             </tr>

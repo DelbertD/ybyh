@@ -91,8 +91,4 @@ class Ask extends Base
         }
         return $ret;
     }
-
-    public function setNum($id = 0){
-        Db::name('ask')->where('id', $id)->setInc('num');
-    }
 }

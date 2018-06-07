@@ -24,6 +24,7 @@ class Project extends Base
             ->where('is_show',1)
             ->order('sort asc')
             ->field('id,name')
+            ->limit(8)
             ->select();
 
         //工程案例分页获取

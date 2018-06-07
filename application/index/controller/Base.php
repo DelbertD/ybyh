@@ -50,8 +50,12 @@ class Base extends Controller
                     break;
                 case 'news':
                     $table = 'news';
+                    break;
                 case 'personnel':
                     $table = 'zw';
+                    break;
+                case 'ask':
+                    $table = 'ask';
                     break;
                 default:
                     break;
@@ -62,7 +66,7 @@ class Base extends Controller
                     ->field('keys,keywords,desc')
                     ->find($id);
                 $this->assign([
-                    'keys'     => !empty($info['keys']) ? $info['keys'] : '西安一笔一画科技有限公司官网',
+                    'keys'     => !empty($info['keys']) ? $info['keys'] : '西安一笔一画 西安一笔一画官网',
                     'desc'     => $info['desc'],
                     'keywords' => $info['keywords'],
                 ]);
@@ -74,18 +78,39 @@ class Base extends Controller
             ->order('sort asc')
             ->select();
 
-        //底部联系我们展示
-        $products1 = Db::name('pro')->where('is_show', 1)->limit(6)->select();
-        $products2 = Db::name('pro')->where('is_show', 1)->limit(6,6)->select();
+        //服务项目
+        $proList = Db::name('pro')
+            ->where('is_show', 1)
+            ->limit(8)
+            ->select();
+
+        //联系我们
         $contact = Db::name('contact')->find(1);
-        //友情链接展示
-        $link = Db::name('link')->where('is_show', 1)->limit(8)->select();
+
+
+        //案例展示
+        $anliList = Db::name('anli')
+            ->where('is_show',1)
+            ->field('id,name,title,alt')
+            ->limit(8)
+            ->select();
+
+        //新闻展示
+        $newsList = Db::name('news')
+            ->where('pid', 2)
+            ->where('is_show', 1)
+            ->order('addtime desc')
+            ->limit(8)
+            ->select();
+
+
+
         $this->assign([
             'pmenu'     => $pmenu,
             'contact'   => $contact,
-            'products1' => $products1,
-            'products2' => $products2,
-            'link'      => $link
+            'proList'   => $proList,
+            'newsList'  => $newsList,
+            'anliList'  => $anliList
         ]);
     }
 

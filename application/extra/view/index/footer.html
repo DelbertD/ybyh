@@ -18,19 +18,21 @@
                                             <div class="column_containter" style="z-index:3;position:relative;">
                                                 <div m-padding="0px 0px 0px 0px" p-padding="0 0 0 4px" css_animation_delay="0" qfyuuid="qfy_column_text_fvihl" data-anitime='0.7' class="qfy-element qfy-text qfy-text-88079 qfe_text_column qfe_content_element titleDiv">
                                                     <div class="qfe_wrapper">
-                                                        <div class="title">
-                                                            <span class="titleSpan">
-                                                               项目案例
-                                                            </span>
-                                                        </div>
-                                                        <div>
-                                                            {foreach $link as $v}
-                                                            <div class="footerWord">
-                                                                <a href="{$v.url}" title="{$v.name}" target="_blank">
-                                                                    {$v.name}
-                                                                </a>
+                                                        <div style="width:100%">
+                                                            <div class="title">
+                                                                <span class="titleSpan">
+                                                                   项目案例
+                                                                </span>
                                                             </div>
-                                                            {/foreach}
+                                                            <div>
+                                                                {foreach $anliList as $v}
+                                                                <div class="footerWord">
+                                                                    <a href="{:url('index/project/show',['id' => $v['id']])}" title="{$v.title}" alt="{$v.alt}">
+                                                                        {$v.name}
+                                                                    </a>
+                                                                </div>
+                                                                {/foreach}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -45,13 +47,13 @@
                                             <div class="column_containter" style="z-index:3;position:relative;">
                                                 <div m-padding="0px 0px 0px 0px" p-padding="0 0 0 4px" css_animation_delay="0" qfyuuid="qfy_column_text_fvihl" data-anitime='0.7' class="qfy-element qfy-text qfy-text-88079 qfe_text_column qfe_content_element titleDiv">
                                                     <div class="qfe_wrapper">
-                                                        <div style="width:50%;float: left;">
+                                                        <div style="width:100%;">
                                                             <div class="titleSpan">
                                                                 服务项目
                                                             </div>
-                                                            {foreach $products1 as $v}
+                                                            {foreach $proList as $v}
                                                             <div class="footerWord">
-                                                                <a href="{:url('index/pro/show', ['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}">
+                                                                <a href="{:url('index/Pro/show', ['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}">
                                                                     {$v.name}
                                                                 </a>
                                                             </div>
@@ -68,14 +70,18 @@
                                             <div class="column_containter" style="z-index:3;position:relative;">
                                                 <div m-padding="0px 0px 0px 0px" p-padding="0 0 0 4px" css_animation_delay="0" qfyuuid="qfy_column_text_fvihl" data-anitime='0.7' class="qfy-element qfy-text qfy-text-88079 qfe_text_column qfe_content_element titleDiv">
                                                     <div class="qfe_wrapper">
-                                                        <div style="width:50%;float: left;">
+                                                        <div style="width:100%;float: left;">
                                                             <div class="titleSpan">
                                                                 新闻中心
                                                             </div>
-                                                            {foreach $products1 as $v}
+                                                            {foreach $newsList as $v}
                                                             <div class="footerWord">
-                                                                <a href="{:url('index/pro/show', ['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}">
+                                                                <a href="{:url('index/News/show', ['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}">
+                                                                    {if strlen($v.name) > 50}
+                                                                    {$v.name|mb_substr=0,50,'UTF-8'} ...
+                                                                    {else /}
                                                                     {$v.name}
+                                                                    {/if}
                                                                 </a>
                                                             </div>
                                                             {/foreach}
@@ -91,27 +97,29 @@
                                             <div class="column_containter" style="z-index:3;position:relative;">
                                                 <div m-padding="0px 0px 0px 0px" p-padding="0 0 0 4px" css_animation_delay="0" qfyuuid="qfy_column_text_fvihl" data-anitime='0.7' class="qfy-element qfy-text qfy-text-88079 qfe_text_column qfe_content_element  " style="position: relative;;;line-height:1.5em;;background-position:left top;background-repeat: no-repeat;;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:4px;border-radius:0px;">
                                                     <div class="qfe_wrapper titleDiv">
-                                                        <div class="titleSpan">关于我们</div>
-                                                        <div class="footerWord">
-                                                            公司名称：{$contact.company ?? ''}
-                                                        </div>
-                                                        <div class="footerWord">
-                                                            地址：{$contact.address ?? ''}
-                                                        </div>
-                                                        <div class="footerWord">
-                                                            座机：{$contact.tel ?? ''}
-                                                        </div>
-                                                        <div class="footerWord">
-                                                            传真：{$contact.cz ?? ''}
-                                                        </div>
-                                                        <div class="footerWord">
-                                                            邮箱：{$contact.email ?? ''}
-                                                        </div>
-                                                        <div class="footerWord">
-                                                            负责人：{$contact.fzr ?? ''}
-                                                        </div>
-                                                        <div class="footerWord">
-                                                            手机号码：{$contact.phone ?? ''}
+                                                        <div style="width:100%">
+                                                            <div class="titleSpan">关于我们</div>
+                                                            <div class="footerWord">
+                                                                公司名称：{$contact.company ?? ''}
+                                                            </div>
+                                                            <div class="footerWord">
+                                                                地址：{$contact.address ?? ''}
+                                                            </div>
+                                                            <div class="footerWord">
+                                                                座机：{$contact.tel ?? ''}
+                                                            </div>
+                                                            <div class="footerWord">
+                                                                传真：{$contact.cz ?? ''}
+                                                            </div>
+                                                            <div class="footerWord">
+                                                                邮箱：{$contact.email ?? ''}
+                                                            </div>
+                                                            <div class="footerWord">
+                                                                负责人：{$contact.fzr ?? ''}
+                                                            </div>
+                                                            <div class="footerWord">
+                                                                手机号码：{$contact.phone ?? ''}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
