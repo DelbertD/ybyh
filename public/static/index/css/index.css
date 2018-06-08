@@ -1127,7 +1127,7 @@ td{
 }
 .newsInfo{
 	padding: 5px 10px;
-	height:56px;
+	height:80px;
 	position: absolute;
 	bottom:-100px;
 	font-size:14px;
@@ -1140,7 +1140,7 @@ td{
 	line-height: 25px;
 	max-height: 85px;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp:2;
+	-webkit-line-clamp:3;
 }
 .newsTilteInfo{
 	width:100%;
