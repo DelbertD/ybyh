@@ -55,15 +55,23 @@ class Index extends Base
             ->where("thumb != '' ")
             ->order('addtime desc')
             ->select();
+        //评论查询
+        $comment = Db::name('comment')
+            ->where('is_show', 1)
+            ->where("thumb != '' ")
+            ->order('addtime desc')
+            ->limit(12)
+            ->select();
 
         $this->assign([
-            'banner' => $banner,
-            'about'  => $about,
-            'news'   => $news,
-            'pro'    => $pro,
-            'case'   => $case,
-            'link'   => $link,
-            'ask'    => $ask
+            'banner'  => $banner,
+            'comment' => $comment,
+            'about'   => $about,
+            'news'    => $news,
+            'pro'     => $pro,
+            'case'    => $case,
+            'link'    => $link,
+            'ask'     => $ask
 
         ]);
         return $this->fetch();

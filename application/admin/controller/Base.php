@@ -15,6 +15,8 @@ use think\Request;
 
 class Base extends Controller
 {
+    protected $table;
+
     public function __construct(Request $request)
     {
         parent::__construct($request);
