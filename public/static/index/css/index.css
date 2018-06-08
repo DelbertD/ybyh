@@ -1604,4 +1604,6 @@ td{
 	font-size:30px;
 	color:#F7F7F7;
 }
-
+.paddingBottom{
+	padding-bottom:40px !important;
+}
