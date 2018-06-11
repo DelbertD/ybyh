@@ -1611,3 +1611,8 @@ td{
 .paddingBottom{
 	padding-bottom:40px !important;
 }
+#projectSection  .item_box .imgA{
+	display: inline-block;
+	width:100%;
+	height:100%;
+}
