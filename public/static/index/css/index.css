@@ -1575,6 +1575,10 @@ td{
 	padding: 0 15px;
 	font-size:16px;
 	color:black;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
 }
 .customer .wordBox .wordBoxSubTitle{
 	font-size:14px;
