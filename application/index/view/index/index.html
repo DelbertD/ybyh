@@ -768,7 +768,6 @@
 <script>
     var len = $(".item_box .imgA").length;
     var imgAW = $(".item_box .imgA").width();
-    console.log(len);
     var ag_image = $(".ag_image");
     for(var i = 0; i < len ;i++){
         ag_image.eq(i).width(imgAW);
@@ -824,8 +823,8 @@
                 // 如果需要分页器
                 navigation: {
                     nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+                    prevEl: '.swiper-button-prev'
+                }
             });
             $("#link .swiper-button-prev").css("left","-20px");
             $("#link .swiper-button-next").css("right","-20px");
