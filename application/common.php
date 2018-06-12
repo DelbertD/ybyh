@@ -53,7 +53,7 @@ if (!function_exists('thumb')){
 if (!function_exists('addWater')){
     function addWater($fileName, $mark = '_water', $ext = 'jpg', $text = 'ThinkPHP', $font = '', $size = '14', $color = '#ffffff'){
         if (!is_file($fileName)){
-            return false;
+            return 123;
         }
         $baseName = explode('.', $fileName)[0];
         $baseName .= '.' . $mark . $ext;
