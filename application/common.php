@@ -39,7 +39,7 @@ if (!function_exists('getVal')){
 if (!function_exists('thumb')){
     function thumb($fileName, $mark, $width = 400, $height = 300, $ext = 'jpg'){
         if (!is_file($fileName)){
-            return 123;
+            return false;
         }
         $baseName = explode('.', $fileName)[0];
         $baseName .= $mark . '.' . $ext;
