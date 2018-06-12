@@ -4,4 +4,5 @@ composer.lock
 *.log
 /application/database.php
 /runtime
+/public/static/upload
 /xaybyh.sql
