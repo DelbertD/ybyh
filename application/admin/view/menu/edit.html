@@ -13,15 +13,11 @@
     ul.site-doc-icon:hover {
         cursor: pointer;
     }
-    .layui-form-item .layui-input-inline.inputW{
-        width:710px;
-    }
-    .layui-form-item .layui-input-inline .inputW {
-        width: 710px;
-    }
 
-    .layui-form-item .warm-color {
+
+    .warm-color {
         color: #FF5722!important;
+        margin-left: 10px;
     }
 </style>
 {/block}
@@ -32,87 +28,121 @@
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
-        <div class="layui-col-md12">
-            <form class="layui-form" action="{:url('admin/Menu/edit')}" method="post">
-                {if isset($menu)}
-                <input type="hidden" name="id" value="{$menu.id}" />
-                {/if}
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">菜单名称：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="name" value="{$menu.name ?? ''}" class="layui-input">
+        <form class="layui-form" action="{url}" method="post">
+            {if isset($menu)}
+            <input type="hidden" name="id" value="{$menu.id}" />
+            {/if}
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">菜单名称：</label>
+                        <div class="layui-input-block ">
+                            <input type="text" name="name" lay-verify="required|name" value="{$menu.name ?? ''}" class="layui-input">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片title：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="title" value="{$menu.title ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片title：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="title" value="{$menu.title ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片alt：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="alt" value="{$menu.alt ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片alt：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="alt" lay-verify="alt" value="{$menu.alt ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">页面标题：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="keys" value="{$menu.keys ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面标题：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="keys" lay-verify="keys" value="{$menu.keys ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">html页面title</div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">关键词：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="keywords" value="{$menu.keywords ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">关键词：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="keywords" lay-verify="keywords" value="{$menu.keywords ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">html页面meta->keywords</div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">页面描述：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="desc" value="{$menu.desc ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面描述：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="desc" lay-verify="desc"  value="{$menu.desc ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">html页面meta->description</div>
                 </div>
+            </div>
 
 
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">是否显示：</label>
-                    <div class="layui-input-inline inputW">
-                        {if isset($menu)}
-                        {eq name='menu.is_show' value='1'}
-                        <input type="radio" name="is_show" value="1" title="显示" checked>
-                        <input type="radio" name="is_show" value="2" title="隐藏">
-                        {else /}
-                        <input type="radio" name="is_show" value="1" title="显示">
-                        <input type="radio" name="is_show" value="2" title="隐藏" checked>
-                        {/eq}
-                        {else /}
-                        <input type="radio" name="is_show" value="1" title="显示" checked>
-                        <input type="radio" name="is_show" value="2" title="隐藏">
-                        {/if}
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否显示：</label>
+                        <div class="layui-input-block">
+                            {if isset($menu)}
+                            {eq name='menu.is_show' value='1'}
+                            <input type="radio" name="is_show" value="1" title="显示" checked>
+                            <input type="radio" name="is_show" value="2" title="隐藏">
+                            {else /}
+                            <input type="radio" name="is_show" value="1" title="显示">
+                            <input type="radio" name="is_show" value="2" title="隐藏" checked>
+                            {/eq}
+                            {else /}
+                            <input type="radio" name="is_show" value="1" title="显示" checked>
+                            <input type="radio" name="is_show" value="2" title="隐藏">
+                            {/if}
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item" style="margin-left: 200px">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit >保存</button>
-                        <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
-                    </div>
+            <div class="layui-form-item" style="margin-left: 200px">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit >保存</button>
+                    <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </fieldset>
 
@@ -122,7 +152,39 @@
 {block name="script"}
 <script>
     layui.use(['form'], function(){
-
+        var form = layui.form;
+        form.verify({
+            name: function(value){
+                if(value.length > 5){
+                    return '菜单名称不超过5个字符啊';
+                }
+            },
+            title: function(value){
+                if(value.length > 255){
+                    return 'title不超过255个字符啊';
+                }
+            },
+            alt: function(value){
+                if(value.length > 255){
+                    return 'alt不超过255个字符啊';
+                }
+            },
+            keys: function(value){
+                if(value.length > 255){
+                    return '标题不超过255个字符啊';
+                }
+            },
+            keywords: function(value){
+                if(value.length > 255){
+                    return '关键词不超过255个字符啊';
+                }
+            },
+            desc: function(value){
+                if(value.length > 255){
+                    return '描述不超过255个字符啊';
+                }
+            }
+        });
     });
 
 </script>

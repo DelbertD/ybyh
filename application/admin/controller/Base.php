@@ -104,4 +104,18 @@ class Base extends Controller
         return true;
     }
 
+    public function sort($id = 0, $val = 0, $table){
+        $ret = [
+            'suc' => 0
+        ];
+        $res = Db::name($table)->update([
+            'id'   => $id,
+            'sort' => $val
+        ]);
+        if (!$res){
+            $ret['suc'] = 1;
+        }
+        return $ret;
+    }
+
 }

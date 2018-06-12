@@ -29,9 +29,11 @@
         <table class="layui-table">
             <thead>
             <tr>
+                <th>排序</th>
                 <th>Id</th>
-                <th>用户昵称</th>
                 <th>用户头像</th>
+                <th>用户昵称</th>
+                <th>用户地址</th>
                 <th>用户评论</th>
                 <th>点赞次数</th>
                 <th>添加时间</th>
@@ -42,9 +44,11 @@
             <tbody>
             {foreach $list as $v}
             <tr>
+                <td><input onblur="sort('{$v.id}', this.value, 'comment')" id="sort-{$v.id}" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id}</td>
-                <td>{$v.name}</td>
                 <td><img src="/static/{$v.thumb}" width="50" height="50" /></td>
+                <td>{$v.name}</td>
+                <td>{$v.address}</td>
                 <td>
                     {if strlen($v.comment) > 50}
                     {$v.comment|mb_substr=0,50,'UTF-8'} ...
@@ -53,7 +57,7 @@
                     {/if}
                 </td>
                 <td>{$v.num}</td>
-                <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+                <td>{$v.addtime|date='Y-m-d', ###}</td>
                 {eq name='v.is_show' value='1'}
                 <td>显示</td>
                 {else /}

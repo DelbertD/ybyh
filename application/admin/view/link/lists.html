@@ -3,22 +3,7 @@
 {block name='style'}
 <link rel="stylesheet" href="" />
 <style>
-    ul.site-doc-icon li {
-        width: 120px;
-        height: 85px;
-        text-align: center;
-        float: left;
-        border: 1px solid #eee;
-    }
-    ul.site-doc-icon:hover {
-        cursor: pointer;
-    }
-    table,table tr th,.layui-table th, .layui-table td{
-        text-align: center;
-    }
-    .pull-right {
-        float: right;
-    }
+
 </style>
 {/block}
 
@@ -29,17 +14,21 @@
         <table class="layui-table">
             <thead>
             <tr>
+                <th>排序</th>
                 <th>Id</th>
                 <th>缩略图</th>
                 <th>链接文字</th>
                 <th>链接地址</th>
                 <th>是否显示</th>
+                <th>图片title</th>
+                <th>图片alt</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             {foreach $list as $v}
             <tr>
+                <td><input onblur="sort('{$v.id}', this.value, 'link')" id="sort-{$v.id}" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id}</td>
                 <td><img src="/static/{$v.thumb}" width="100" height="60" /></td>
                 <td>{$v.name}</td>
@@ -49,6 +38,19 @@
                 {else /}
                 <td>隐藏</td>
                 {/eq}
+                <td>{if strlen($v.title) > 10}
+                    {$v.title|mb_substr=0,10,'UTF-8'} ...
+                    {else /}
+                    {$v.title}
+                    {/if}
+                </td>
+                <td>
+                    {if strlen($v.alt) > 10}
+                    {$v.title|mb_substr=0,10,'UTF-8'} ...
+                    {else /}
+                    {$v.title}
+                    {/if}
+                </td>
                 <td>
                     <a href="{:url('admin/Link/edit',['id' => $v['id']])}" style="color: #1E9FFF;cursor: pointer">
                         <i class="layui-icon">&#xe642;</i>

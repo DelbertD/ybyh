@@ -29,8 +29,8 @@
         <table class="layui-table">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>sort</th>
+                <th>Id</th>
                 <th>分类名称</th>
                 <th>图片title</th>
                 <th>图片alt</th>
@@ -41,8 +41,8 @@
             <tbody>
             {foreach $list as $v}
             <tr>
+                <td><input onblur="sort('{$v.id}', this.value, 'anli_cate')" id="sort-{$v.id}" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id ?? ''}</td>
-                <td>{$v.sort ?? ''}</td>
                 <td>{$v.name ?? ''}</td>
                 <td>{if strlen($v.title) > 10}
                     {$v.title|mb_substr=0,10,'UTF-8'} ...

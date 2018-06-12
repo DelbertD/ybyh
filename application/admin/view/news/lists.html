@@ -29,8 +29,8 @@
         <table class="layui-table">
             <thead>
             <tr>
+                <th>排序</th>
                 <th>Id</th>
-                <th>原始图片</th>
                 <th>缩略图</th>
                 <th>新闻标题</th>
                 <th>新闻分类</th>
@@ -45,13 +45,13 @@
             <tbody>
             {foreach $list as $v}
             <tr>
+                <td><input onblur="sort('{$v.id}', this.value, 'news')" id="sort-{$v.id}" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id ?? ''}</td>
-                <td><img src="/static/{$v.thumb}" width="80" height="60" /></td>
                 <td>
                     {if !is_file('static/' . $v.t_small)}
                     暂无
                     {else /}
-                    <img src="/static/{$v.t_small}" width="80" height="60" /></td>
+                    <img src="/static/{$v.t_small}" width="80" height="60" title="如果没有缩略图，首页图片将不会显示，可以手动生成缩略图" /></td>
                     {/if}
                 </td>
                 <td>{if strlen($v.name) > 10}
@@ -62,7 +62,7 @@
                 </td>
                 <td>{:getVal('news_cate.name.' . $v.pid)}</td>
                 <td>{$v.fbr ?? ''}</td>
-                <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+                <td>{$v.addtime|date='Y-m-d', ###}</td>
                 {eq name='v.is_show' value='1'}
                 <td>显示</td>
                 {else /}

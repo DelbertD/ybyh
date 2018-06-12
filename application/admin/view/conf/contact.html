@@ -3,26 +3,7 @@
 {block name='style'}
 <link rel="stylesheet" href="" />
 <style>
-    ul.site-doc-icon li {
-        width: 120px;
-        height: 85px;
-        text-align: center;
-        float: left;
-        border: 1px solid #eee;
-    }
-    ul.site-doc-icon:hover {
-        cursor: pointer;
-    }
-    .layui-form-item .layui-input-inline.inputW{
-        width:710px;
-    }
-    .layui-form-item .layui-input-inline .inputW {
-        width: 710px;
-    }
 
-    .layui-form-item .warm-color {
-        color: #FF5722!important;
-    }
 </style>
 {/block}
 
@@ -30,69 +11,114 @@
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
-        <div class="layui-col-md12">
-            <form class="layui-form" action="{:url('admin/Conf/contact')}" method="post">
-                {if isset($contact)}
-                <input type="hidden" name="id" value="{$contact.id}" />
-                {/if}
+        <form class="layui-form" action="{:url('admin/Conf/contact')}" method="post">
+            {if isset($contact)}
+            <input type="hidden" name="id" value="{$contact.id}" />
+            {/if}
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">公司名称：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="company" value="{$contact.company ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="company" value="{$contact.company ?? ''}" class="layui-input" lay-verify="required">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">公司地址：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="address" value="{$contact.address ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司地址：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="address" value="{$contact.address ?? ''}" class="layui-input" lay-verify="required|address">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">公司座机：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="tel" value="{$contact.tel ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司座机：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="tel" value="{$contact.tel ?? ''}" class="layui-input" lay-verify="required|tel">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">公司传真：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="cz" value="{$contact.cz ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司传真：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="cz" value="{$contact.cz ?? ''}" class="layui-input" lay-verify="required|cz">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">公司邮箱：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="email" value="{$contact.email ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司邮箱：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="email" value="{$contact.email ?? ''}" class="layui-input" lay-verify="required|email">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">负责人：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="fzr" value="{$contact.fzr ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">负责人：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="fzr" value="{$contact.fzr ?? ''}" class="layui-input" lay-verify="required|fzr">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">联系号码：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="phone" value="{$contact.phone ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">联系号码：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="phone" value="{$contact.phone ?? ''}" class="layui-input" lay-verify="required|phone">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item" style="text-align: left">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit >保存</button>
-                        <button style="margin-left: 60px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司描述：</label>
+                        <div class="layui-input-block">
+                            <textarea rows="3" type="text" name="desc" lay-verify="desc" class="layui-textarea">{$contact.desc ?? ''}</textarea>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-form-mid layui-word-aux warm-color">注意事项：不超过255个字符</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin-left: 200px">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit >保存</button>
+                    <button style="margin-left: 60px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                </div>
+            </div>
+        </form>
     </div>
 </fieldset>
 
@@ -102,7 +128,34 @@
 {block name="script"}
 <script>
     layui.use(['form'], function(){
-
+        var form = layui.form;
+        form.verify({
+            company: function(value){
+                if(value.length > 50){
+                    return '公司名称不超过50个字符啊';
+                }
+            },
+            address: function(value){
+                if(value.length > 50){
+                    return '地址不超过50个字符啊';
+                }
+            },
+            tel: function(value){
+                if(value.length > 50){
+                    return '号码个数不超过50个字符啊';
+                }
+            },
+            fzr: function(value){
+                if(value.length > 50){
+                    return '负责人不超过50个字符啊';
+                }
+            },
+            desc: function(value){
+                if(value.length > 255){
+                    return '描述不超过255个字符啊';
+                }
+            }
+        });
     });
 
 </script>

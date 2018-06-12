@@ -3,22 +3,7 @@
 {block name='style'}
 <link rel="stylesheet" href="" />
 <style>
-    ul.site-doc-icon li {
-        width: 120px;
-        height: 85px;
-        text-align: center;
-        float: left;
-        border: 1px solid #eee;
-    }
-    ul.site-doc-icon:hover {
-        cursor: pointer;
-    }
-    table,table tr th,.layui-table th, .layui-table td{
-        text-align: center;
-    }
-    .pull-right {
-        float: right;
-    }
+
 </style>
 {/block}
 
@@ -29,13 +14,13 @@
         <table class="layui-table">
             <thead>
             <tr>
+                <th>排序</th>
                 <th>Id</th>
                 <th>原始图片</th>
                 <th>案列名称</th>
-                <th>安例分类</th>
+                <th>案列分类</th>
                 <th>添加时间</th>
                 <th>是否显示</th>
-
                 <th>图片title</th>
                 <th>图片alt</th>
                 <th>操作</th>
@@ -44,6 +29,7 @@
             <tbody>
             {foreach $list as $v}
             <tr>
+                <td><input onblur="sort('{$v.id}', this.value, 'anli')" id="sort-{$v.id}" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id ?? ''}</td>
                 <td><img src="/static/{$v.thumb}" width="100" height="60" /></td>
                 <td>{if strlen($v.title) > 10}
@@ -117,7 +103,6 @@
             })
         });
     }
-
 </script>
 {/block}
 

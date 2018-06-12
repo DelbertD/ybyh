@@ -28,68 +28,78 @@
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
-        <div class="layui-col-md12">
-            <form class="layui-form" action="{:url('admin/Project/editCate')}" method="post">
-                {if isset($anli_cate.id)}
-                <input type="hidden" name="id" value="{$anli_cate.id}" />
-                {/if}
-                <div class="layui-form-item layui-col-md6">
-                    <label class="layui-form-label">分类名称：</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="name" value="{$anli_cate.name ?? ''}" class="layui-input" lay-verify="required">
+        <form class="layui-form" action="{:url('admin/Project/editCate')}" method="post">
+            {if isset($anli_cate.id)}
+            <input type="hidden" name="id" value="{$anli_cate.id}" />
+            {/if}
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分类名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="required|name" value="{$anli_cate.name ?? ''}" class="layui-input">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片title：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="title" value="{$anli_cate.title ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片title：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="title" value="{$anli_cate.title ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片alt：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="alt" value="{$anli_cate.alt ?? ''}" class="layui-input">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片alt：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="alt" lay-verify="alt" value="{$anli_cate.alt ?? ''}" class="layui-input">
+                        </div>
                     </div>
+                </div>
+                <div class="layui-col-sm2 layui-col-md2">
                     <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">排序：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="sort" value="{$anli_cate.sort ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">请输入大于0的整数</div>
-                </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">是否显示：</label>
-                    <div class="layui-input-block">
-                        {if isset($pro_cate)}
-                        {eq name='pro_cate.is_show' value='1'}
-                        <input type="radio" name="is_show" value="1" title="显示" checked>
-                        <input type="radio" name="is_show" value="2" title="隐藏">
-                        {else /}
-                        <input type="radio" name="is_show" value="1" title="显示">
-                        <input type="radio" name="is_show" value="2" title="隐藏" checked>
-                        {/eq}
-                        {else /}
-                        <input type="radio" name="is_show" value="1" title="显示" checked>
-                        <input type="radio" name="is_show" value="2" title="隐藏">
-                        {/if}
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否显示：</label>
+                        <div class="layui-input-block">
+                            {if isset($pro_cate)}
+                            {eq name='pro_cate.is_show' value='1'}
+                            <input type="radio" name="is_show" value="1" title="显示" checked>
+                            <input type="radio" name="is_show" value="2" title="隐藏">
+                            {else /}
+                            <input type="radio" name="is_show" value="1" title="显示">
+                            <input type="radio" name="is_show" value="2" title="隐藏" checked>
+                            {/eq}
+                            {else /}
+                            <input type="radio" name="is_show" value="1" title="显示" checked>
+                            <input type="radio" name="is_show" value="2" title="隐藏">
+                            {/if}
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item" style="margin-left: 200px">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit >保存</button>
-                        <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
-                    </div>
+            <div class="layui-form-item" style="margin-left: 200px">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit >保存</button>
+                    <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </fieldset>
 
@@ -99,7 +109,24 @@
 {block name="script"}
 <script>
     layui.use(['form'], function(){
-
+        var form = layui.form;
+        form.verify({
+            name: function(value){
+                if(name.length > 100){
+                    return 'name不超过100个字符啊';
+                }
+            },
+            title: function(value){
+                if(value.length > 255){
+                    return 'title不超过255个字符啊';
+                }
+            },
+            alt: function(value){
+                if(value.length > 255){
+                    return 'alt不超过255个字符啊';
+                }
+            }
+        });
     });
 
 </script>

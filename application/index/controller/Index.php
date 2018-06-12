@@ -11,13 +11,13 @@ class Index extends Base
         //轮播图查询
         $banner = Db::name('ads')
             ->where('is_show', 1)
-            ->order('sort asc')
+            ->orderRaw('sort = 0,sort')
             ->select([1,2,3,4,5]);
 
         //公司简介图片
         $about = Db::name('ads')
             ->where('is_show', 1)
-            ->order('sort asc')
+            ->orderRaw('sort')
             ->select([6,7,8]);
 
         //服务项目展示
@@ -31,7 +31,7 @@ class Index extends Base
         $case = Db::name('anli')
             ->field('id,name,title,alt,thumb')
             ->where('is_show',1)
-            ->order('addtime desc')
+            ->orderRaw('sort = 0,sort')
             ->limit(6)
             ->select();
 
@@ -39,27 +39,27 @@ class Index extends Base
         $news = Db::name('news')
             ->field('id,alt,title,zy,CONCAT(SUBSTRING_INDEX(thumb, \'.\', 1),\'_small.jpg\')  as t_small')
             ->where('is_show', 1)
-            ->order('addtime desc')
+            ->orderRaw('sort = 0,sort')
             ->limit(9)
             ->select();
 
         //问答查询
         $ask = Db::name('ask')
             ->where('is_show', 1)
-            ->order('addtime desc')
+            ->orderRaw('sort = 0,sort')
             ->limit(12)
             ->select();
         //友情链接
         $link = Db::name('link')
             ->where('is_show', 1)
             ->where("thumb != '' ")
-            ->order('addtime desc')
+            ->orderRaw('sort = 0,sort')
             ->select();
         //评论查询
         $comment = Db::name('comment')
             ->where('is_show', 1)
             ->where("thumb != '' ")
-            ->order('addtime desc')
+            ->orderRaw('sort = 0,sort')
             ->limit(12)
             ->select();
 

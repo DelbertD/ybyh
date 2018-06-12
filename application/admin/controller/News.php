@@ -38,6 +38,9 @@ class News extends Base
             unset($post['detail']);
             unset($post['file']);
             $post['addtime'] = time();
+            $path = $post['thumb'];
+            $fileName = 'static/' . $path;
+            thumb($fileName, '_small' , 300, 200);
 
             Db::startTrans();
             try{
@@ -84,6 +87,9 @@ class News extends Base
             unset($post['detail']);
             unset($post['file']);
             $post['addtime'] = time();
+            $path = $post['thumb'];
+            $fileName = 'static/' . $path;
+            thumb($fileName, '_small' , 300, 200);
             Db::startTrans();
             try{
                 Db::name('news')->update($post);

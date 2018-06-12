@@ -42,7 +42,7 @@
             <tbody>
             {foreach $list as $v}
             <tr>
-                <td><input onblur="changSort('{$v.id}',this.value)" id="sort" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
+                <td><input onblur="sort('{$v.id}', this.value, 'pmenu')" id="sort-{$v.id}" value="{$v.sort}" type="text" style="width: 40px;height: 20px;text-align: center" /></td>
                 <td>{$v.id ?? ''}</td>
                 <td>{$v.name ?? ''}</td>
                 <td style="text-align: left;width: 160px">{$v.url ?? ''}</td>
@@ -108,17 +108,6 @@
             })
         });
     }
-
-    function changSort(id, val) {
-        var $ = layui.jquery;
-        var url = "{:url('admin/Menu/sort')}";
-        $.get(url, {"id":id,"val":val}, function (res) {
-            if (res.suc == 0){
-                layer.msg('数据已被修改');
-            }
-        })
-    }
-
 </script>
 {/block}
 
