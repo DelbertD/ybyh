@@ -163,7 +163,7 @@
                                                              data-duration="1"
                                                              style=''>
                                                             <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/pro/lists',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
+                                                                <a class="imgA" href="{:url('index/pro/lists',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
                                                                     <!--图片地址-->
                                                                     <img class="ag_image"
                                                                          src="/static/{$v.thumb}"
@@ -207,7 +207,7 @@
                                                              data-duration="1"
                                                              style=''>
                                                             <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/pro/lists',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
+                                                                <a class="imgA" href="{:url('index/pro/lists',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
                                                                     <!--图片地址-->
                                                                     <img class="ag_image"
                                                                          src="/static/{$v.thumb}"
@@ -376,7 +376,7 @@
     </div>
 </section>
 <!--主体部分-->
-<section data-fixheight="" class="qfy-row-9-5ad6ed9490da2185295 section no  section-text-no-shadow section-inner-no-shadow section-normal productMainSection" id="bit_g58tx">
+<section data-fixheight="" class="qfy-row-9-5ad6ed9490da2185295 section no  section-text-no-shadow section-inner-no-shadow section-normal productMainSection" id="projectSection">
     <div class="section-background-overlay background-overlay grid-overlay-0 productBc"></div>
     <div class="container">
         <div class="row qfe_row">
@@ -404,7 +404,7 @@
                                                              data-duration="1"
                                                              style=''>
                                                             <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
+                                                                <a class="imgA" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
                                                                     <!--图片地址-->
                                                                     <img class="ag_image"
                                                                          src="/static/{$v.thumb}"
@@ -448,7 +448,7 @@
                                                              data-duration="1"
                                                              style=''>
                                                             <div class="qfy_item_block item_block relative item_box">
-                                                                <a style="width:287.5px;height:300px;" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
+                                                                <a class="imgA" href="{:url('index/project/show',['id' => $v['id']])}" alt="{$v.alt}" title="{$v.title}" target="_self">
                                                                     <!--图片地址-->
                                                                     <img class="ag_image"
                                                                          src="/static/{$v.thumb}"
@@ -766,6 +766,13 @@
 
 {block name="script"}
 <script>
+    var len = $(".item_box .imgA").length;
+    var imgAW = $(".item_box .imgA").width();
+    var ag_image = $(".ag_image");
+    for(var i = 0; i < len ;i++){
+        ag_image.eq(i).width(imgAW);
+        ag_image.eq(i).height(imgAW/1.3);
+    }
     var mySwiper = new Swiper ('#banner .swiper-container', {
         loop: true,
         autoplay: {
@@ -816,8 +823,8 @@
                 // 如果需要分页器
                 navigation: {
                     nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+                    prevEl: '.swiper-button-prev'
+                }
             });
             $("#link .swiper-button-prev").css("left","-20px");
             $("#link .swiper-button-next").css("right","-20px");
