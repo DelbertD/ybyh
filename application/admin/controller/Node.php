@@ -104,23 +104,7 @@ class Node extends Base
             return $ret;
         }
     }
-
-
-    //更改节点排序值
-    public function sort($id = 0, $val = 0){
-        $ret = [
-            'suc' => 0
-        ];
-        $res = Db::name('node')->update([
-            'id'   => $id,
-            'sort' => $val
-        ]);
-        if (!$res){
-            $ret['suc'] = 1;
-        }
-        return $ret;
-    }
-
+    
 
     /*
      *
