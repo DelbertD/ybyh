@@ -14,11 +14,14 @@ namespace app\admin\controller;
 
 
 use think\Controller;
+use think\Db;
 
 class Test
 {
-    public function test(){
-        $fileName = 'static/upload/news/thumb/gs1.jpg';
-        dump(thumb($fileName));
+    public function test($id = 0){
+        return 123;
+        $path = Db::name('news')->where('id', $id)->value('thumb');
+        $fileName = 'static/' . $path;
+        dump(thumb($fileName, '_small' , 300, 200)) ;
     }
 }
