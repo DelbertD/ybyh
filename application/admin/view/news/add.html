@@ -113,7 +113,7 @@
                     <div class="layui-col-sm9 layui-col-md8">
                         <div class="layui-form-item">
                             <label class="layui-form-label">新闻分类：</label>
-                            <div class="layui-input-block" style="z-index: 9999">
+                            <div class="layui-input-block" style="z-index: 1000">
                                 <select name="pid" lay-verify="required">
                                     <option value=""></option>
                                     {if isset($news)}
@@ -312,7 +312,16 @@
             }
         });
 
+        $(window).resize(render());
+        $('.layui-body').scroll(function() {
+            console.log($('#edui1_toolbarbox').offset().top);
+        });
+
     });
+
+    function render() {
+        //var ue = UE.getEditor('container');
+    }
 
 </script>
 <!-- 配置文件 -->

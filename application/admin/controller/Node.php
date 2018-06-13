@@ -104,7 +104,7 @@ class Node extends Base
             return $ret;
         }
     }
-    
+
 
     /*
      *
