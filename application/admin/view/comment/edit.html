@@ -23,36 +23,20 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户昵称：</label>
                             <div class="layui-input-block">
-                                <input type="text" name="name" lay-verify="required|name" value="{$comment.name ?? ''}" class="layui-input">
+                                <input placeholder="请输入用户昵称,不超过6个字符。格式：xx先生或任意不超过六个字的昵称..." type="text" name="name" lay-verify="required|name" value="{$comment.name ?? ''}" class="layui-input">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="layui-row">
-                    <div class="layui-col-sm9 layui-col-md8">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label"></label>
-                            <div class="layui-form-mid layui-word-aux warm-color">注意事项：此选项添加xx先生或任意不超过六个字的昵称</div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="layui-row">
                     <div class="layui-col-sm9 layui-col-md8">
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户地址：</label>
                             <div class="layui-input-block">
-                                <input type="text" name="address" lay-verify="required|address" value="{$comment.address ?? ''}" class="layui-input">
+                                <input placeholder="请输入用户昵称,不超过10个字符。格式：xx省xx市..." type="text" name="address" lay-verify="required|address" value="{$comment.address ?? ''}" class="layui-input">
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm9 layui-col-md8">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label"></label>
-                            <div class="layui-form-mid layui-word-aux warm-color">注意事项：地址格式为xx省xx市，不超过十个字</div>
                         </div>
                     </div>
                 </div>
@@ -62,19 +46,12 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户评论：</label>
                             <div class="layui-input-block">
-                                <textarea class="layui-textarea" rows="2" name="comment" lay-verify="required|comment">{$comment.comment ?? ''}</textarea>
+                                <textarea placeholder="请输入用户评论,不超过255个字符..." class="layui-textarea" rows="2" name="comment" lay-verify="required|comment">{$comment.comment ?? ''}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm9 layui-col-md8">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label"></label>
-                            <div class="layui-form-mid layui-word-aux warm-color">注意事项：用户评论不超过255个</div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示：</label>
@@ -99,16 +76,8 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户头像：</label>
                             <div class="layui-input-block">
-                                <input id="img" type="text" name="thumb"  lay-verify="required" value="{$comment.thumb ?? ''}" readonly class="layui-input">
+                                <input placeholder="请输入图片路径..."  id="img" type="text" name="thumb"  lay-verify="required" value="{$comment.thumb ?? ''}" readonly class="layui-input">
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm9 layui-col-md8">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label"></label>
-                            <div class="layui-form-mid layui-word-aux warm-color">注意事项：用户头像自动填写，无需手动添加！</div>
                         </div>
                     </div>
                 </div>

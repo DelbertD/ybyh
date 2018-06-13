@@ -1,24 +1,9 @@
 {extend name="extra@admin/common"}
 
 {block name='style'}
-<link rel="stylesheet" href="" />
+
 <style>
-    ul.site-doc-icon li {
-        width: 120px;
-        height: 85px;
-        text-align: center;
-        float: left;
-        border: 1px solid #eee;
-    }
-    ul.site-doc-icon:hover {
-        cursor: pointer;
-    }
-    .layui-form-item .layui-input-inline.inputW{
-        width:710px;
-    }
-    .layui-form-item .warm-color {
-        color: #FF5722!important;
-    }
+
 </style>
 {/block}
 
@@ -28,8 +13,8 @@
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
-        <form class="layui-form" action="{:url('admin/Project/editCate')}" method="post">
-            {if isset($anli_cate.id)}
+        <form class="layui-form" action="{$url}" method="post">
+            {if isset($anli_cate)}
             <input type="hidden" name="id" value="{$anli_cate.id}" />
             {/if}
             <div class="layui-row">
@@ -37,7 +22,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">分类名称：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" lay-verify="required|name" value="{$anli_cate.name ?? ''}" class="layui-input">
+                            <input  placeholder="请输入名称，不超过100个字符..."  type="text" name="name" lay-verify="required|name" value="{$anli_cate.name ?? ''}" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -48,12 +33,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片title：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" lay-verify="title" value="{$anli_cate.title ?? ''}" class="layui-input">
+                            <input  placeholder="{:config('web.T')}" type="text" name="title" lay-verify="title" value="{$anli_cate.title ?? ''}" class="layui-input">
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-sm2 layui-col-md2">
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
             </div>
 
@@ -62,13 +44,11 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片alt：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="alt" lay-verify="alt" value="{$anli_cate.alt ?? ''}" class="layui-input">
+                            <input placeholder="{:config('web.A')}" type="text" name="alt" lay-verify="alt" value="{$anli_cate.alt ?? ''}" class="layui-input">
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-sm2 layui-col-md2">
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
-                </div>
+
             </div>
 
             <div class="layui-row">
@@ -76,8 +56,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">是否显示：</label>
                         <div class="layui-input-block">
-                            {if isset($pro_cate)}
-                            {eq name='pro_cate.is_show' value='1'}
+                            {if isset($anli_cate)}
+                            {eq name='anli_cate.is_show' value='1'}
                             <input type="radio" name="is_show" value="1" title="显示" checked>
                             <input type="radio" name="is_show" value="2" title="隐藏">
                             {else /}
@@ -112,7 +92,7 @@
         var form = layui.form;
         form.verify({
             name: function(value){
-                if(name.length > 100){
+                if(value.length > 100){
                     return 'name不超过100个字符啊';
                 }
             },

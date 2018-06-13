@@ -22,7 +22,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">连接名称：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" value="{$link.name ?? ''}" class="layui-input" lay-verify="required|name">
+                            <input placeholder="请输入名称,不超过50个字符..." type="text" name="name" value="{$link.name ?? ''}" class="layui-input" lay-verify="required|name">
                         </div>
                     </div>
                 </div>
@@ -33,32 +33,20 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">链接地址：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="url" value="{$link.url ?? ''}" class="layui-input" lay-verify="required|url">
+                            <input placeholder="请输入链接地址,不超过50个字符。格式：https://www.examble.com 或 http://www.examble.com..." type="text" name="url" value="{$link.url ?? ''}" class="layui-input" lay-verify="required|url">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="layui-row">
-                <div class="layui-col-sm9 layui-col-md8">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label"></label>
-                        <div class="layui-form-mid layui-word-aux warm-color">注意事项：链接格式为  https://www.examble.com 或 http://www.examble.com</div>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="layui-row">
                 <div class="layui-col-sm9 layui-col-md8">
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片title：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" lay-verify="title" value="{$link.title ?? ''}" class="layui-input">
+                            <input placeholder="{:config('web.T')}"  type="text" name="title" lay-verify="title" value="{$link.title ?? ''}" class="layui-input">
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-sm2 layui-col-md2">
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
             </div>
 
@@ -67,12 +55,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片alt：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="alt" lay-verify="alt" value="{$link.alt ?? ''}" class="layui-input">
+                            <input placeholder="{:config('web.A')}"  type="text" name="alt" lay-verify="alt" value="{$link.alt ?? ''}" class="layui-input">
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-sm2 layui-col-md2">
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
                 </div>
             </div>
 
@@ -103,16 +88,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片路径：</label>
                         <div class="layui-input-block">
-                            <input id="img" type="text" name="thumb" lay-verify="required" value="{$link.thumb ?? ''}" readonly class="layui-input">
+                            <input placeholder="请输入图片路径..."  id="img" type="text" name="thumb" lay-verify="required" value="{$link.thumb ?? ''}" readonly class="layui-input">
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="layui-row">
-                <div class="layui-col-sm9 layui-col-md8">
-                    <label class="layui-form-label"></label>
-                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：上传路径自动填写，无需手动添加！</div>
                 </div>
             </div>
 

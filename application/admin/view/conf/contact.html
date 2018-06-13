@@ -21,7 +21,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">公司名称：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="company" value="{$contact.company ?? ''}" class="layui-input" lay-verify="required">
+                            <input placeholder="请输入名称，不超过50个字符..." type="text" name="company" value="{$contact.company ?? ''}" class="layui-input" lay-verify="required">
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">公司地址：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="address" value="{$contact.address ?? ''}" class="layui-input" lay-verify="required|address">
+                            <input type="text" placeholder="请输入地址，不超过50个字符..." name="address" value="{$contact.address ?? ''}" class="layui-input" lay-verify="required|address">
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">公司座机：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="tel" value="{$contact.tel ?? ''}" class="layui-input" lay-verify="required|tel">
+                            <input type="text" placeholder="请输入座机，不超过50个字符..." name="tel" value="{$contact.tel ?? ''}" class="layui-input" lay-verify="required|tel">
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">公司传真：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="cz" value="{$contact.cz ?? ''}" class="layui-input" lay-verify="required|cz">
+                            <input type="text" placeholder="请输入传真，不超过50个字符..." name="cz" value="{$contact.cz ?? ''}" class="layui-input" lay-verify="required|cz">
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">公司邮箱：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="email" value="{$contact.email ?? ''}" class="layui-input" lay-verify="required|email">
+                            <input type="text" placeholder="请输入正确的邮箱格式..." name="email" value="{$contact.email ?? ''}" class="layui-input" lay-verify="required|email">
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">负责人：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="fzr" value="{$contact.fzr ?? ''}" class="layui-input" lay-verify="required|fzr">
+                            <input type="text" placeholder="请输入负责人，不超过50个字符..." name="fzr" value="{$contact.fzr ?? ''}" class="layui-input" lay-verify="required|fzr">
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">联系号码：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="phone" value="{$contact.phone ?? ''}" class="layui-input" lay-verify="required|phone">
+                            <input type="text" placeholder="请输入正确的手机号码格式..." name="phone" value="{$contact.phone ?? ''}" class="layui-input" lay-verify="required|phone">
                         </div>
                     </div>
                 </div>
@@ -98,16 +98,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">公司描述：</label>
                         <div class="layui-input-block">
-                            <textarea rows="3" type="text" name="desc" lay-verify="desc" class="layui-textarea">{$contact.desc ?? ''}</textarea>
+                            <textarea placeholder="请输入描述，不超过255个字符..." rows="3" type="text" name="desc" lay-verify="desc" class="layui-textarea">{$contact.desc ?? ''}</textarea>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-row">
-                <div class="layui-col-sm9 layui-col-md8">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label"></label>
-                        <div class="layui-form-mid layui-word-aux warm-color">注意事项：不超过255个字符</div>
                     </div>
                 </div>
             </div>

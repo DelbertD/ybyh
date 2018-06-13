@@ -21,7 +21,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">分类名称：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" value="{$pro_cate.name ?? ''}" class="layui-input" lay-verify="required|name">
+                            <input placeholder="请输入名称，不超过100个字符..." type="text" name="name" value="{$pro_cate.name ?? ''}" class="layui-input" lay-verify="required|name">
                         </div>
                     </div>
                 </div>
@@ -32,12 +32,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片title：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" value="{$pro_cate.title ?? ''}" class="layui-input">
+                            <input placeholder="{:config('web.T')}" type="text" name="title" value="{$pro_cate.title ?? ''}" class="layui-input">
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-sm2 layui-col-md2">
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
                 </div>
             </div>
 
@@ -46,12 +43,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片alt：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="alt" value="{$pro_cate.alt ?? ''}" class="layui-input">
+                            <input placeholder="{:config('web.A')}" type="text" name="alt" value="{$pro_cate.alt ?? ''}" class="layui-input">
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-sm2 layui-col-md2">
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
                 </div>
             </div>
 
@@ -60,19 +54,12 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">服务描述：</label>
                         <div class="layui-input-block">
-                            <textarea name="info" class="layui-textarea" lay-verify="info">{$pro_cate.info ?? ''}</textarea>
+                            <textarea placeholder="请输入描述，不超过255个字符..." name="info" class="layui-textarea" lay-verify="info">{$pro_cate.info ?? ''}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="layui-row">
-                <div class="layui-col-sm9 layui-col-md8">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label"></label>
-                        <div class="layui-form-mid layui-word-aux warm-color">注意事项：可以不填但是不超过255个字符</div>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="layui-row">
                 <div class="layui-col-sm9 layui-col-md8">
@@ -101,16 +88,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">图片路径：</label>
                         <div class="layui-input-block">
-                            <input id="img" type="text" name="thumb" lay-verify="required" value="{$pro_cate.thumb ?? ''}" readonly class="layui-input">
+                            <input placeholder="请输入图片路径..." id="img" type="text" name="thumb" lay-verify="required" value="{$pro_cate.thumb ?? ''}" readonly class="layui-input">
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="layui-row">
-                <div class="layui-col-sm9 layui-col-md8">
-                    <label class="layui-form-label"></label>
-                    <div class="layui-form-mid layui-word-aux warm-color">注意事项：上传路径自动填写，无需手动添加！</div>
                 </div>
             </div>
 
@@ -179,8 +159,8 @@
 
         form.verify({
             name: function(value){
-                if(value.length > 50){
-                    return '名称不超过50个字符啊';
+                if(value.length > 100){
+                    return '名称不超过100个字符啊';
                 }
             },
             info: function(value){

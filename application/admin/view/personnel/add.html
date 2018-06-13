@@ -3,26 +3,7 @@
 {block name='style'}
 <link rel="stylesheet" href="" />
 <style>
-    ul.site-doc-icon li {
-        width: 120px;
-        height: 85px;
-        text-align: center;
-        float: left;
-        border: 1px solid #eee;
-    }
-    ul.site-doc-icon:hover {
-        cursor: pointer;
-    }
-    .layui-form-item .layui-input-inline.inputW{
-        width:710px;
-    }
-    .layui-form-item .layui-input-inline .inputW {
-        width: 710px;
-    }
 
-    .layui-form-item .warm-color {
-        color: #FF5722!important;
-    }
 </style>
 {/block}
 
@@ -30,114 +11,151 @@
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
-        <div class="layui-col-md12">
-            <form class="layui-form" action="{:url('admin/Personnel/add')}" method="post">
-                {if isset($zw.id)}
-                <input type="hidden" name="id" value="{$zw.id}" />
-                {/if}
+        <form class="layui-form" action="{:url('admin/Personnel/add')}" method="post">
+            {if isset($zw)}
+            <input type="hidden" name="id" value="{$zw.id}" />
+            {/if}
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">职位名称：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="name" value="{$zw.name ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">职位名称：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="请输入名称，不超过50个字符..."  type="text" name="name" value="{$zw.name ?? ''}" class="layui-input" lay-verify="required|name">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">招聘人数：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="num" value="{$zw.num ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">招聘人数：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="请输入人数。格式为正整数，不超过2位数..."  type="text" name="num" value="{$zw.num ?? ''}" class="layui-input" lay-verify="required|num">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">职位薪资：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="salary" value="{$zw.salary ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">职位薪资：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="请输入薪资范围，不超过50个字符。格式为：4-6k..."  type="text" name="salary" value="{$zw.salary ?? ''}" class="layui-input" lay-verify="required|salary">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">截止日期：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" id="etime" name="endtime" value="{$zw.salary ?? ''}" class="layui-input" lay-verify="required">
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">截止日期：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="请选择截止日期..." type="text" id="etime" name="endtime" value="{$zw.endtime ?? ''}" readonly class="layui-input" lay-verify="required">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片title：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="title" value="{$zw.title ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的title</div>
-                </div>
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">图片alt：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="alt" value="{$zw.alt ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">元素的alt</div>
-                </div>
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">页面标题：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="keys" value="{$zw.keys ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">html页面title</div>
-                </div>
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">关键词：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="keywords" value="{$zw.keywords ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->keywords</div>
-                </div>
-
-                <div class="layui-form-item layui-col-md9">
-                    <label class="layui-form-label">页面描述：</label>
-                    <div class="layui-input-inline inputW">
-                        <input type="text" name="desc" value="{$zw.desc ?? ''}" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux warm-color">html页面meta->description</div>
-                </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">是否显示：</label>
-                    <div class="layui-input-inline inputW">
-                        {if isset($zw)}
-                        {eq name='zw.is_show' value='1'}
-                        <input type="radio" name="is_show" value="1" title="显示" checked>
-                        <input type="radio" name="is_show" value="2" title="隐藏">
-                        {else /}
-                        <input type="radio" name="is_show" value="1" title="显示">
-                        <input type="radio" name="is_show" value="2" title="隐藏" checked>
-                        {/eq}
-                        {else /}
-                        <input type="radio" name="is_show" value="1" title="显示" checked>
-                        <input type="radio" name="is_show" value="2" title="隐藏">
-                        {/if}
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片title：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="{:config('web.T')}" type="text" name="title" lay-verify="title" value="{$zw.title ?? ''}" class="layui-input">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">职位详情：</label>
-                    <div class="layui-input-block">
-                        <textarea id="container" name="detail" lay-verify="required">{$zw.detail ?? ''}</textarea>
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片alt：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="{:config('web.A')}" type="text" name="alt" lay-verify="alt" value="{$zw.alt ?? ''}" class="layui-input">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item" style="text-align: center">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit >保存</button>
-                        <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面标题：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="{:config('web.H')}"  type="text" name="keys" lay-verify="keys" value="{$zw.keys ?? ''}" class="layui-input">
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">关键词：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="{:config('web.K')}"  type="text" name="keywords" lay-verify="keywords" value="{$zw.keywords ?? ''}" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">页面描述：</label>
+                        <div class="layui-input-block">
+                            <input placeholder="{:config('web.D')}"  type="text" name="desc" lay-verify="desc"  value="{$zw.desc ?? ''}" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">职位详情：</label>
+                        <div class="layui-input-block">
+                            <textarea id="container" name="detail" lay-verify="required">{$zw.detail ?? ''}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-row">
+                <div class="layui-col-sm9 layui-col-md8">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否显示：</label>
+                        <div class="layui-input-block">
+                            {if isset($zw)}
+                            {eq name='zw.is_show' value='1'}
+                            <input type="radio" name="is_show" value="1" title="显示" checked>
+                            <input type="radio" name="is_show" value="2" title="隐藏">
+                            {else /}
+                            <input type="radio" name="is_show" value="1" title="显示">
+                            <input type="radio" name="is_show" value="2" title="隐藏" checked>
+                            {/eq}
+                            {else /}
+                            <input type="radio" name="is_show" value="1" title="显示" checked>
+                            <input type="radio" name="is_show" value="2" title="隐藏">
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin-left: 200px">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit >保存</button>
+                    <button style="margin-left: 100px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                </div>
+            </div>
+        </form>
     </div>
 </fieldset>
 
@@ -148,12 +166,57 @@
 <script>
     layui.use(['form','laydate'], function(){
         var laydate = layui.laydate;
+        var form = layui.form;
         //日期时间选择器
         laydate.render({
             elem: '#etime'
             ,type: 'datetime'
             ,theme: 'molv'
             ,format: 'yyyy-M-d'
+        });
+
+        form.verify({
+            name: function(value){
+                if(value.length > 50){
+                    return '名称不超过50个字符啊';
+                }
+            },
+            num: function(value){
+                var r = /^[1-9]\d?$/;
+                if(!r.test(value)){
+                    return '招聘人数不超过50个字符啊';
+                }
+            },
+            salary: function(value){
+                if(value.length > 50){
+                    return '薪金不超过50个字符啊';
+                }
+            },
+            title: function(value){
+                if(value.length > 255){
+                    return 'title不超过255个字符啊';
+                }
+            },
+            alt: function(value){
+                if(value.length > 255){
+                    return 'alt不超过255个字符啊';
+                }
+            },
+            keys: function(value){
+                if(value.length > 255){
+                    return '标题不超过255个字符啊';
+                }
+            },
+            keywords: function(value){
+                if(value.length > 255){
+                    return '关键词不超过255个字符啊';
+                }
+            },
+            desc: function(value){
+                if(value.length > 255){
+                    return '描述不超过255个字符啊';
+                }
+            }
         });
     });
 
