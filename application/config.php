@@ -248,6 +248,7 @@ return [
         'link'      => 'upload' . DS . 'link' . DS . 'thumb',   //保存友情链接缩略图
         'ask'       => 'upload' . DS . 'ask' . DS . 'thumb',    //保存问答缩略图
         'head'      => 'upload' . DS . 'head' . DS . 'thumb',   //保存用户头像缩略图
+        'user'      => 'upload' . DS . 'user',                  //保存系统用户头像
         'thumb'     => 'upload' . DS . 'thumb'                  //保存所有分类缩略图
     ],
 

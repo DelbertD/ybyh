@@ -157,27 +157,28 @@
         var element = layui.element;
         var $ = layui.jquery;
         $('.layui-body').scroll(function() {
+            if ($('#edui1_toolbarbox').length > 0){
+                var top = $('#edui1_toolbarbox').offset().top;
 
-            var top = $('#edui1_toolbarbox').offset().top;
+                var minTop = 140;
 
-            var minTop = 140;
+                var htmlTop = $('#container').offset().top;
 
-            var htmlTop = $('#container').offset().top;
-
-            var d = htmlTop - minTop;
-            if (top <= 60){
-                $('#edui1_toolbarbox').css({
-                    "top":"60px",
-                    "width":"981px",
-                    "z-index":"1000",
-                    "position":"fixed"
-                })
-            }
-            if (d > 0){
-                $('#edui1_toolbarbox').css({
-                    "top":"0",
-                    "position":"relative"
-                })
+                var d = htmlTop - minTop;
+                if (top <= 60){
+                    $('#edui1_toolbarbox').css({
+                        "top":"60px",
+                        "width":"981px",
+                        "z-index":"1000",
+                        "position":"fixed"
+                    })
+                }
+                if (d > 0){
+                    $('#edui1_toolbarbox').css({
+                        "top":"0",
+                        "position":"relative"
+                    })
+                }
             }
         });
     });

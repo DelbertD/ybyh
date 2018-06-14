@@ -30,7 +30,7 @@ class Pub extends Controller
             $id   = $user['id'];
             $salt = $user['salt'];
             $pass = $user['pass'];
-            $pwd  = md5($pwd . $salt);
+            $pwd  = md5(md5($pwd . $salt));
             if ($pwd != $pass){
                 $ret['msg'] = '用户信息错误';
                 return json_encode($ret);
@@ -59,5 +59,13 @@ class Pub extends Controller
         session(config('admin.user_auth_key'), null);
         session('user', null);
         $this->redirect(url('admin/pub/login'));
+    }
+
+    public function isExist($name = ''){
+        $info = Db::name('admin_user')->where('name', $name)->find();
+        if (empty($info)){
+            return false;
+        }
+        return true;
     }
 }
