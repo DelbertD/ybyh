@@ -262,6 +262,7 @@ return [
 
     'admin'                   => [
         'user_auth_key'     => 'user_id',
+        'user_auth_admin'   => 'adminuser',
         'user_auth_gateway' => 'admin/Pub/login'
     ],
 

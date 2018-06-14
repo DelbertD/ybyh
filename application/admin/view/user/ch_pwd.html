@@ -1,0 +1,129 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+
+</style>
+{/block}
+
+{block name='content'}
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <div class="layui-col-md12">
+            <form class="layui-form" action="{$url}" method="post">
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">账号：</label>
+                            <div class="layui-input-block">
+                                <input  type="text" name="pwd" value="{$name}" readonly  class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">旧密码：</label>
+                            <div class="layui-input-block">
+                                <input placeholder="请输入旧密码,字母数字组合，长度6-8个字符..." type="password" name="pwd" lay-verify="required|pass"  class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">新密码：</label>
+                            <div class="layui-input-block">
+                                <input placeholder="请输入新密码,字母数字组合，长度6-8个字符..." type="password" name="pass" lay-verify="required|pass" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">确认密码：</label>
+                            <div class="layui-input-block">
+                                <input placeholder="请输入确认密码..." type="password" name="rpass" lay-verify="required|pass|rpass"  class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item" style="margin-left: 200px">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit >保存</button>
+                        <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>
+
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use(['form','upload'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var upload = layui.upload;
+        //普通图片上传
+        var url = '/admin/upload/upImg/type/user';
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: url
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                var name = res.data.src;
+                $('#img').val(name);
+                return layer.msg('上传成功', {icon: 1});
+            }
+        });
+
+        form.verify({
+            pass: function(value){
+                if(value.length > 8 || value.length < 6){
+                    return '用户密码6-8个字符啊';
+                }
+                var r = /^(?![a-zA-Z]+$)(?!\d+$)[a-zA-Z0-9]{6,8}$/;
+                if (!r.test(value)){
+                    return '用户密码格式不对啊';
+                }
+            },
+            rpass: function(value){
+                var pass = $('input[name=pass]').val();
+                if(value != pass){
+                    return '两次输入密码不一样啊';
+                }
+            }
+        });
+
+    });
+
+</script>
+
+{/block}
+
+
+

@@ -1,0 +1,163 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+
+</style>
+{/block}
+
+{block name='content'}
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <div class="layui-col-md12">
+            <form class="layui-form" action="{$url}" method="post">
+                <input type="hidden" name="id" value="{$user.id}" />
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户账户：</label>
+                            <div class="layui-input-block">
+                                <input placeholder="请输入用户账户,字母数字组合，长度6-10个字符..." type="text" name="name" value="{$user.name}" lay-verify="required|name|unique"  class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户昵称：</label>
+                            <div class="layui-input-block">
+                                <input placeholder="请输入用户昵称,不超过10个字符..." type="text" name="nc" value="{$user.nc}" lay-verify="required|nc"  class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户性别：</label>
+                    <div class="layui-input-block">
+                        {eq name='user.sex' value='男'}
+                        <input type="radio" name="sex" value="男" title="男" checked>
+                        <input type="radio" name="sex" value="女" title="女">
+                        <input type="radio" name="sex" value="保密" title="保密">
+                        {/eq}
+                        {eq name='user.sex' value='女'}
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                        <input type="radio" name="sex" value="保密" title="保密">
+                        {/eq}
+                        {eq name='user.sex' value='保密'}
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女">
+                        <input type="radio" name="sex" value="保密" title="保密" checked>
+                        {/eq}
+                    </div>
+                </div>
+
+
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户头像：</label>
+                            <div class="layui-input-block">
+                                <input placeholder="请输入图片路径..."  id="img" type="text" name="thumb"  lay-verify="required" value="{$user.thumb ?? ''}" readonly class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-row">
+                    <div class="layui-col-sm9 layui-col-md8">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">原始图片：</label>
+                            <div class="layui-input-block">
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn layui-btn-sm" id="test1">上传图片</button>
+                                    <div class="layui-upload-list">
+                                        {if isset($user)}
+                                        <img class="layui-upload-img" src="/static/{$user.thumb}" width="50" height="50" id="demo1">
+                                        {else /}
+                                        <img class="layui-upload-img" width="50" height="50" id="demo1">
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="margin-left: 200px">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit >保存</button>
+                        <button style="margin-left: 50px;" type="reset" class="layui-btn layui-btn-danger">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>
+
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use(['form','upload'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var upload = layui.upload;
+        //普通图片上传
+        var url = '/admin/upload/upImg/type/user';
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: url
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                var name = res.data.src;
+                $('#img').val(name);
+                return layer.msg('上传成功', {icon: 1});
+            }
+        });
+
+        form.verify({
+            name: function(value){
+                if(value.length > 10 || value.length < 6){
+                    return '用户账户6-10个字符啊';
+                }
+                var r = /^(?![a-zA-Z]+$)(?!\d+$)[a-zA-Z0-9]{6,10}$/;
+                if (!r.test(value)){
+                    return '用户账户格式不对啊';
+                }
+            },
+            nc: function(value){
+                if(value.length > 10){
+                    return '用户昵称不超过10个字符啊';
+                }
+            }
+        });
+
+    });
+
+</script>
+
+{/block}
+
+
+
