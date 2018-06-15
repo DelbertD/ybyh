@@ -266,6 +266,12 @@ return [
         'user_auth_gateway' => 'admin/Pub/login'
     ],
 
+    //隐藏模块配置，多个用','分割
+    'hide'                   => [
+        'model'     => 'Node',
+        'action'    => 'User.add'
+    ],
+
     //关键词提示格式配置
     'web'                   => [
         'A'     => '请输入关键词...',

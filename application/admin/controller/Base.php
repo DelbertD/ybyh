@@ -30,24 +30,55 @@ class Base extends Controller
         $action = Db::name('node')->where('level', 2)->orderRaw('sort = 0,sort')->select();
         $navList = [];
         foreach ($action as $val){
-            if ($val['is_show'] == 2) continue;
-            if (Node::hasChild($val['id'])){
-                $child = Node::getChild($val['id']);
-                $item = [];
-                //模块名称以及图标
-                $item['title'] = $val['title'];
-                $item['name']  = $val['name'];
-                $item['icon']  = $val['icon'];
-                foreach ($child as $k => $subVal){
-                    if ($subVal['is_show'] == 2) continue;
-                    //方法名称以及图标
-                    $item['son'][$k]['title'] = $subVal['title'];
-                    $item['son'][$k]['icon']  = $subVal['icon'];
-                    //生成超链接字符串 model/action/method
-                    $url = $model['name'] . '/' . $val['name'] . '/' . $subVal['name'];
-                    $item['son'][$k]['url']   = url($url);
+            //不是管理员隐藏一些模块和方法
+            if (session('user.name') != config('admin.user_auth_admin')){
+                if ($val['is_show'] == 2) continue;
+                if ($val['status'] == 2) continue;
+                $hideModel = array_map('strtolower', explode(',', config('hide.model')));
+                if (in_array(strtolower($val['name']), $hideModel)) continue;
+                if (Node::hasChild($val['id'])){
+                    $child = Node::getChild($val['id']);
+                    $item = [];
+                    //模块名称以及图标
+                    $item['title'] = $val['title'];
+                    $item['name']  = $val['name'];
+                    $item['icon']  = $val['icon'];
+                    foreach ($child as $k => $subVal){
+                        if ($subVal['is_show'] == 2) continue;
+                        if ($subVal['status'] == 2) continue;
+                        $hideAction = array_map('strtolower', explode(',', config('hide.action')));
+                        if (in_array(strtolower($val['name'] . '.' . $subVal['name']), $hideAction)) continue;
+                        //方法名称以及图标
+                        $item['son'][$k]['title'] = $subVal['title'];
+                        $item['son'][$k]['icon']  = $subVal['icon'];
+                        //生成超链接字符串 model/action/method
+                        $url = $model['name'] . '/' . $val['name'] . '/' . $subVal['name'];
+                        $item['son'][$k]['url']   = url($url);
+                    }
+                    $navList[] = $item;
                 }
-                $navList[] = $item;
+            }else{
+                if ($val['is_show'] == 2) continue;
+                if ($val['status'] == 2) continue;
+                if (Node::hasChild($val['id'])){
+                    $child = Node::getChild($val['id']);
+                    $item = [];
+                    //模块名称以及图标
+                    $item['title'] = $val['title'];
+                    $item['name']  = $val['name'];
+                    $item['icon']  = $val['icon'];
+                    foreach ($child as $k => $subVal){
+                        if ($subVal['is_show'] == 2) continue;
+                        if ($subVal['status'] == 2) continue;
+                        //方法名称以及图标
+                        $item['son'][$k]['title'] = $subVal['title'];
+                        $item['son'][$k]['icon']  = $subVal['icon'];
+                        //生成超链接字符串 model/action/method
+                        $url = $model['name'] . '/' . $val['name'] . '/' . $subVal['name'];
+                        $item['son'][$k]['url']   = url($url);
+                    }
+                    $navList[] = $item;
+                }
             }
         }
         //导航标题处理
