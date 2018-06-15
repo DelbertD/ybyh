@@ -82,7 +82,13 @@ class User extends Base
             $newPass = md5(md5($pass . $salt));
             $res = Db::name('admin_user')->update(['id' => $id, 'pass' => $newPass]);
             if ($res){
-                $this->success('密码修改成功！','admin/Pub/logout');
+                $user = session('user.name');
+                $admin = config('admin.user_auth_admin');
+                if ($user == $admin){
+                    $this->success('密码修改成功！');
+                }else{
+                    $this->success('密码修改成功！','admin/Pub/logout');
+                }
             }else{
                 $this->error('密码修改失败！');
             }
