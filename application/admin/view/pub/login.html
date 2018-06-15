@@ -57,8 +57,8 @@
         var pwd = $('#pwd').val();
         var url = "{:url('admin/pub/login')}";
         var jump = "{:url('admin/index/index')}";
-        var user_par = /[a-zA-Z0-9]{5,10}/;
-        var pwd_par = /^(?![a-zA-Z]+$)(?!\D+$).{5,10}$/;
+        var user_par = /[a-zA-Z0-9]{6,10}/;
+        var pwd_par = /^(?![a-zA-Z]+$)(?!\D+$).{6,10}$/;
         if (!user_par.test(user)){
             layer.msg('用户名格式错误！', {icon: 2, time: 2 * 1000});
             return false;
