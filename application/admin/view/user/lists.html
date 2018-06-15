@@ -117,8 +117,12 @@
         var data = {id:id,val:val};
         $.get(url, data, function (res) {
             if (res.suc == 0){
-                layer.tips('用户操作成功！', '#' + id, {time:1500});
-                window.location.reload();
+                layer.tips('用户操作成功！', '#' + id, {
+                    time:1500,
+                    end:function(){
+                        window.location.reload();
+                    }
+                });
             }else {
                 layer.tips('用户操作失败！', '#' + id, {time:1500});
             }
