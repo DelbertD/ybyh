@@ -63,8 +63,12 @@
                                                                             <div class="qfe_wrapper">
                                                                                 <h3 class="qfy_title left mobileleft" style="text-align: center">
                                                                                     <div class="qfy_title_inner mainTitleInner">
-                                                                                        <div class="header_title newsDetialTitle">
+                                                                                        <div class="header_title newsDetialTitle" title="{$data.ask}">
+                                                                                            {if strlen($data.ask) > 20}
+                                                                                            {$data.ask|mb_substr=0,20,'UTF-8'} ...
+                                                                                            {else /}
                                                                                             {$data.ask}
+                                                                                            {/if}
                                                                                         </div>
                                                                                     </div>
                                                                                     <span class="clear"></span>
@@ -176,7 +180,7 @@
                                             <div class="column_containter zIndex" id="link">
                                                 <div class="swiper-container" >
                                                     <div class="swiper-wrapper">
-                                                        {foreach $hotData as $v}
+                                                        {foreach $list as $v}
                                                         <div class="swiper-slide linkBg">
                                                             <a href="{:url('index/Ask/show',['id' => $v['id']])}" title="{$v.ask}">
                                                                 <img src="/static/{$v.thumb}" width="100%" height="100" data-tag="imageSharePreview" alt="{$v.ask}">
