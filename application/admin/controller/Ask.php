@@ -53,7 +53,7 @@ class Ask extends Base
             Db::startTrans();
             try{
                 Db::name('ask')->update($post);
-                $ask_id = Db::name('ask')->getLastInsID();
+                $ask_id = $post['id'];
                 Db::name('ask_dtl')->where('ask_id', $ask_id)->update(['detail' => $detail]);
                 Db::commit();
                 $this->success('编辑成功');
