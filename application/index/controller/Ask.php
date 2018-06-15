@@ -29,7 +29,10 @@ class Ask extends Base
             ->select();
         $db = Db::name('ask')->where('is_show', 1);
         $result =  parent::_list($db, 5);
-        $data = Db::name('ask')->find($id);
+        $data = Db::name('ask')
+            ->alias('a')
+            ->join('ask_dtl ad', 'a.id = ad.ask_id')
+            ->find($id);
         $this->assign([
             'curMenu'  => '知识问答',
             'zxData'   => $zxData,
