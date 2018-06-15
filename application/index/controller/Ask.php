@@ -16,6 +16,12 @@ use think\Db;
 class Ask extends Base
 {
     public function show($id = 0){
+        if (!$id){
+            $id = Db::name('ask')
+                ->where('is_show', 1)
+                ->limit(1)
+                ->value('id');
+        }
         $this->setNum($id);
         $hotData = Db::name('ask')
             ->order('num desc')
@@ -28,7 +34,10 @@ class Ask extends Base
             ->limit(6)
             ->select();
         $db = Db::name('ask')->where('is_show', 1);
-        $result =  parent::_list($db, 5);
+        $list =  Db::name('ask')
+                ->order('sort,addtime desc')
+                ->where('is_show', 1)
+                ->select();
         $data = Db::name('ask')
             ->alias('a')
             ->join('ask_dtl ad', 'a.id = ad.ask_id')
@@ -38,8 +47,7 @@ class Ask extends Base
             'zxData'   => $zxData,
             'hotData'  => $hotData,
             'data'     => $data,
-            'page'     => $result['page'],
-            'list'     => $result['list']
+            'list'     => $list
         ]);
 
         return $this->fetch();
