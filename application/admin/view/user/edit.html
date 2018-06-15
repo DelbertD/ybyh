@@ -148,6 +148,26 @@
                     return '用户账户格式不对啊';
                 }
             },
+            unique: function(value){
+                var url = "{:url('admin/Pub/isExist')}";
+                var id = '{$user.id}';
+                var data = {name:value,id:id};
+                var msg = false;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    async: false, // 使用同步的方法
+                    data: data,
+                    success: function(res) {
+                        if (res === true) {
+                            msg = '该用户已经被注册啦';
+                        }
+                    }
+                });
+                if (msg){
+                    return msg;
+                }
+            },
             nc: function(value){
                 if(value.length > 10){
                     return '用户昵称不超过10个字符啊';

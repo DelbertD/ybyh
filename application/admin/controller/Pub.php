@@ -61,11 +61,22 @@ class Pub extends Controller
         $this->redirect(url('admin/pub/login'));
     }
 
-    public function isExist($name = ''){
-        $info = Db::name('admin_user')->where('name', $name)->find();
-        if (empty($info)){
-            return false;
+    public function isExist($name = '', $id = 0){
+        if ($id){
+            $info = Db::name('admin_user')
+                ->where('id', '<>', $id)
+                ->where('name', $name)
+                ->find();
+            if (empty($info)){
+                return false;
+            }
+            return true;
+        }else{
+            $info = Db::name('admin_user')->where('name', $name)->find();
+            if (empty($info)){
+                return false;
+            }
+            return true;
         }
-        return true;
     }
 }
