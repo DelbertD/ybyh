@@ -38,9 +38,9 @@
                 <td>{$v.ip}</td>
                 <td>{$v.t|date='Y-m-d H:i:s', ###}</td>
                 {eq name='v.is_lock' value='1'}
-                <td>启用</td>
+                <td><span style="padding: 5px;color: #1E9FFF">启用</span></td>
                 {else /}
-                <td>禁用</td>
+                <td><span style="padding: 5px;color: #FF5722">禁用</span></td>
                 {/eq}
                 <td>
                     {if session('user.name') == config('admin.user_auth_admin')}
