@@ -37,7 +37,7 @@
                 <th>序号</th>
                 <th>用户账号</th>
                 <th>用户昵称</th>
-                <th>添加数量/条</th>
+                <th>数量/条</th>
                 <th>详细清单</th>
                 <th>操作</th>
             </tr>
@@ -54,14 +54,14 @@
                         <thead>
                         <tr>
                             <th>操作名称</th>
-                            <th>添加数量/条</th>
+                            <th>数量/条</th>
                             <th>文章记录id</th>
                         </tr>
                         </thead>
                         {foreach $v.rids as $k => $lm}
                         <tr>
-                            <td>添加{:getLm($k)} </td>
-                            <td class="mark">{:count($lm)}</td>
+                            <td style="width: 15%">添加{:getLm($k)} </td>
+                            <td style="width: 15%" class="mark">{:count($lm)}</td>
                             <td class="mark" title="文章id：{:implode(',',$lm)}">{:implode(',',$lm)}</td>
                         </tr>
                         {/foreach}
