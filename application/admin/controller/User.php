@@ -118,6 +118,18 @@ class User extends Base
         return $ret;
     }
 
+    public function delRecord($id = 0){
+        $ret = ['suc' => 1];
+        if (empty($id)){
+            return $ret;
+        }
+        $res = Db::name('record')->delete($id);
+        if ($res){
+            $ret['suc'] = 0;
+        }
+        return $ret;
+    }
+
     public function saveVal($id = 0, $val = 0){
         $ret = [
             'suc' => 0
@@ -130,5 +142,41 @@ class User extends Base
             $ret['suc'] = 1;
         }
         return $ret;
+    }
+
+
+    public function recordLists(){
+        $db = Db::name('record');
+        return parent::_list($db, 10);
+    }
+
+    public function info(){
+        $user = session('user.name');
+        $uid  = session('user.id');
+        $admin = config('admin.user_auth_admin');
+        $db = Db::name('record')
+            ->field('uid,tab,rid,count(1) as n')
+            ->group('uid,tab,rid');
+        if ($user != $admin){
+            $db = $db->where('uid', $uid);
+        }
+        $data = $db->select();
+        $list = $this->fromData($data);
+        $this->assign([
+            'list' => $list
+        ]);
+        return $this->fetch();
+    }
+
+    protected function fromData($data = []){
+        $list = [];
+        foreach ($data as $v){
+            $list[$v['uid']]['uid'] = $v['uid'];
+            $list[$v['uid']]['tab'] = $v['tab'];
+            $list[$v['uid']]['con'][] = $v['rid'];
+            $list[$v['uid']]['rids'][$v['tab']][] = $v['rid'];
+            $list[$v['uid']]['num'] = count($list[$v['uid']]['con']);
+        }
+        return $list;
     }
 }

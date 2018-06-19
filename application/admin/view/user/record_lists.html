@@ -1,0 +1,109 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+
+</style>
+{/block}
+
+{block name='content'}
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>用户id</th>
+                <th>用户名称</th>
+                <th>用户昵称</th>
+                <th>操作名称</th>
+                <th>文章id</th>
+                <th>添加时间</th>
+                <th>操作类型</th>
+                <th>用户备注</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $list as $v}
+            <tr>
+                <td>{$v.id}</td>
+                <td>{$v.uid}</td>
+                <td>{:getVal('admin_user.name.' . $v.uid)}</td>
+                <td>{:getVal('admin_user.nc.' . $v.uid)}</td>
+                <td>添加{:getLm($v.tab)}</td>
+                <td>{$v.rid}</td>
+                <td>{$v.addtime|date='Y-m-d', ###}</td>
+                <td>add</td>
+                <td>{$v.msg}</td>
+                <td>
+                    {if session('user.name') == config('admin.user_auth_admin')}
+                    <a onclick="del('{$v.id}')" style="color: #FF5722;cursor: pointer">
+                        <i class="layui-icon">&#xe640;</i>
+                        删除
+                    </a>
+                    {else /}
+                        暂无操作
+                    {/if}
+                </td>
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+        <div class="pull-right">
+            {$page ?? ''}
+        </div>
+    </div>
+</fieldset>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use('table', function(){
+
+    });
+
+    function del(id) {
+        var $ = layui.jquery;
+        layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
+            var url = "{:url('admin/User/delRecord')}";
+            $.get(url, {"id":id}, function (res) {
+                layer.close(index);
+                if (res.suc == 0){
+                    layer.msg('删除成功', {icon: 1}, function () {
+                        location.reload();
+                    });
+                }else {
+                    layer.msg('删除成功', {icon: 2});
+                }
+            })
+        });
+    }
+
+    function saveVal(id, val) {
+        var $ = layui.jquery;
+        var url = "{:url('admin/User/saveVal')}";
+        var data = {id:id,val:val};
+        $.get(url, data, function (res) {
+            if (res.suc == 0){
+                layer.tips('用户操作成功！', '#' + id, {
+                    time:1500,
+                    end:function(){
+                        window.location.reload();
+                    }
+                });
+            }else {
+                layer.tips('用户操作失败！', '#' + id, {time:1500});
+            }
+        })
+    }
+
+</script>
+{/block}
+
+
+

@@ -42,6 +42,7 @@ class Pro extends Base
                 $pro_id = Db::name('pro')->getLastInsID();
                 Db::name('pro_dtl')->insert(['pro_id' => $pro_id,'detail' => $detail]);
                 Db::commit();
+                $this->writeRecord($pro_id,3);
                 $this->success('添加成功');
             }catch (Exception $e){
                 Db::rollback();

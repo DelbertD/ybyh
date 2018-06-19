@@ -48,6 +48,7 @@ class News extends Base
                 $news_id = Db::name('news')->getLastInsID();
                 Db::name('news_dtl')->insert(['news_id' => $news_id,'detail' => $detail]);
                 Db::commit();
+                $this->writeRecord($news_id,1);
                 $this->success('添加成功');
             }catch (Exception $e){
                 Db::rollback();

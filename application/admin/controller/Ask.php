@@ -33,6 +33,7 @@ class Ask extends Base
                 $ask_id = Db::name('ask')->getLastInsID();
                 Db::name('ask_dtl')->insert(['ask_id' => $ask_id,'detail' => $detail]);
                 Db::commit();
+                $this->writeRecord($ask_id,4);
                 $this->success('添加成功');
             }catch (Exception $e){
                 Db::rollback();

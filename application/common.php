@@ -69,3 +69,18 @@ if (!function_exists('addLogo')){
     }
 }
 
+if (!function_exists('getLm')){
+    function getLm($tab){
+        $lm = [
+            1 => '新闻',
+            2 => '案例',
+            3 => '产品',
+            4 => '问答',
+            5 => '评论',
+            6 => '友链',
+            7 => '招聘'
+        ];
+        return isset($lm[$tab]) ? $lm[$tab] : 'not set';
+    }
+}
+

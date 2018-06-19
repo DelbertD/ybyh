@@ -38,6 +38,7 @@ class Personnel extends Base
                 $zw_id = Db::name('zw')->getLastInsID();
                 Db::name('zw_dtl')->insert(['zw_id' => $zw_id,'detail' => $detail]);
                 Db::commit();
+                $this->writeRecord($zw_id,7);
                 $this->success('添加成功');
             }catch (Exception $e){
                 Db::rollback();

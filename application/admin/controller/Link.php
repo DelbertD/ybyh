@@ -28,7 +28,9 @@ class Link extends Base
             $post['addtime'] = time();
             unset($post['file']);
             $res = Db::name('link')->insert($post);
+            $link_id = Db::name('link')->getLastInsID();
             if ($res){
+                $this->writeRecord($link_id,6);
                 $this->success('添加成功！');
             }else{
                 $this->error('添加失败！');

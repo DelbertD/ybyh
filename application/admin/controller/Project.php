@@ -55,6 +55,7 @@ class Project extends Base
                         'detail'=>$detail
                     ]);
                 Db::commit();
+                $this->writeRecord($anli_id,2);
                 $this->success('添加成功！');
             } catch (Exception $e) {
                 Db::rollback();

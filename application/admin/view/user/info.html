@@ -1,0 +1,114 @@
+{extend name="extra@admin/common"}
+
+{block name='style'}
+<link rel="stylesheet" href="" />
+<style>
+    .mark {
+        font-size: 16px;
+        color: red;
+    }
+</style>
+{/block}
+
+{block name='content'}
+<fieldset class="layui-elem-field">
+    <legend>{$sonTitle ?? ''}</legend>
+    <div class="layui-field-box">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户账号</th>
+                <th>用户昵称</th>
+                <th>添加数量/条</th>
+                <th>详细清单</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="v"}
+            <tr>
+                <td>{$i}</td>
+                <td>{:getVal('admin_user.name.' . $v.uid)}</td>
+                <td>{:getVal('admin_user.nc.' . $v.uid)}</td>
+                <td class="mark">{$v.num}</td>
+                <td>
+                    <table style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>操作名称</th>
+                            <th>添加数量/条</th>
+                            <th>文章记录id</th>
+                        </tr>
+                        </thead>
+                        {foreach $v.rids as $k => $lm}
+                        <tr>
+                            <td>添加{:getLm($k)} </td>
+                            <td class="mark">{:count($lm)}</td>
+                            <td class="mark">{:implode(',',$lm)}</td>
+                        </tr>
+                        {/foreach}
+                    </table>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" style="color: #1E9FFF;cursor: pointer">
+                        <i class="layui-icon">&#xe615;</i>
+                        查看绩效
+                    </a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    layui.use('table', function(){
+
+    });
+
+    function del(id) {
+        var $ = layui.jquery;
+        layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
+            var url = "{:url('admin/User/del')}";
+            $.get(url, {"id":id}, function (res) {
+                layer.close(index);
+                if (res.suc == 0){
+                    layer.msg('删除成功', {icon: 1}, function () {
+                        location.reload();
+                    });
+                }else {
+                    layer.msg('删除成功', {icon: 2});
+                }
+            })
+        });
+    }
+
+    function saveVal(id, val) {
+        var $ = layui.jquery;
+        var url = "{:url('admin/User/saveVal')}";
+        var data = {id:id,val:val};
+        $.get(url, data, function (res) {
+            if (res.suc == 0){
+                layer.tips('用户操作成功！', '#' + id, {
+                    time:1500,
+                    end:function(){
+                        window.location.reload();
+                    }
+                });
+            }else {
+                layer.tips('用户操作失败！', '#' + id, {time:1500});
+            }
+        })
+    }
+
+</script>
+{/block}
+
+
+

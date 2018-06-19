@@ -149,4 +149,19 @@ class Base extends Controller
         return $ret;
     }
 
+    protected function writeRecord($rid, $table, $type = 1, $msg = '用户新增一条记录'){
+        $saveData = [];
+        $saveData['uid']     = session('user.id');
+        $saveData['rid']     = $rid;
+        $saveData['tab']     = $table;
+        $saveData['type']    = $type;
+        $saveData['msg']     = $msg;
+        $saveData['addtime'] = time();
+        $rs = Db::name('record')->insert($saveData);
+        if (!$rs){
+            return false;
+        }
+        return true;
+    }
+
 }

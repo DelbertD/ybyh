@@ -30,7 +30,9 @@ class Comment extends Base
             $post['addtime'] = time();
             unset($post['file']);
             $res = Db::name($this->table)->insert($post);
+            $comment_id = Db::name($this->table)->getLastInsID();
             if ($res){
+                $this->writeRecord($comment_id,5);
                 $this->success('添加成功！');
             }else{
                 $this->error('添加失败！');
