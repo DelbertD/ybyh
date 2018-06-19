@@ -162,8 +162,9 @@ class User extends Base
         if ($user != $admin){
             $db = $db->where('uid', $uid);
         }
-        $sid = $name ? Db::name('admin_user')->where('name', $name)->value('id') : -1;
+        $sid = $name ? Db::name('admin_user')->where('name', $name)->value('id') : 0;
         $db = $sid && $name ? $db->where('uid', $sid) : $db;
+        $db = !$sid && $name ? $db->where('uid', $sid) : $db;
         if ($time){
             list($start, $end) = explode('~', $time);
             $db = $db->where('addtime', 'between time', [$start, $end]);
