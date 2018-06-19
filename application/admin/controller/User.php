@@ -167,8 +167,10 @@ class User extends Base
         $db = !$sid && $name ? $db->where('uid', $sid) : $db;
         if ($time){
             list($start, $end) = explode('~', $time);
+            $start = strtotime($start);
+            $end = strtotime($end);
             if ($start == $end){
-                $end = date('Y-m-d', strtolower($end) + 3600);
+                $end = $end + 24 * 3600;
             }
             $db = $db->where('addtime', 'between time', [$start, $end]);
         }else{
