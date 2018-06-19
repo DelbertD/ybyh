@@ -6,6 +6,8 @@
     .mark {
         font-size: 16px;
         color: red;
+        max-width: 800px;
+        overflow: hidden;
     }
 </style>
 {/block}
@@ -14,7 +16,22 @@
 <fieldset class="layui-elem-field">
     <legend>{$sonTitle ?? ''}</legend>
     <div class="layui-field-box">
-        <table class="layui-table">
+        <form class="layui-form" action="{$url}" method="get">
+            <div class="layui-form-item pull-right">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" value="{$Think.get.name}" placeholder="请输入用户名" class="layui-input">
+                </div>
+                <label class="layui-form-label">添加时间</label>
+                <div class="layui-input-inline">
+                    <input id="timerange" type="text" name="time" value="{$Think.get.time}" readonly  placeholder="请选择时间" class="layui-input">
+                </div>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">
+                    <i class="layui-icon">&#xe615;</i>
+                    搜索
+                </button>
+            </div>
+            <table class="layui-table">
             <thead>
             <tr>
                 <th>序号</th>
@@ -45,7 +62,7 @@
                         <tr>
                             <td>添加{:getLm($k)} </td>
                             <td class="mark">{:count($lm)}</td>
-                            <td class="mark">{:implode(',',$lm)}</td>
+                            <td class="mark" title="文章id：{:implode(',',$lm)}">{:implode(',',$lm)}</td>
                         </tr>
                         {/foreach}
                     </table>
@@ -60,6 +77,7 @@
             {/volist}
             </tbody>
         </table>
+        </form>
     </div>
 </fieldset>
 
@@ -68,45 +86,16 @@
 
 {block name="script"}
 <script>
-    layui.use('table', function(){
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#timerange'
+            ,type: 'date'
+            ,range: '~'
+            ,theme: 'molv'
+        });
 
     });
-
-    function del(id) {
-        var $ = layui.jquery;
-        layer.confirm('确定删除这条数据吗?', {icon: 2, title:'确认操作提示提示', skin:'layui-layer-lan'}, function(index){
-            var url = "{:url('admin/User/del')}";
-            $.get(url, {"id":id}, function (res) {
-                layer.close(index);
-                if (res.suc == 0){
-                    layer.msg('删除成功', {icon: 1}, function () {
-                        location.reload();
-                    });
-                }else {
-                    layer.msg('删除成功', {icon: 2});
-                }
-            })
-        });
-    }
-
-    function saveVal(id, val) {
-        var $ = layui.jquery;
-        var url = "{:url('admin/User/saveVal')}";
-        var data = {id:id,val:val};
-        $.get(url, data, function (res) {
-            if (res.suc == 0){
-                layer.tips('用户操作成功！', '#' + id, {
-                    time:1500,
-                    end:function(){
-                        window.location.reload();
-                    }
-                });
-            }else {
-                layer.tips('用户操作失败！', '#' + id, {time:1500});
-            }
-        })
-    }
-
 </script>
 {/block}
 

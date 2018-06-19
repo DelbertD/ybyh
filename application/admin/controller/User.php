@@ -151,6 +151,8 @@ class User extends Base
     }
 
     public function info(){
+        $name = request()->get('name', '');
+        $time = request()->get('time', '');
         $user = session('user.name');
         $uid  = session('user.id');
         $admin = config('admin.user_auth_admin');
@@ -159,6 +161,16 @@ class User extends Base
             ->group('uid,tab,rid');
         if ($user != $admin){
             $db = $db->where('uid', $uid);
+        }
+        $sid = $name ? Db::name('admin_user')->where('name', $name)->value('id') : 0;
+        $db = $sid ? $db->where('uid', $sid) : $db;
+        if ($time){
+            list($start, $end) = explode('~', $time);
+            $db = $db->where('addtime', 'between time', [$start, $end]);
+        }else{
+            $end = time();
+            $start = $end - 30 * 24 * 60 * 60;
+            $db = $db->where('addtime', 'between time', [$start, $end]);
         }
         $data = $db->select();
         $list = $this->fromData($data);
