@@ -163,7 +163,7 @@ class User extends Base
             $db = $db->where('uid', $uid);
         }
         $sid = $name ? Db::name('admin_user')->where('name', $name)->value('id') : 0;
-        $db = $sid ? $db->where('uid', $sid) : $db;
+        $db = $sid ? $db->where('uid', $sid) : $db->where('id', '<', 0);
         if ($time){
             list($start, $end) = explode('~', $time);
             $db = $db->where('addtime', 'between time', [$start, $end]);
