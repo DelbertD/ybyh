@@ -153,6 +153,8 @@ class User extends Base
     public function info(){
         $name = request()->get('name', '');
         $time = request()->get('time', '');
+        $time2 = request()->get('time2', '');
+        $uname = request()->get('uname', '');
         $user = session('user.name');
         $uid  = session('user.id');
         $admin = config('admin.user_auth_admin');
@@ -180,8 +182,16 @@ class User extends Base
         }
         $data = $db->select();
         $list = $this->fromData($data);
+        $count = array_column($list, 'num', 'uid');
         $this->assign([
             'list' => $list
+        ]);
+        $json1 = $this->getData1($uname);
+        $json2 = $this->getData2($time2);
+        $this->assign([
+            'json1' => $json1,
+            'json2' => $json2,
+            'count' => array_sum($count)
         ]);
         return $this->fetch();
     }
@@ -196,5 +206,146 @@ class User extends Base
             $list[$v['uid']]['num'] = count($list[$v['uid']]['con']);
         }
         return $list;
+    }
+
+    private function getData1($uname = ''){
+        $user = session('user.name');
+        $userid = session('user.id');
+        $admin = config('admin.user_auth_admin');
+        $end = time();
+        $start = $end - 29 * 24 * 60 * 60;
+        $begin = $start;
+        $day = [];
+        for ($i = 0; $begin <= $end; $i++) {
+            $day[] = date('Y-m-d', $begin);
+            $begin += 24 * 3600;
+        }
+        $db = Db::name('record');
+        if ($user != $admin){
+            $db = $db->where('uid', $userid);
+        }
+        $uid = $uname ? Db::name('admin_user')->where('name', $uname)->value('id') : 0;
+        $db = $uid && $uname ? $db->where('uid', $uid) : $db;
+        $db = !$uid && $uname ? $db->where('uid', $uid) : $db;
+        $data = $db
+            ->field("tab,count(*) as n,FROM_UNIXTIME(addtime,'%Y-%m-%d') as day")
+            ->group('day,tab')
+            ->select();
+
+        $list = [];
+        foreach ($data as $v){
+            $list[$v['day']]['day'] = $v['day'];
+            $list[$v['day']]['con'][] = $v['n'];
+            $list[$v['day']]['all'] = array_sum($list[$v['day']]['con']);
+            for ($i = 1; $i <= 7; $i++){
+                if ($i == $v['tab']){
+                    $list[$v['day']]['type'][$i][] = $v['n'];
+                }else{
+                    $list[$v['day']]['type'][$i][] = 0;
+                }
+            }
+            for ($i = 1; $i <= 7; $i++){
+                $list[$v['day']]['num'][$i] = array_sum($list[$v['day']]['type'][$i]);
+            }
+        }
+        $retArr = [
+            'day' => [],
+            'n'   => [],
+            'n1'  => [],
+            'n2'  => [],
+            'n3'  => [],
+            'n4'  => [],
+            'n5'  => [],
+            'n6'  => [],
+            'n7'  => []
+        ];
+        foreach ($day as $v) {
+            if (array_key_exists($v, $list)) {
+                $retArr['day'][] = $v;
+                for ($i = 1; $i <= 7; $i++){
+                    $retArr['n' . $i][] = $list[$v]['num'][$i];
+                }
+            } else {
+                $retArr['day'][] = $v;
+                for ($i = 1; $i <= 7; $i++){
+                    $retArr['n' . $i][] = 0;
+                }
+            }
+            if (isset($list[$v])){
+                $retArr['n'][] = $list[$v]['all'];
+            }else{
+                $retArr['n'][] = 0;
+            }
+        }
+        return json_encode($retArr);
+    }
+
+
+    private function getData2($time2 = ''){
+        $user = session('user.name');
+        $userid = session('user.id');
+        $admin = config('admin.user_auth_admin');
+        $db = Db::name('record');
+        if ($user != $admin){
+            $db = $db->where('uid', $userid);
+        }
+        if ($time2){
+            list($start, $end) = explode('~', $time2);
+            $start = strtotime($start);
+            $end = strtotime($end);
+            if ($start == $end){
+                $end = $end + 24 * 3600;
+            }
+            $db = $db->where('addtime', 'between time', [$start, $end]);
+        }
+        $data = $db
+            ->field("uid,tab,count(*) as n")
+            ->group('uid,tab')
+            ->select();
+        $list = [];
+        foreach ($data as $v){
+            $list[$v['uid']]['uid'] = $v['uid'];
+            $list[$v['uid']]['num'][$v['tab']] = $v['n'];
+        }
+        $user = Db::name('admin_user')
+            ->field('id,name')
+            ->select();
+        $retArr = [
+            'uid' => [],
+            'name' => [],
+            'num'   => [],
+            'n1'  => [],
+            'n2'  => [],
+            'n3'  => [],
+            'n4'  => [],
+            'n5'  => [],
+            'n6'  => [],
+            'n7'  => []
+        ];
+
+        foreach ($user as $v){
+            $num = 0;
+            $retArr['uid'][]  = $v['id'];
+            $retArr['name'][] = $v['name'];
+            $retArr['uid'][]  = $v['id'];
+            if (array_key_exists($v['id'], $list)) {
+                for ($i = 1; $i <= 7; $i++){
+                   if (array_key_exists($i, $list[$v['id']]['num'])) {
+                       $retArr['n' . $i][] = $list[$v['id']]['num'][$i];
+                       $num += $list[$v['id']]['num'][$i];
+                    }else{
+                       $retArr['n' . $i][] = 0;
+                   }
+                }
+            }else{
+                for ($i = 1; $i <= 7; $i++){
+                    $retArr['n' . $i][] = 0;
+                }
+
+            }
+
+            $retArr['num'][] = $num;
+        }
+        return json_encode($retArr);
     }
 }

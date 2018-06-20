@@ -48,7 +48,14 @@
 </html>
 <script>
     layui.use('form', function(){
-
+        var $ = layui.jquery;
+        $(function () {
+            $(document).keydown(function(e){
+                if (e.keyCode == 13){
+                    login();
+                }
+            });
+        })
     });
 
     function login() {

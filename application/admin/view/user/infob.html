@@ -32,57 +32,51 @@
                 </button>
             </div>
             <table class="layui-table">
-                <thead>
-                <tr>
-                    <th>序号</th>
-                    <th>用户账号</th>
-                    <th>用户昵称</th>
-                    <th>数量/条</th>
-                    <th>详细清单</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                {volist name="list" id="v"}
-                <tr>
-                    <td>{$i}</td>
-                    <td>{:getVal('admin_user.name.' . $v.uid)}</td>
-                    <td>{:getVal('admin_user.nc.' . $v.uid)}</td>
-                    <td class="mark">{$v.num}</td>
-                    <td>
-                        <table style="width: 100%">
-                            <thead>
-                            <tr>
-                                <th>操作名称</th>
-                                <th>数量/条</th>
-                                <th>文章记录id</th>
-                            </tr>
-                            </thead>
-                            {foreach $v.rids as $k => $lm}
-                            <tr>
-                                <td style="width: 15%">添加{:getLm($k)} </td>
-                                <td style="width: 15%" class="mark">{:count($lm)}</td>
-                                <td class="mark" title="文章id：{:implode(',',$lm)}">{:implode(',',$lm)}</td>
-                            </tr>
-                            {/foreach}
-                        </table>
-                    </td>
-                    <td>
-                        <a href="javascript:void(0)" style="color: #1E9FFF;cursor: pointer">
-                            <i class="layui-icon">&#xe615;</i>
-                            查看绩效
-                        </a>
-                    </td>
-                </tr>
-                {/volist}
-                <tr>
-                    <td colspan="4" class="text-center">数据总计/条</td>
-                    <td style="text-align: left;" colspan="2" class="mark">
-                        {$count}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户账号</th>
+                <th>用户昵称</th>
+                <th>数量/条</th>
+                <th>详细清单</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="v"}
+            <tr>
+                <td>{$i}</td>
+                <td>{:getVal('admin_user.name.' . $v.uid)}</td>
+                <td>{:getVal('admin_user.nc.' . $v.uid)}</td>
+                <td class="mark">{$v.num}</td>
+                <td>
+                    <table style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>操作名称</th>
+                            <th>数量/条</th>
+                            <th>文章记录id</th>
+                        </tr>
+                        </thead>
+                        {foreach $v.rids as $k => $lm}
+                        <tr>
+                            <td style="width: 15%">添加{:getLm($k)} </td>
+                            <td style="width: 15%" class="mark">{:count($lm)}</td>
+                            <td class="mark" title="文章id：{:implode(',',$lm)}">{:implode(',',$lm)}</td>
+                        </tr>
+                        {/foreach}
+                    </table>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" style="color: #1E9FFF;cursor: pointer">
+                        <i class="layui-icon">&#xe615;</i>
+                        查看绩效
+                    </a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
         </form>
     </div>
 </fieldset>
@@ -103,11 +97,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
-        <h5 style="margin-left: 60px;">最近30天添加量统计</h5>
-        <div class="layui-row">
-            <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
                 <div id="bar1" style="height: 500px;width: 100%;"></div>
             </div>
         </div>
@@ -125,11 +114,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
-        <h5 style="margin-left: 60px;">用户特定时间段内添加量统计</h5>
-        <div class="layui-row">
-            <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
                 <div id="bar2" style="height: 500px;width: 100%;"></div>
             </div>
         </div>
@@ -159,12 +143,14 @@
     });
 
     var myChart1 = echarts.init(document.getElementById('bar1'), 'shine');
-    var myChart2 = echarts.init(document.getElementById('bar2'), 'shine');
-    var colors = ['#ffbf00', '#00924c', '#f5317f', '#6C15AB', '#24B300', '#f5317f', '#ffbf00', '#25C6FC'];
+    var colors = ['#f5317f', '#00924c', '#ffbf00'];
     var data1 = JSON.parse('{$json1}');
-    var data2 = JSON.parse('{$json2}');
     option = {
         color: colors,
+        title: {
+            text: '最近30天用户添加数量统计',
+            x: 'left'
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -172,7 +158,7 @@
             }
         },
         legend: {
-            data: ['新闻', '案例','产品', '问答', '评论', '友链', '招聘', '总数'],
+            data: ['新闻', '案例','产品', '问答', '评论', '友链', '招聘'],
             x: 'center'
         },
         grid: {
@@ -189,15 +175,14 @@
         }],
         yAxis: [
             {
-                name: '用户添加量/条',
+                name: '用户添加量',
                 type: 'value',
-                minInterval: 1,
                 position: 'left',
                 nameLocation:"middle",
                 nameGap:30,
                 axisLine: {
                     lineStyle: {
-                        color: "#000000"
+                        color: "#F5317F"
                     }
                 },
                 axisLabel: {
@@ -207,136 +192,43 @@
         ],
         series: [
             {
-                name: '新闻',
+                name: '添加新闻',
                 type: 'line',
                 data: data1['n1']
             },
             {
-                name: '案例',
+                name: '添加案例',
                 type: 'line',
                 data: data1['n2']
             },
             {
-                name: '产品',
+                name: '添加产品',
                 type: 'line',
                 data: data1['n3']
             },
             {
-                name: '问答',
+                name: '添加问答',
                 type: 'line',
                 data: data1['n4']
             },
             {
-                name: '评论',
+                name: '添加评论',
                 type: 'line',
                 data: data1['n5']
             },
             {
-                name: '友链',
+                name: '添加友链',
                 type: 'line',
                 data: data1['n6']
             },
             {
-                name: '招聘',
+                name: '添加招聘',
                 type: 'line',
                 data: data1['n7']
-            },
-            {
-                name: '总数',
-                type: 'line',
-                data: data1['n']
             }
         ]
     };
     myChart1.setOption(option);
-
-
-    option = {
-        color: colors,
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                type: 'cross' // 默认为直线，可选为：'line' | 'shadow' | 'cross'
-            }
-        },
-        legend: {
-            data: ['新闻', '案例','产品', '问答', '评论', '友链', '招聘', '总数'],
-            x: 'center'
-        },
-        grid: {
-            left: '3%',
-            right: '3%',
-            containLabel: true
-        },
-        xAxis: [{
-            type: 'category',
-            data: data2['name'],
-            axisTick: {
-                alignWithLabel: true
-            }
-        }],
-        yAxis: [
-            {
-                name: '用户添加量/条',
-                type: 'value',
-                minInterval: 1,
-                position: 'left',
-                nameLocation:"middle",
-                nameGap:30,
-                axisLine: {
-                    lineStyle: {
-                        color: "#000000"
-                    }
-                },
-                axisLabel: {
-                    formatter: '{value}'
-                }
-            }
-        ],
-        series: [
-            {
-                name: '新闻',
-                type: 'line',
-                data: data2['n1']
-            },
-            {
-                name: '案例',
-                type: 'line',
-                data: data2['n2']
-            },
-            {
-                name: '产品',
-                type: 'line',
-                data: data2['n3']
-            },
-            {
-                name: '问答',
-                type: 'line',
-                data: data2['n4']
-            },
-            {
-                name: '评论',
-                type: 'line',
-                data: data2['n5']
-            },
-            {
-                name: '友链',
-                type: 'line',
-                data: data2['n6']
-            },
-            {
-                name: '招聘',
-                type: 'line',
-                data: data2['n7']
-            },
-            {
-                name: '总数',
-                type: 'line',
-                data: data2['num']
-            }
-        ]
-    };
-    myChart2.setOption(option);
 </script>
 {/block}
 
