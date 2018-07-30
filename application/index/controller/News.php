@@ -19,7 +19,7 @@ class News extends Base
         $this->assign([
             'id' => $id
         ]);
-        $db = Db::name('news')->where('pid', $id);
+        $db = Db::name('news')->where('is_show', 1)->where('pid', $id);
         $result = parent::_list($db,5);
         $this->assign($result);
         return $this->fetch();
